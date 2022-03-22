@@ -8,7 +8,7 @@ class API {
 
     API.#instance = this
 
-    this._baseURL = 'https://api-blog-m2.herokuapp.com'
+    this._baseURL = 'https://kenzie-food-api.herokuapp.com/'
   }
 
   static getInstance() {
