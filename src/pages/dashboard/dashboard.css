@@ -149,6 +149,8 @@ header {
   font-size: 14px;
   line-height: 24px;
 
+  max-width: 100%;
+
   color: var(--grey-40);
 
   margin-top: 16px;
