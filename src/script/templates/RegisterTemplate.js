@@ -1,8 +1,16 @@
-import { Singleton } from '../Singleton.js'
+class RegisterTemplate {
+  static #instance = null
 
-class RegisterTemplate extends Singleton {
   constructor() {
-    super()
+    if (RegisterTemplate.#instance) {
+      return RegisterTemplate.#instance
+    }
+
+    RegisterTemplate.#instance = this
+  }
+
+  static getInstance() {
+    return RegisterTemplate.#instance
   }
 }
 
