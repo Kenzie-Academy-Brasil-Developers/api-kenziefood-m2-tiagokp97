@@ -25,6 +25,7 @@ header {
     .form-container .field {
         width: 246px;
         height: 42px;
+        border: none;
         border-radius: 4px;
         padding-left: 10px;
         outline: none;
