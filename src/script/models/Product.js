@@ -25,7 +25,7 @@ class Product {
   }
 
   // Fetch products
-  getAll() {
+  async getAll() {
     //TODO
   }
 }

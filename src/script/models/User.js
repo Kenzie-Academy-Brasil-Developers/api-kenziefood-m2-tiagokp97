@@ -24,7 +24,7 @@ class User {
   }
 
   // Fetch
-  register() {
+  async register() {
     //TODO
   }
 }

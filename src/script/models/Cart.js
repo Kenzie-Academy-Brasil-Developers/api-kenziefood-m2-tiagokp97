@@ -24,7 +24,7 @@ class Cart {
   }
 
   // Fetch
-  removeItem() {
+  async removeItem() {
     //TODO
   }
 }
