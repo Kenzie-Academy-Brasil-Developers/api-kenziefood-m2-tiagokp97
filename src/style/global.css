@@ -13,7 +13,13 @@
     --grey-100: #212529;
 }
 
+* {
+  box-sizing: border-box;
+}
 
+button {
+  cursor: pointer;
+}
 
 /* body {
     background-color: var(--pink);
