@@ -1,14 +1,14 @@
 import { API } from './API.js'
 
-class User {
+class Cart {
   static #instance = null
 
   constructor() {
-    if (User.#instance) {
-      return User.#instance
+    if (Cart.#instance) {
+      return Cart.#instance
     }
 
-    User.#instance = this
+    Cart.#instance = this
 
     if (!API.getInstance()) {
       new API()
@@ -16,17 +16,17 @@ class User {
 
     this._APIInstance = API.getInstance()
 
-    this._authURL = `${this._APIInstance.baseURL}/auth`
+    this._cartURL = `${this._APIInstance.baseURL}/cart`
   }
 
   static getInstance() {
-    return User.#instance
+    return Cart.#instance
   }
 
   // Fetch
-  async register() {
+  async removeItem() {
     //TODO
   }
 }
 
-export { User }
+export { Cart }
