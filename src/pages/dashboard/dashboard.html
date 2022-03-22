@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/src/style/reset.css" />
+  <link rel="stylesheet" href="/src/style/global.css" />
+  <link rel="stylesheet" href="./dashboard.css" />
+</head>
+
+<body>
+  <header>
+    <img src="/src/assets/icon_logo_kenzie_food.svg" alt="" class="logo-kenzie">
+    <img src="/src/assets/icon_search.svg" alt="" class="icon-search">
+    <input type="text" name="" id="" id="input-name" placeholder="Pesquisar por produto">
+  </header>
+
+  <ul class="ul-buttons">
+    <li class="button-all"><img src="" alt="" /><button>Todos</button></li>
+    <li class="button-bread">
+      <img src="/src/assets/Icon_bread.svg" alt="" /><button>
+        Panificadora
+      </button>
+    </li>
+    <li class="button-fruit">
+      <img src="/src/assets/Icon_fruits.svg" alt="" /><button>
+        Frutas
+      </button>
+    </li>
+    <li class="button-glass">
+      <img src="/src/assets/Icon_glass of wine.svg" alt="" /><button>
+        Bebidas
+      </button>
+    </li>
+  </ul>
+
+  <main>
+    <ul class="column-titles">
+      <li>Produto</li>
+      <li>Categorias</li>
+      <li>Descrição</li>
+      <li>Ações</li>
+    </ul>
+
+    <section id="productList" class="product-list">
+      <article class="product-item">
+        <figure>
+          <img src="../../assets/temporary_test.svg" alt="Panqueca de banana com aveia">
+          <figcaption>Panqueca de banana com aveia</figcaption>
+        </figure>
+        <ul class="product-item__categories">
+          <li class="product-item__category">Bebidas</li>
+          <li class="product-item__category">Frutas</li>
+        </ul>
+        <p class="product-item__description">
+          Esta receita serve muito bem 2 pessoas
+        </p>
+        <ul class="product-item__actions">
+          <li>
+            <button class="product-item__edit product-item__action">
+              <img src="../../assets/icon_edit.svg" alt="Editar produto">
+            </button>
+          </li>
+          <li>
+            <button class="product-item__delete product-item__action">
+              <img src="../../assets/icon_trash.svg" alt="Remover produto">
+            </button>
+          </li>
+        </ul>
+      </article>
+
+      <article class="product-item">
+        <figure>
+          <img src="../../assets/temporary_test.svg" alt="Panqueca de banana com aveia">
+          <figcaption>Panqueca de banana com aveia</figcaption>
+        </figure>
+        <ul class="product-item__categories">
+          <li class="product-item__category">Bebidas</li>
+          <li class="product-item__category">Frutas</li>
+        </ul>
+        <p class="product-item__description">
+          Esta receita serve muito bem 2 pessoas
+        </p>
+        <ul class="product-item__actions">
+          <li>
+            <button class="product-item__edit product-item__action">
+              <img src="../../assets/icon_edit.svg" alt="Editar produto">
+            </button>
+          </li>
+          <li>
+            <button class="product-item__delete product-item__action">
+              <img src="../../assets/icon_trash.svg" alt="Remover produto">
+            </button>
+          </li>
+        </ul>
+      </article>
+    </section>
+  </main>
+</body>
+
+</html>
