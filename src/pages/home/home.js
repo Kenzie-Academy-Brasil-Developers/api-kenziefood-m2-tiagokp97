@@ -1,3 +1,3 @@
-import { HomeTemplate } from '../../script/templates/HomeTemplate.js'
+import { HomeTemplate } from '../../js/templates/HomeTemplate.js'
 
 new HomeTemplate()

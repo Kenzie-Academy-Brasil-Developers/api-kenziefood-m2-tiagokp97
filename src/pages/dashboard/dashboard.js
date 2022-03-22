@@ -1,3 +1,3 @@
-import { DashboardTemplate } from '../../script/templates/DashboardTemplate.js'
+import { DashboardTemplate } from '../../js/templates/DashboardTemplate.js'
 
 new DashboardTemplate()

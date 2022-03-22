@@ -1,3 +1,3 @@
-import { LoginTemplate } from '../../script/templates/LoginTemplate.js'
+import { LoginTemplate } from '../../js/templates/LoginTemplate.js'
 
 new LoginTemplate()

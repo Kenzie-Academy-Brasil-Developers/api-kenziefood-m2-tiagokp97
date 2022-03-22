@@ -1,3 +1,3 @@
-import { RegisterTemplate } from '../../script/templates/RegisterTemplate.js'
+import { RegisterTemplate } from '../../js/templates/RegisterTemplate.js'
 
 new RegisterTemplate()

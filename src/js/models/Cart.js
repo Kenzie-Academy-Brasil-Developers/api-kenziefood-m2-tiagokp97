@@ -1,4 +1,4 @@
-import { API } from './API.js'
+import { API } from '../API.js'
 
 class Cart {
   static #instance = null
