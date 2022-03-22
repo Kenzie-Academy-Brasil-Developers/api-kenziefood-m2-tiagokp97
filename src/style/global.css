@@ -1,16 +1,16 @@
 :root {
-    --green-100: #0CA678;
-    --blue-10: #E4F7EF;
-    --pink-10: #FFE9EE;
-    --pink-20: #FFF1F4;
-    --pink-30: #F3EEF5;
-    --pink-40: #FFF7F4;
-    --pink-100: #FF2253;
-    --grey-10: #F8F9FA;
-    --grey-20: #EEF6FF;
-    --grey-30: #E9ECEF;
-    --grey-40: #868E96;
-    --grey-100: #212529;
+  --green-100: #0CA678;
+  --blue-10: #E4F7EF;
+  --pink-10: #FFE9EE;
+  --pink-20: #FFF1F4;
+  --pink-30: #F3EEF5;
+  --pink-40: #FFF7F4;
+  --pink-100: #FF2253;
+  --grey-10: #F8F9FA;
+  --grey-20: #EEF6FF;
+  --grey-30: #E9ECEF;
+  --grey-40: #868E96;
+  --grey-100: #212529;
 }
 
 * {
@@ -20,7 +20,3 @@
 button {
   cursor: pointer;
 }
-
-/* body {
-    background-color: var(--pink);
-} */
