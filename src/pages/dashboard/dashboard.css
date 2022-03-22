@@ -76,18 +76,23 @@ header {
   .ul-buttons > .button-bread{
       width: 130px;
   }
+  
+.column-titles {
+  display: none;
+}
 
 .product-list {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+
+  overflow-x: auto;
 
   margin-top: 28px;
 }
 
-.product-list .column-titles {
-  display: none;
+.product-list .product-item {
+  margin: 0 25px;
 }
 
 .product-list .product-item figure figcaption {
@@ -142,4 +147,92 @@ header {
   
   border: none;
   border-radius: 50%;
+}
+
+@media only screen and (min-width: 1100px) {
+  .column-titles {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    margin: 58px auto 0 auto;
+    padding-left: 20px;
+    width: 85.8vw;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+
+    color: var(--grey-40);
+  }
+
+  .column-titles :first-child,
+  .product-list .product-item > :first-child {
+    width: 332px;
+    margin-right: 0;
+  }
+  .column-titles :nth-child(2),
+  .product-list .product-item > :nth-child(2) {
+    width: 459px;
+  }
+  .column-titles :nth-child(3),
+  .product-list .product-item > :nth-child(3)  {
+    width: 452px;
+  }
+  .column-titles :last-child,
+  .product-list .product-item > :last-child  {
+    width: 103px;
+  }
+
+  .product-list {
+    flex-direction: column;
+  }
+
+  .product-list .product-item {
+    padding: 12px 20px;
+    margin: 0;
+    margin-bottom: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 85.8vw;
+
+    border: 1px solid var(--grey-30);
+    border-radius: 12px;
+  }
+
+  .product-list .product-item figure {
+    margin-right: 42px;
+  }
+
+  .product-list .product-item figure img {
+    width: 32px;
+    height: 32px;
+
+    border-radius: 50%;
+
+    vertical-align: bottom;
+
+    margin-right: 24px;
+  }
+
+  .product-list .product-item figure figcaption {
+    display: inline-block;
+    line-height: 32px;
+  }
+  
+  .product-list .product-item__categories,
+  .product-list .product-item__description,
+  .product-list .product-item__actions {
+    margin-top: 0;
+  }
+
+  .product-list .product-item__category + .product-item__category {
+    margin-left: 9px;
+  }
+
+  .product-list .product-item__actions li + li {
+    margin-left: 15px;
+  }
 }
