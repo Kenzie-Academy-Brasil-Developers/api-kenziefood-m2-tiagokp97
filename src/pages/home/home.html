@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/src/pages/home/home.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Nunito:wght@700&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet"> 
 
 
     <title>Kenzie Food</title>
@@ -65,7 +65,7 @@
 
       <section class="showcase-products">
 
-        <article class="product">
+        <!-- <article class="product">
           <img src="/src/assets/temporary_test.svg" alt="" />
           <h2>Pastel de verduras vegano</h2>
           <p>
@@ -84,7 +84,7 @@
               </button>
             </li>
           </ul>
-        </article>
+        </article> -->
 
       </section>
 
@@ -130,30 +130,53 @@
           <li class="total-price">R$ 85,00</li>
         </ul>
 
-        <section class="container-modal-card">
-          <section class="modal">
-
-            <section class="head-modal">
-              <img src="/src/assets/icon_shopping_cart_card.svg" alt="">
-            </section>
-
-            <section class="modal-card">
-              <img src="/src/assets/icon_shopping_bag_empty.svg" alt="icone de um carrinho de shopping" class="modal-img-empty">
-              <p class="modal-empty">Por enquanto não temos produtos no carrinho</p>
-            </section>
-            <ul class="modal-count">
-              <li></li>
-              <li class="modal-count-total"></li>
-            </ul>
-            <ul class="modal-">
-              <li></li>
-            </ul>
-
-          </section>
-        </section>
-
       </section>
 
+      <section class="container-modal-card">
+        <section class="modal">
+
+          <section class="head-modal">
+            <img src="/src/assets/icon_shopping_cart_card.svg" alt="">
+            <h3>Carrinho</h3>
+            <button>X</button>
+          </section>
+
+          <section class="modal-card">
+            <img src="/src/assets/icon_shopping_bag_empty.svg" alt="icone de um carrinho de shopping" class="modal-img-empty">
+            <p class="modal-empty">Por enquanto não temos produtos no carrinho</p>
+
+            <!-- <article class="product-modal">
+              <img src="/src/assets/temporary_test.svg" alt="">
+              <ul>
+                <li class="product-modal-name">Mousse de morango com a fruta</li>
+                <li>
+                  <ul class="product-modal-section">
+                    <li>Panificadora</li>
+                    <li>Fruta</li>
+                    <li>Bebidas</li>
+                  </ul>
+                </li>
+                <li class="price-product-modal">R$ 20,00</li>
+              </ul>
+              <button>
+                <img src="/src/assets/icon_trash.svg" alt="">
+              </button>
+            </article> -->
+
+          </section>
+
+          <ul class="modal-count">
+            <li>Quantidade</li>
+            <li class="modal-count-total">5</li>
+          </ul>
+
+          <ul class="modal-price">
+            <li>Total</li>
+            <li class="modal-price-total">R$ 85,00</li>
+          </ul>
+
+        </section>
+      </section>
     </aside>
 
   </main>
