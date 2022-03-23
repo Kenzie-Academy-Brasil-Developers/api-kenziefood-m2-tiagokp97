@@ -3,7 +3,7 @@ import { Product } from '../models/Product.js'
 class DashboardTemplate {
   static #instance = null
 
-  static dataProducts = []
+  static produtos = []
 
   constructor() {
     if (DashboardTemplate.#instance) {
@@ -30,6 +30,10 @@ class DashboardTemplate {
 
     this._btnDrink = document.querySelector('.button-glass')
 
+    this._data = []
+
+    this.dataProdutos()
+
     this.listProducts()
 
     this.breadFilterBtn()
@@ -44,10 +48,15 @@ class DashboardTemplate {
     this.allFilter()
 
     this.inputSearch()
+
   }
 
   static getInstance() {
     return DashboardTemplate.#instance
+  }
+
+  async dataProdutos(){
+  this._data = await this._productInstance.getAll()
   }
 
   async clean(){
@@ -55,8 +64,7 @@ class DashboardTemplate {
   }
 
   async listProducts() {
-    const data = await this._productInstance.getAll()
-    data.forEach(product => {this.createProduct(product)}) 
+    this._data.forEach(product => {this.createProduct(product)}) 
   }
 
   async allFilter(){
@@ -67,11 +75,10 @@ class DashboardTemplate {
   }
   
   async inputSearch(){
-  const data = await this._productInstance.getAll()
   this._inputSearch.addEventListener('keyup', (event) => {
   const pesquisa = event.target.value
 
-  const filtrados = data.filter((produto) => {
+  const filtrados = this._data.filter((produto) => {
   return produto.nome.toLowerCase().includes(pesquisa) || produto.categoria.toLowerCase().includes(pesquisa)
   })
     this.clean()
@@ -82,8 +89,7 @@ class DashboardTemplate {
   }
 
   async breadFilter(){
-    const data = await this._productInstance.getAll()
-    const breadList = data.filter((produto) => {
+    const breadList = this._data.filter((produto) => {
       return produto.categoria === 'Panificadora'
       }) 
     breadList.forEach(product => {
@@ -99,8 +105,7 @@ class DashboardTemplate {
   }
 
   async fruitFilter(){
-    const data = await this._productInstance.getAll()
-    const listaPanificadora = data.filter((produto) => {
+    const listaPanificadora = this._data.filter((produto) => {
       return produto.categoria === 'Frutas'
     }) 
     listaPanificadora.forEach(product => {
@@ -116,8 +121,7 @@ class DashboardTemplate {
   }
 
   async drinkFilter(){
-    const data = await this._productInstance.getAll()
-    const listDrinks = data.filter((produto) => {
+    const listDrinks = this._data.filter((produto) => {
       return produto.categoria === 'Bebidas'
     }) 
     listDrinks.forEach(product => {
