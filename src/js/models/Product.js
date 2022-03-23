@@ -16,9 +16,9 @@ class Product {
 
     this._APIInstance = API.getInstance()
 
-    this._productsURL = `${this._APIInstance.baseURL}/products`
+    this._productsURL = `${this._APIInstance.baseURL}products`
 
-    this._myProductsURL = `${this._APIInstance.baseURL}/my/products`
+    this._myProductsURL = `${this._APIInstance.baseURL}my/products`
 
   }
 
@@ -26,9 +26,16 @@ class Product {
     return Product.#instance
   }
 
-  // Fetch products
   async getAll() {
-    //TODO
+    const response = await fetch(this._productsURL)
+
+    const responseData = await response.json()
+
+    if (response.status !== 200) {
+      throw new Error(responseData.message)
+    } else {
+      return responseData
+    }
   }
 
 }

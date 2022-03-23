@@ -18,27 +18,46 @@
 <body>
   <header>
     <img src="/src/assets/icon_logo_kenzie_food.svg" alt="" class="logo-kenzie">
-    <img src="/src/assets/icon_search.svg" alt="" class="icon-search">
-    <input type="text" name="" id="" id="input-name" placeholder="Pesquisar por produto">
+    <div class="icon-move">
+      <img src="/src/assets/icon_search.svg" alt="" class="icon-search">
+      <input type="text" name="" id="" id="input-name" placeholder="Pesquisar por produto">
+    </div>
+
+    <section class="login">
+      <img src="/src/assets/icon_unregistered.svg" alt="" class="icon-modal">
+    </section>
+
+    <section class="container-modal">
+      <h3>Conta</h3>
+      <button>Login</button>
+      <button>Registrar</button>
+    </section>
+
+    <section class="container-modal-login">
+      <h3>Wellington</h3>
+      <button>Meus produtos</button>
+      <button>Logout</button>
+    </section>
   </header>
 
   <ul class="ul-buttons">
-    <li class="button-all"><img src="" alt="" /><button>Todos</button></li>
-    <li class="button-bread">
-      <img src="/src/assets/Icon_bread.svg" alt="" /><button>
-        Panificadora
-      </button>
-    </li>
-    <li class="button-fruit">
-      <img src="/src/assets/Icon_fruits.svg" alt="" /><button>
-        Frutas
-      </button>
-    </li>
-    <li class="button-glass">
-      <img src="/src/assets/Icon_glass of wine.svg" alt="" /><button>
-        Bebidas
-      </button>
-    </li>
+    <button class="button-all">Todos</button>
+
+    <button class="button-bread">
+      <img src="/src/assets/Icon_bread.svg" alt="imagem de um pao" />
+      Panificadora
+    </button>
+
+
+    <button class="button-fruit">
+      <img src="/src/assets/Icon_fruits.svg" alt="imagem de duas frutas" />
+      Frutas
+    </button>
+
+    <button class="button-glass">
+      <img src="/src/assets/Icon_glass of wine.svg" alt="imagem de uma taça de vinho" />
+      Bebidas
+    </button>
   </ul>
 
   <main>
@@ -50,59 +69,10 @@
     </ul>
 
     <section id="productList" class="product-list">
-      <article class="product-item">
-        <figure>
-          <img src="../../assets/temporary_test.svg" alt="Panqueca de banana com aveia">
-          <figcaption>Panqueca de banana com aveia</figcaption>
-        </figure>
-        <ul class="product-item__categories">
-          <li class="product-item__category">Bebidas</li>
-          <li class="product-item__category">Frutas</li>
-        </ul>
-        <p class="product-item__description">
-          Esta receita serve muito bem 2 pessoas
-        </p>
-        <ul class="product-item__actions">
-          <li>
-            <button class="product-item__edit product-item__action">
-              <img src="../../assets/icon_edit.svg" alt="Editar produto">
-            </button>
-          </li>
-          <li>
-            <button class="product-item__delete product-item__action">
-              <img src="../../assets/icon_trash.svg" alt="Remover produto">
-            </button>
-          </li>
-        </ul>
-      </article>
-
-      <article class="product-item">
-        <figure>
-          <img src="../../assets/temporary_test.svg" alt="Panqueca de banana com aveia">
-          <figcaption>Panqueca de banana com aveia</figcaption>
-        </figure>
-        <ul class="product-item__categories">
-          <li class="product-item__category">Bebidas</li>
-          <li class="product-item__category">Frutas</li>
-        </ul>
-        <p class="product-item__description">
-          Esta receita serve muito bem 2 pessoas
-        </p>
-        <ul class="product-item__actions">
-          <li>
-            <button class="product-item__edit product-item__action">
-              <img src="../../assets/icon_edit.svg" alt="Editar produto">
-            </button>
-          </li>
-          <li>
-            <button class="product-item__delete product-item__action">
-              <img src="../../assets/icon_trash.svg" alt="Remover produto">
-            </button>
-          </li>
-        </ul>
-      </article>
     </section>
   </main>
+
+  <script type="module" src="./dashboard.js"></script>
 </body>
 
 </html>
