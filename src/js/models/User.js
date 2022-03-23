@@ -3,7 +3,6 @@ import { API } from '../API.js'
 class User {
   static #instance = null
 
-
   constructor() {
     if (User.#instance) {
       return User.#instance
@@ -65,9 +64,6 @@ class User {
   }  
 
   }
-
-
-
 
 }
 

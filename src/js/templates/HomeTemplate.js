@@ -1,4 +1,4 @@
-import {API} from '../API.js'
+import { API } from '../API.js'
 
 class HomeTemplate {
   static #instance = null
@@ -40,8 +40,6 @@ class HomeTemplate {
   static getInstance() {
     return HomeTemplate.#instance
   }
-
-  
 
   eventCardMobile() {
     this._button.addEventListener('click', (evento) => {
@@ -101,8 +99,6 @@ class HomeTemplate {
     })
 
   }
-
-
 }
 
 export { HomeTemplate }
