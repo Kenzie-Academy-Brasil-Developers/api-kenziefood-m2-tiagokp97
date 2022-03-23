@@ -26,7 +26,23 @@ class Product {
     return Product.#instance
   }
 
-  
+  async getMyProducts(token) {
+    const response = await fetch(this._myProductsURL, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+
+    const responseData = await response.json()
+
+    if (response.status !== 200) {
+      throw new Error(responseData.message)
+    } else {
+      return responseData
+    }
+  }
+
   async getAll() {
     const response = await fetch(this._productsURL)
 
