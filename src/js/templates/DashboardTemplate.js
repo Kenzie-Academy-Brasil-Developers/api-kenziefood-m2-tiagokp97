@@ -44,6 +44,10 @@ class DashboardTemplate {
     this._radioButtons = document.querySelectorAll('[type="radio"]')
     this._creationForm = document.getElementById('creationForm')
 
+    this._modalEditProduct = document.getElementById('modalEditProduct')
+
+
+
     this._userToken = localStorage.getItem('Kenziefood:token')
 
     this._data = []
@@ -69,6 +73,8 @@ class DashboardTemplate {
     this.captureButtonModal()
 
     this.captureNameUser()
+
+    this.eventDeletaProduto()
   }
 
   static getInstance() {
@@ -281,6 +287,18 @@ class DashboardTemplate {
     })
 
 
+  }
+
+  pegaBtnProduto(event){
+    const btn = event.target.closest("product-item__delete")
+    btn.remove()
+      }
+
+  eventDeletaProduto(){
+    const btnDelete = document.querySelectorAll(".product-item__delete")
+    btnDelete[0].addEventListener('click', function(){
+      console.log('teste')
+    })
   }
 
   captureNameUser() {
