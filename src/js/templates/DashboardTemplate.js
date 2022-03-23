@@ -19,18 +19,119 @@ class DashboardTemplate {
     this._productList = document.getElementById('productList')
 
     this.listProducts()
+
+    this.breadFilterBtn()
+    this.breadFilter()
+
+    this.fruitFilter()
+    this.fruitFilterBtn()
+
+    this.drinkFilter()
+    this.drinkFilterBtn()
+
+    this.allFilter()
+
+    this.inputSearch()
   }
 
   static getInstance() {
     return DashboardTemplate.#instance
   }
 
-  async listProducts() {
-    const data = await this._productInstance.getAll()
+  async clean(){
+    return this._productList.innerHTML = ''
+  }
 
+  async listProducts() {
+
+    const data = await this._productInstance.getAll()
     data.forEach(product => {
       this.createProduct(product)
+    }) 
+  }
+
+  async allFilter(){
+    const data = await this._productInstance.getAll()
+    const allBtn = document.querySelector('.button-all')
+
+    allBtn.addEventListener('click', function(){
+      this.clean()
+      this.listProducts()
+    }.bind(this))
+  }
+
+  async breadFilter(){
+    const data = await this._productInstance.getAll()
+    const breadList = data.filter((produto) => {
+      return produto.categoria === 'Panificadora'
+    }) 
+    breadList.forEach(product => {
+      this.createProduct(product)
+    }) 
+  }
+  
+  async inputSearch(){
+  const data = await this._productInstance.getAll()
+
+  const inputSearch = document.querySelector('.input-search')
+  inputSearch.addEventListener('keyup', (event) => {
+    const pesquisa = event.target.value
+
+    const filtrados = data.filter((produto) => {
+        return produto.nome.toLowerCase().includes(pesquisa) || produto.categoria.toLowerCase().includes(pesquisa)
+
     })
+ 
+    this.clean()
+    filtrados.forEach(product => {
+      this.createProduct(product)
+    }) 
+    })
+  }
+
+
+  async breadFilterBtn(){
+    const btnFruit = document.querySelector('.button-fruit')
+    btnFruit.addEventListener('click', function(){
+      this.clean()
+      this.fruitFilter()
+    }.bind(this))
+  }
+
+  async fruitFilter(){
+    const data = await this._productInstance.getAll()
+    const listaPanificadora = data.filter((produto) => {
+      return produto.categoria === 'Frutas'
+    }) 
+    listaPanificadora.forEach(product => {
+      this.createProduct(product)
+    }) 
+  }
+
+  async fruitFilterBtn(){
+    const btnBread = document.querySelector('.button-bread')
+    btnBread.addEventListener('click', function(){
+      this.clean()
+      this.breadFilter()
+    }.bind(this))
+  }
+
+  async drinkFilter(){
+    const data = await this._productInstance.getAll()
+    const listDrinks = data.filter((produto) => {
+      return produto.categoria === 'Bebidas'
+    }) 
+    listDrinks.forEach(product => {
+      this.createProduct(product)
+    }) 
+  }
+
+  async drinkFilterBtn(){
+    const btnDrink = document.querySelector('.button-glass')
+    btnDrink.addEventListener('click', function(){
+      this.clean()
+      this.drinkFilter()
+    }.bind(this))
   }
 
   createProduct(product) {
@@ -86,6 +187,7 @@ class DashboardTemplate {
 
     this._productList.appendChild(article)
   }
+
 }
 
 export { DashboardTemplate }
