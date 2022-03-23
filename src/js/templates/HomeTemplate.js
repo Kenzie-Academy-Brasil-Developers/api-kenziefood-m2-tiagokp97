@@ -1,9 +1,15 @@
+import {API} from '../API.js'
+
 class HomeTemplate {
   static #instance = null
 
   constructor() {
     if (HomeTemplate.#instance) {
       return HomeTemplate.#instance
+    }
+
+    if (!API.getInstance()) {
+      new API()
     }
 
     HomeTemplate.#instance = this
@@ -14,11 +20,21 @@ class HomeTemplate {
     this._iconPerfil       = document.querySelector('.icon-modal')
     this._containerLogin   = document.querySelector('.container-modal')
     this._containerPerfil  = document.querySelector('.container-modal-login')
+    this._showcase         = document.querySelector('showcase-products')
 
     this._token            = localStorage.getItem('Kenziefood:token')
 
+    this._APIInstance      = API.getInstance()
+
+    this._productsURL      = `${this._APIInstance.baseURL}products`
+
+
+
+
     this.eventCardMobile()
     this.verifyLogin()
+    this.getApiHomePage()
+    this.createTempleProduct(this.getApiHomePage())
   }
 
   static getInstance() {
@@ -62,6 +78,28 @@ class HomeTemplate {
         }
       })
     }
+  }
+
+  async createTempleProduct(promisse) {
+
+    const resultadoPromisse = await promisse
+
+    console.log(promisse)
+    resultadoPromisse.foreach((produto) => {
+
+      const {categoria, descricao, id, imagem, } = produto
+    })
+
+  }
+  
+  async getApiHomePage() {
+    fetch(this._productsURL)
+    .then((resultado) => resultado.json())
+    .then((data) => {
+
+      return data
+    })
+
   }
 
 
