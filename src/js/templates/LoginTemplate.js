@@ -50,6 +50,7 @@ class LoginTemplate {
           dataForm[name] = value
         }
       }
+      
       const token = await this._UserInstance.login(dataForm)
       await this._UserInstance.login(dataForm)
       localStorage.setItem('Kenziefood:token', token)

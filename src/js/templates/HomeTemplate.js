@@ -18,40 +18,132 @@ class HomeTemplate {
     }
 
     HomeTemplate.#instance = this
-    
-    this._button           = document.querySelector('.head-card')
-    this._modalCardMobile  = document.querySelector('.container-modal-card')
-    this._exitModalCard    = document.querySelector('.exit-modal-card')
-    this._iconPerfil       = document.querySelector('.icon-modal')
-    this._containerLogin   = document.querySelector('.container-modal')
-    this._containerPerfil  = document.querySelector('.container-modal-login')
-    this._showcase         = document.querySelector('.showcase-products')
-    this._showcaseModal    = document.querySelector('.modal-card')
-    this._modalEmptyMobile = document.querySelector('.modal-empty')
-    this._modalimgMobile   = document.querySelector('.modal-img-empty')
-    this._priceModalTotal  = document.querySelector('.modal-price-total')
-    this._modalCountTotal  = document.querySelector('.modal-count-total')
 
-    this._token            = localStorage.getItem('Kenziefood:token')
+    this._buttonBread      = document.querySelector('.button-bread')
+    this._btnDrink         = document.querySelector('.button-glass')
+    this._btnFruit         = document.querySelector('.button-fruit')
+    this._btnAll           = document.querySelector('.button-all')
+    this._inputSearch      = document.querySelector('.input-search')
+    this._button            = document.querySelector('.head-card')
+    this._modalCardMobile   = document.querySelector('.container-modal-card')
+    this._exitModalCard     = document.querySelector('.exit-modal-card')
+    this._iconPerfil        = document.querySelector('.icon-modal')
+    this._containerLogin    = document.querySelector('.container-modal')
+    this._containerPerfil   = document.querySelector('.container-modal-login')
+    this._showcase          = document.querySelector('.showcase-products')
+    this._showcaseModal     = document.querySelector('.modal-card')
+    this._modalEmptyMobile  = document.querySelector('.modal-empty')
+    this._modalimgMobile    = document.querySelector('.modal-img-empty')
+    this._priceModalTotal   = document.querySelector('.modal-price-total')
+    this._modalCountTotal   = document.querySelector('.modal-count-total')
+    this._logout            = document.querySelector('#logout')
+    this._myProducts        = document.querySelector('#MyProducts')
+    this._registerModal     = document.querySelector('#register-modal')
+    this._loginModal        = document.querySelector('#login-modal')
+    this._cardImgEmpty      = document.querySelector('.card-img-empty')
+    this._cardEmpty         = document.querySelector('.card-empty')
+    this._showcaseDesktop   = document.querySelector('.shopping-card')
+    this._totalPriceDesktop = document.querySelector('.total-price')
+    this._totalCountDesktop = document.querySelector('.total-count')
+        
+    this.clear()
 
-    this._productModels    = Product.getInstance()
+    this._token             = localStorage.getItem('Kenziefood:token')
 
-    this._BdLocalStorage   = JSON.parse(localStorage.getItem('Kenziefood:card')) || []
+    this._productModels     = Product.getInstance()
+
+    this._BdLocalStorage    = JSON.parse(localStorage.getItem('Kenziefood:card')) || []
+
 
 
     this.eventCardMobile()
     this.verifyLogin()
-    this.createTempleProduct(this.getProducts())
     this.createTempleProductMobile()
+    this.createTempleProduct(this.getProducts())
+    this.breadFilterBtn()
+    this.fruitFilterBtn()
+    this.drinkFilterBtn()
+    this.allFilterBtn()
+    this.inputSearch()
+    this.captureButtonsModal()
   }
 
   static getInstance() {
     return HomeTemplate.#instance
   }
-
+  
   async getProducts() {
     const products = await this._productModels.getAll()
     return products
+  }
+
+  async inputSearch(){
+    const product = await this._productModels.getAll()
+      this._inputSearch.addEventListener('keyup', (event) => {
+      const pesquisa = event.target.value
+        
+      const filtrados = product.filter((produto) => {
+      return produto.nome.toLowerCase().includes(pesquisa) || produto.categoria.toLowerCase().includes(pesquisa)
+      })
+        this.clear()
+        this.createTempleProduct(filtrados)
+      }) 
+  }
+
+  async allFilterBtn(){
+    this._btnAll.addEventListener('click', function(){
+      this.clear()
+      this.createTempleProduct(this.getProducts())
+    }.bind(this))
+  }
+
+  async clear(){
+    this._showcase.innerHTML = ''
+  }
+
+  async filterBreadProducts(){
+    const product = await this._productModels.getAll()
+    const breadList = product.filter((produto) => {
+      return produto.categoria === 'Panificadora'
+      }) 
+      return breadList
+  }
+
+  async breadFilterBtn(){
+    this._buttonBread.addEventListener('click', function(){
+      this.clear()
+      this.createTempleProduct(this.filterBreadProducts())
+    }.bind(this))
+  }
+
+  async filteredDrinkProducts(){
+    const product = await this._productModels.getAll()
+    const listDrinks = product.filter((produto) => {
+      return produto.categoria === 'Bebidas'
+    }) 
+    return listDrinks
+  }
+
+  async drinkFilterBtn(){
+    this._btnDrink.addEventListener('click', function(){
+      this.clear()
+      this.createTempleProduct(this.filteredDrinkProducts())
+    }.bind(this))
+  }
+
+  async filteredFruitProducts(){
+    const product = await this._productModels.getAll()
+    const fruitList = product.filter((produto) => {
+      return produto.categoria === 'Frutas'
+    }) 
+    return fruitList
+  }
+
+  async fruitFilterBtn(){
+    this._btnFruit.addEventListener('click', function(){
+      this.clear()
+      this.createTempleProduct(this.filteredFruitProducts())
+    }.bind(this))
   }
 
   eventCardMobile() {
@@ -128,11 +220,65 @@ class HomeTemplate {
 
   async createTempleProductMobile() {
     if (innerWidth < 1100) {
-      this.createMobile()
+      if (!this._token){
+        this.createMobile()
+      }
     } else {
-      this.createDesktop()
+      if (!this._token){
+        this.createDesktop()
+      }
     }
     
+  }
+
+  createDesktop() {
+    const storange = JSON.parse(localStorage.getItem('Kenziefood:card')) || []
+    
+    if (storange.length > 0) {
+      this._cardEmpty.style.display = 'none'
+      this._cardImgEmpty.style.display = 'none'
+      this._showcaseDesktop.innerHTML = ``
+    }
+
+    for (let i = 0; i < storange.length; i++) {
+      const {categoria, imagem, nome, preco} = storange[i]
+
+      const article = document.createElement('article')
+      article.classList.add('product-card')
+
+      article.innerHTML = `
+      <img src="${imagem}" alt="${nome}">
+      <ul>
+        <li class="product-card-name">${nome}</li>
+        <li>
+          <ul class="product-card-section">
+            <p>${categoria}</p>
+          </ul>
+        </li>
+        <li class="price-product-card">${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(preco)}</li>
+      </ul>
+      <button class="button-desktop-card" id="${i}">
+        <img src="/src/assets/icon_trash.svg" alt="imagem botao apagar">
+      </button>
+      `
+
+      this._showcaseDesktop.appendChild(article)
+    }
+
+    let priceTotal = 0
+    for (let i = 0; i < storange.length; i++) {
+
+      const {preco} = storange[i]
+      priceTotal += preco
+    }
+
+    
+    this._totalPriceDesktop.innerText = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(priceTotal)
+    this._totalCountDesktop.innerText = storange.length
+
+    const buttonsDesktop = document.querySelectorAll('.button-desktop-card')
+
+    this.removeItens(buttonsDesktop)
   }
 
   createMobile() {
@@ -203,6 +349,10 @@ class HomeTemplate {
 
         localStorage.setItem('Kenziefood:card',JSON.stringify(bd))
         this._showcaseModal.innerHTML = ``
+        if (innerWidth > 1100) {
+          this._showcaseDesktop.innerHTML = ``
+          this.createDesktop()
+        }
         this.createMobile()
 
       }.bind(this))
@@ -241,8 +391,24 @@ class HomeTemplate {
   }
 
   captureButtonsModal() {
+    this._logout.addEventListener('click', (evento) => {
+      window.location.href = "/index.html"
+      localStorage.clear()
+    })
 
+    this._myProducts.addEventListener('click', (evento) => {
+      window.location.href = "/src/pages/dashboard/dashboard.html"
+    })
+
+    this._loginModal.addEventListener('click', (evento) => {
+      window.location.href = "/src/pages/login/login.html"
+    })
+
+    this._registerModal.addEventListener('click', (evento) => {
+      window.location.href = "/index.html"
+    })
   }
+
 }
 
 export { HomeTemplate }

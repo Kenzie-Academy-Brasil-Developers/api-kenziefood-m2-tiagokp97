@@ -28,6 +28,16 @@ class DashboardTemplate {
 
     this._btnDrink = document.querySelector('.button-glass')
 
+    this._iconModal = document.querySelector('.icon-modal')
+
+    this._modal = document.querySelector('.container-modal-login')
+
+    this._homeModal = document.querySelector('#Home')
+
+    this._logoutModal = document.querySelector('#logout')
+
+    this._nameUser = document.querySelector('#name-user')
+
     this._btnCreateProduct = document.getElementById('btnCreateProduct')
     this._modalCreateProduct = document.getElementById('modalCreateProduct')
 
@@ -53,6 +63,9 @@ class DashboardTemplate {
     this.inputSearch()
 
     this.addListener()
+    this.captureButtonModal()
+
+    this.captureNameUser()
   }
 
   static getInstance() {
@@ -110,10 +123,10 @@ class DashboardTemplate {
   }
 
   async fruitFilter() {
-    const listaPanificadora = this._data.filter((produto) => {
+    const fruitList = this._data.filter((produto) => {
       return produto.categoria === 'Frutas'
     })
-    listaPanificadora.forEach(product => {
+    fruitList.forEach(product => {
       this.createProduct(product)
     })
   }
@@ -200,6 +213,35 @@ class DashboardTemplate {
       this._modalCreateProduct.showModal()
     }.bind(this))
   }
+
+  captureButtonModal() {
+
+    this._iconModal.addEventListener('click', (evento) => {
+
+      if (this._modal.style.display === 'none') {
+        this._modal.style.display = 'block'
+      } else {
+        this._modal.style.display = 'none'
+      }
+
+    })
+
+    this._logoutModal.addEventListener('click', (evento) => {
+      window.location.href = "/src/pages/login/login.html"
+      localStorage.clear()
+    })
+
+    this._homeModal.addEventListener('click', (evento) => {
+      window.location.href = "/src/pages/home/home.html"
+    })
+
+
+  }
+
+  captureNameUser() {
+    const token = localStorage.getItem('Kenziefood:token')
+  }
+
 }
 
 export { DashboardTemplate }
