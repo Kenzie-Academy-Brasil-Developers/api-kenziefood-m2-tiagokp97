@@ -31,27 +31,105 @@ class HomeTemplate {
     this._modalimgMobile   = document.querySelector('.modal-img-empty')
     this._priceModalTotal  = document.querySelector('.modal-price-total')
     this._modalCountTotal  = document.querySelector('.modal-count-total')
-
+    this._buttonBread      = document.querySelector('.button-bread')
+    this._btnDrink         = document.querySelector('.button-glass')
+    this._btnFruit         = document.querySelector('.button-fruit')
+    this._btnAll           = document.querySelector('.button-all')
+    this._inputSearch      = document.querySelector('.input-search')
     this._token            = localStorage.getItem('Kenziefood:token')
 
     this._productModels    = Product.getInstance()
 
     this._BdLocalStorage   = JSON.parse(localStorage.getItem('Kenziefood:card')) || []
-
-
+    
+    this.clear()
     this.eventCardMobile()
     this.verifyLogin()
-    this.createTempleProduct(this.getProducts())
     this.createTempleProductMobile()
+    this.createTempleProduct(this.getProducts())
+    this.breadFilterBtn()
+    this.fruitFilterBtn()
+    this.drinkFilterBtn()
+    this.allFilterBtn()
+    this.inputSearch()
   }
 
   static getInstance() {
     return HomeTemplate.#instance
   }
-
+  
   async getProducts() {
     const products = await this._productModels.getAll()
     return products
+  }
+
+  async inputSearch(){
+    const product = await this._productModels.getAll()
+      this._inputSearch.addEventListener('keyup', (event) => {
+      const pesquisa = event.target.value
+        
+      const filtrados = product.filter((produto) => {
+      return produto.nome.toLowerCase().includes(pesquisa) || produto.categoria.toLowerCase().includes(pesquisa)
+      })
+        this.clear()
+        this.createTempleProduct(filtrados)
+      }) 
+  }
+
+  async allFilterBtn(){
+    this._btnAll.addEventListener('click', function(){
+      this.clear()
+      this.createTempleProduct(this.getProducts())
+    }.bind(this))
+  }
+
+  async clear(){
+    this._showcase.innerHTML = ''
+  }
+
+  async filterBreadProducts(){
+    const product = await this._productModels.getAll()
+    const breadList = product.filter((produto) => {
+      return produto.categoria === 'Panificadora'
+      }) 
+      return breadList
+  }
+
+  async breadFilterBtn(){
+    this._buttonBread.addEventListener('click', function(){
+      this.clear()
+      this.createTempleProduct(this.filterBreadProducts())
+    }.bind(this))
+  }
+
+  async filteredDrinkProducts(){
+    const product = await this._productModels.getAll()
+    const listDrinks = product.filter((produto) => {
+      return produto.categoria === 'Bebidas'
+    }) 
+    return listDrinks
+  }
+
+  async drinkFilterBtn(){
+    this._btnDrink.addEventListener('click', function(){
+      this.clear()
+      this.createTempleProduct(this.filteredDrinkProducts())
+    }.bind(this))
+  }
+
+  async filteredFruitProducts(){
+    const product = await this._productModels.getAll()
+    const fruitList = product.filter((produto) => {
+      return produto.categoria === 'Frutas'
+    }) 
+    return fruitList
+  }
+
+  async fruitFilterBtn(){
+    this._btnFruit.addEventListener('click', function(){
+      this.clear()
+      this.createTempleProduct(this.filteredFruitProducts())
+    }.bind(this))
   }
 
   eventCardMobile() {
@@ -243,6 +321,7 @@ class HomeTemplate {
   captureButtonsModal() {
 
   }
+
 }
 
 export { HomeTemplate }

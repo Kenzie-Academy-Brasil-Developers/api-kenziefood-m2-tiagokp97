@@ -56,7 +56,6 @@ class User {
 
     
     const responseData = await response.json()
-    console.log(responseData)
     if (response.status !== 200){
       throw new Error(`${responseData.message}`)
   }  else { 

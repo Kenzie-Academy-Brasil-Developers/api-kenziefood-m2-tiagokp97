@@ -104,10 +104,10 @@ class DashboardTemplate {
   }
 
   async fruitFilter(){
-    const listaPanificadora = this._data.filter((produto) => {
+    const fruitList = this._data.filter((produto) => {
       return produto.categoria === 'Frutas'
     }) 
-    listaPanificadora.forEach(product => {
+    fruitList.forEach(product => {
       this.createProduct(product)
     }) 
   }

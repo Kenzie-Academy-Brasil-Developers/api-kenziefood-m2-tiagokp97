@@ -53,7 +53,7 @@ async createListner(){
     const token = await this._UserInstance.login(dataForm)
     await this._UserInstance.login(dataForm)
     await localStorage.setItem('Kenziefood:token', JSON.stringify(token))
-    window.location.href = "/src/pages/dashboard/dashboard.html"
+    window.location.href = "/src/pages/login/login.html"
   
   }.bind(this))
 
