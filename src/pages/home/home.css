@@ -167,6 +167,7 @@ header {
     overflow: auto;
     display: flex;
     flex-wrap: nowrap;
+    padding-bottom: 100px;
     }
     .product {
         width: 300px;
@@ -204,6 +205,7 @@ header {
             font-size: 14px;
             color: var(--grey-40);
             margin-bottom: 10px;
+            height: 80px;
         }
 
         .section > li {
@@ -236,13 +238,24 @@ header {
             border: none;
         }
 
-        .buy > button > img {
+        .fa-cart-plus {
             padding-top: 2px;
             padding-right: 1px;
+            color: #0CA678;
         }
 
+        .buy > button:hover {
+            background-color: #0CA678;
+        }
+
+        .buy > button:hover .fa-cart-plus {
+            color: #FFFFFF;
+        }
+
+
+
 .card {
-    position: absolute;
+    position: fixed;
     bottom: 0px;
     }
 
@@ -382,6 +395,7 @@ header {
         }
 
         .head-modal > img {
+            display: block;
             width: 15.09px;
             height: 15.09px;
             margin-left: 24px;
@@ -418,6 +432,7 @@ header {
             height: 436.64px;
             display: flex;
             flex-wrap: wrap;
+            align-content: start;
             }
 
             .product-modal {
@@ -532,7 +547,7 @@ header {
         }
 
         .modal-img-empty, .modal-empty {
-            display: none;
+            display: block;
         }
 
 
