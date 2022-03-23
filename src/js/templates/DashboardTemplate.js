@@ -42,6 +42,8 @@ class DashboardTemplate {
 
     this.dataProdutos()
 
+    this._userToken = localStorage.getItem('Kenziefood:token')
+
     this.listProducts()
 
     this.breadFilterBtn()
@@ -66,83 +68,83 @@ class DashboardTemplate {
     return DashboardTemplate.#instance
   }
 
-  async dataProdutos(){
-  this._data = await this._productInstance.getAll()
+  async dataProdutos() {
+    this._data = await this._productInstance.getMyProducts(this._userToken)
   }
 
-  async clean(){
+  async clean() {
     return this._productList.innerHTML = ''
   }
 
   async listProducts() {
     await this.dataProdutos()
-    this._data.forEach(product => {this.createProduct(product)}) 
+    this._data.forEach(product => { this.createProduct(product) })
   }
 
-  async allFilter(){
-    this._allBtn.addEventListener('click', function(){
-    this.clean()
-    this.listProducts()   
+  async allFilter() {
+    this._allBtn.addEventListener('click', function () {
+      this.clean()
+      this.listProducts()
     }.bind(this))
   }
-  
-  async inputSearch(){
-  this._inputSearch.addEventListener('keyup', (event) => {
-  const pesquisa = event.target.value
 
-  const filtrados = this._data.filter((produto) => {
-  return produto.nome.toLowerCase().includes(pesquisa) || produto.categoria.toLowerCase().includes(pesquisa)
-  })
-    this.clean()
-    filtrados.forEach(product => {
-    this.createProduct(product)
-    }) 
+  async inputSearch() {
+    this._inputSearch.addEventListener('keyup', (event) => {
+      const pesquisa = event.target.value
+
+      const filtrados = this._data.filter((produto) => {
+        return produto.nome.toLowerCase().includes(pesquisa) || produto.categoria.toLowerCase().includes(pesquisa)
+      })
+      this.clean()
+      filtrados.forEach(product => {
+        this.createProduct(product)
+      })
     })
   }
 
-  async breadFilter(){
+  async breadFilter() {
     const breadList = this._data.filter((produto) => {
       return produto.categoria === 'Panificadora'
-      }) 
+    })
     breadList.forEach(product => {
-    this.createProduct(product)
-    }) 
+      this.createProduct(product)
+    })
   }
 
-  async breadFilterBtn(){
-    this._btnBread.addEventListener('click', function(){
+  async breadFilterBtn() {
+    this._btnBread.addEventListener('click', function () {
       this.clean()
       this.breadFilter()
     }.bind(this))
   }
 
-  async fruitFilter(){
+  async fruitFilter() {
     const listaPanificadora = this._data.filter((produto) => {
       return produto.categoria === 'Frutas'
-    }) 
+    })
     listaPanificadora.forEach(product => {
       this.createProduct(product)
-    }) 
+    })
   }
 
-  async fruitFilterBtn(){
-    this._btnFruit.addEventListener('click', function(){
+  async fruitFilterBtn() {
+    this._btnFruit.addEventListener('click', function () {
       this.clean()
       this.fruitFilter()
     }.bind(this))
   }
 
-  async drinkFilter(){
+  async drinkFilter() {
     const listDrinks = this._data.filter((produto) => {
       return produto.categoria === 'Bebidas'
-    }) 
+    })
     listDrinks.forEach(product => {
       this.createProduct(product)
-    }) 
+    })
   }
 
-  async drinkFilterBtn(){
-    this._btnDrink.addEventListener('click', function(){
+  async drinkFilterBtn() {
+    this._btnDrink.addEventListener('click', function () {
       this.clean()
       this.drinkFilter()
     }.bind(this))
