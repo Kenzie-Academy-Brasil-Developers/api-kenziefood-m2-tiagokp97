@@ -28,11 +28,14 @@ class DashboardTemplate {
 
     this._btnDrink = document.querySelector('.button-glass')
 
+    this._btnCreateProduct = document.getElementById('btnCreateProduct')
+    this._modalCreateProduct = document.getElementById('modalCreateProduct')
+
+    this._userToken = localStorage.getItem('Kenziefood:token')
+
     this._data = []
 
     this.dataProdutos()
-
-    this._userToken = localStorage.getItem('Kenziefood:token')
 
     this.listProducts()
 
@@ -49,6 +52,7 @@ class DashboardTemplate {
 
     this.inputSearch()
 
+    this.addListener()
   }
 
   static getInstance() {
@@ -191,6 +195,11 @@ class DashboardTemplate {
     this._productList.appendChild(article)
   }
 
+  addListener() {
+    this._btnCreateProduct.addEventListener('click', function () {
+      this._modalCreateProduct.showModal()
+    }.bind(this))
+  }
 }
 
 export { DashboardTemplate }

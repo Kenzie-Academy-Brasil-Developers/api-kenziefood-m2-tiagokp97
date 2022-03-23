@@ -8,7 +8,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@400;500;700&display=swap"
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@400;500;700&?family=Nunito&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="/src/style/reset.css" />
   <link rel="stylesheet" href="/src/style/global.css" />
@@ -41,7 +42,7 @@
   </header>
 
   <div class="buttons-wrapper">
-    <button class="create-product">
+    <button id="btnCreateProduct" class="create-product">
       Adicionar novo produto
     </button>
 
@@ -78,7 +79,7 @@
     </section>
   </main>
 
-  <dialog open id="createProduct" class="create-modal">
+  <dialog id="modalCreateProduct" class="create-modal">
     <header>
       <h3>Cadastro de produto</h3>
     </header>
@@ -88,7 +89,7 @@
       <input id="name" name="nome" type="text" placeholder="Digitar o nome" />
       <label for="description">Nome do Produto</label>
       <input id="description" name="descricao" type="text" placeholder="Digitar a descrição" />
-      <label for="name">Nome do Produto</label>
+      <label>Categorias</label>
       <div class="radio-group">
         <input type="radio" id="category-bread" name="categoria" value="panificadora">
         <label for="category-bread">Panificadora</label>
@@ -102,8 +103,8 @@
       <label for="image">Link da imagem</label>
       <input id="image" type="text" name="imagem" placeholder="Inserir o link">
       <menu>
-        <button id="cancel" class="close-dialog" type="reset">x</button>
-        <button type="submit">Cadastrar Produto</button>
+        <button id="cancel" class="close-dialog" type="reset">X</button>
+        <button type="submit" class="btn-submit create-product">Cadastrar Produto</button>
       </menu>
     </form>
   </dialog>

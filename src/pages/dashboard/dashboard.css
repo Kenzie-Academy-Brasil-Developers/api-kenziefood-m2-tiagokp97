@@ -288,6 +288,104 @@ header {
   border-radius: 50%;
 }
 
+.create-modal {
+  width: 496px;
+
+  padding: 0;
+
+  position: relative;
+
+  border: none;
+  border-radius: 8px;
+}
+
+.create-modal header {
+  background: var(--grey-10);
+
+  padding: 20px 28px;
+}
+
+.create-modal header h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+
+  line-height: 30px;
+}
+
+.create-modal form {
+  padding: 28px 36px;
+}
+
+.create-modal form label {
+  display: inline-block;
+  margin-bottom: 16px;
+
+  font: 400 14px 'Inter', sans-serif;
+}
+
+.create-modal form input[type="text"],
+.create-modal form input[type="number"] {
+  width: 100%;
+
+  padding: 20px 18px;
+
+  background: var(--grey-10);
+  font: 400 16px 'Inter', sans-serif;
+
+  border-radius: 12px;
+  border: 2px solid #DEE2E6;
+
+  margin-bottom: 40px;
+}
+
+.radio-group {
+  margin-bottom: 40px;
+}
+
+.create-modal form input[type="radio"] {
+  display: none;
+}
+
+.create-modal form input[type="radio"] + label {
+  display: inline-block;
+
+  font: 500 14px 'Inter', sans-serif;
+  color: var(--grey-40);
+
+  padding: 11px 26px;
+
+  background: var(--grey-10);
+
+  border-radius: 32px;
+}
+
+.radio-group label:nth-of-type(2), .radio-group label:nth-of-type(3) {
+  margin-left: 17px;
+}
+
+.create-modal form .btn-submit {
+  width: 100%;
+  margin: 0;
+}
+
+.create-modal .close-dialog {
+  position: absolute;
+  top: 20px;
+  right: 28px;
+
+  padding: 5px 11px;
+  color: var(--grey-40);
+
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+
+  border: none;
+  border-radius: 4px;
+}
+
 @media only screen and (min-width: 1100px) {
   header {
     display: flex;
