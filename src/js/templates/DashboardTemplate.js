@@ -18,19 +18,31 @@ class DashboardTemplate {
 
     this._productList = document.getElementById('productList')
 
-    this._allBtn = document.querySelector('.button-all')
+    this._allBtn      = document.querySelector('.button-all')
 
     this._inputSearch = document.querySelector('.input-search')
 
-    this._btnBread = document.querySelector('.button-bread')
+    this._btnBread    = document.querySelector('.button-bread')
 
-    this._btnFruit = document.querySelector('.button-fruit')
+    this._btnFruit    = document.querySelector('.button-fruit')
 
-    this._btnDrink = document.querySelector('.button-glass')
+    this._btnDrink    = document.querySelector('.button-glass')
+
+    this._iconModal   = document.querySelector('.icon-modal')
+
+    this._modal       = document.querySelector('.container-modal-login')
+
+    this._homeModal   = document.querySelector('#Home')
+
+    this._logoutModal = document.querySelector('#logout')
+
+    this._nameUser    = document.querySelector('#name-user')
 
     this._data = []
 
     this.dataProdutos()
+
+    this._userToken = localStorage.getItem('Kenziefood:token')
 
     this.listProducts()
 
@@ -47,57 +59,60 @@ class DashboardTemplate {
 
     this.inputSearch()
 
+    this.captureButtonModal()
+
+    this.captureNameUser()
   }
 
   static getInstance() {
     return DashboardTemplate.#instance
   }
 
-  async dataProdutos(){
-  this._data = await this._productInstance.getAll()
+  async dataProdutos() {
+    this._data = await this._productInstance.getMyProducts(this._userToken)
   }
 
-  async clean(){
+  async clean() {
     return this._productList.innerHTML = ''
   }
 
   async listProducts() {
     await this.dataProdutos()
-    this._data.forEach(product => {this.createProduct(product)}) 
+    this._data.forEach(product => { this.createProduct(product) })
   }
 
-  async allFilter(){
-    this._allBtn.addEventListener('click', function(){
-    this.clean()
-    this.listProducts()   
+  async allFilter() {
+    this._allBtn.addEventListener('click', function () {
+      this.clean()
+      this.listProducts()
     }.bind(this))
   }
-  
-  async inputSearch(){
-  this._inputSearch.addEventListener('keyup', (event) => {
-  const pesquisa = event.target.value
 
-  const filtrados = this._data.filter((produto) => {
-  return produto.nome.toLowerCase().includes(pesquisa) || produto.categoria.toLowerCase().includes(pesquisa)
-  })
-    this.clean()
-    filtrados.forEach(product => {
-    this.createProduct(product)
-    }) 
+  async inputSearch() {
+    this._inputSearch.addEventListener('keyup', (event) => {
+      const pesquisa = event.target.value
+
+      const filtrados = this._data.filter((produto) => {
+        return produto.nome.toLowerCase().includes(pesquisa) || produto.categoria.toLowerCase().includes(pesquisa)
+      })
+      this.clean()
+      filtrados.forEach(product => {
+        this.createProduct(product)
+      })
     })
   }
 
-  async breadFilter(){
+  async breadFilter() {
     const breadList = this._data.filter((produto) => {
       return produto.categoria === 'Panificadora'
-      }) 
+    })
     breadList.forEach(product => {
-    this.createProduct(product)
-    }) 
+      this.createProduct(product)
+    })
   }
 
-  async breadFilterBtn(){
-    this._btnBread.addEventListener('click', function(){
+  async breadFilterBtn() {
+    this._btnBread.addEventListener('click', function () {
       this.clean()
       this.breadFilter()
     }.bind(this))
@@ -109,27 +124,27 @@ class DashboardTemplate {
     }) 
     fruitList.forEach(product => {
       this.createProduct(product)
-    }) 
+    })
   }
 
-  async fruitFilterBtn(){
-    this._btnFruit.addEventListener('click', function(){
+  async fruitFilterBtn() {
+    this._btnFruit.addEventListener('click', function () {
       this.clean()
       this.fruitFilter()
     }.bind(this))
   }
 
-  async drinkFilter(){
+  async drinkFilter() {
     const listDrinks = this._data.filter((produto) => {
       return produto.categoria === 'Bebidas'
-    }) 
+    })
     listDrinks.forEach(product => {
       this.createProduct(product)
-    }) 
+    })
   }
 
-  async drinkFilterBtn(){
-    this._btnDrink.addEventListener('click', function(){
+  async drinkFilterBtn() {
+    this._btnDrink.addEventListener('click', function () {
       this.clean()
       this.drinkFilter()
     }.bind(this))
@@ -189,6 +204,37 @@ class DashboardTemplate {
     this._productList.appendChild(article)
   }
 
+  captureButtonModal() {
+
+    this._iconModal.addEventListener('click', (evento) => {
+
+      if (this._modal.style.display === 'none') {
+        this._modal.style.display = 'block'
+      } else {
+        this._modal.style.display = 'none'
+      }
+      
+    })
+
+    this._logoutModal.addEventListener('click', (evento) => {
+      window.location.href = "/src/pages/login/login.html"
+      localStorage.clear()
+    })
+
+    this._homeModal.addEventListener('click', (evento) => {
+      window.location.href = "/src/pages/home/home.html"
+    })
+
+    
+  }
+
+  captureNameUser() {
+
+    const token = localStorage.getItem('Kenziefood:token')
+
+    
+  }
+
 }
 
-export { DashboardTemplate }
+export {DashboardTemplate}

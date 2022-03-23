@@ -661,10 +661,11 @@ header {
             width: 319px;
             height: 296px;
             overflow: auto;
+            align-content: start;
         }
         
         .card-img-empty {
-                display: none;
+                display: block;
                 width: 70px;
                 height: 60px;
                 margin-left: auto;
@@ -674,7 +675,7 @@ header {
             }
             
             .card-empty {
-                display: none;
+                display: block;
                 font-size: 14px;
                 font-family: 'Poppins';
                 font-weight: 400;
