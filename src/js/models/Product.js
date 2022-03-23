@@ -26,6 +26,7 @@ class Product {
     return Product.#instance
   }
 
+  
   async getAll() {
     const response = await fetch(this._productsURL)
 
