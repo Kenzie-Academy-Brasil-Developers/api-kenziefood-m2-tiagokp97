@@ -18,15 +18,25 @@ class DashboardTemplate {
 
     this._productList = document.getElementById('productList')
 
-    this._allBtn = document.querySelector('.button-all')
+    this._allBtn      = document.querySelector('.button-all')
 
     this._inputSearch = document.querySelector('.input-search')
 
-    this._btnBread = document.querySelector('.button-bread')
+    this._btnBread    = document.querySelector('.button-bread')
 
-    this._btnFruit = document.querySelector('.button-fruit')
+    this._btnFruit    = document.querySelector('.button-fruit')
 
-    this._btnDrink = document.querySelector('.button-glass')
+    this._btnDrink    = document.querySelector('.button-glass')
+
+    this._iconModal   = document.querySelector('.icon-modal')
+
+    this._modal       = document.querySelector('.container-modal-login')
+
+    this._homeModal   = document.querySelector('#Home')
+
+    this._logoutModal = document.querySelector('#logout')
+
+    this._nameUser    = document.querySelector('#name-user')
 
     this._data = []
 
@@ -47,6 +57,9 @@ class DashboardTemplate {
 
     this.inputSearch()
 
+    this.captureButtonModal()
+
+    this.captureNameUser()
   }
 
   static getInstance() {
@@ -189,6 +202,37 @@ class DashboardTemplate {
     this._productList.appendChild(article)
   }
 
+  captureButtonModal() {
+
+    this._iconModal.addEventListener('click', (evento) => {
+
+      if (this._modal.style.display === 'none') {
+        this._modal.style.display = 'block'
+      } else {
+        this._modal.style.display = 'none'
+      }
+      
+    })
+
+    this._logoutModal.addEventListener('click', (evento) => {
+      window.location.href = "/src/pages/login/login.html"
+      localStorage.clear()
+    })
+
+    this._homeModal.addEventListener('click', (evento) => {
+      window.location.href = "/src/pages/home/home.html"
+    })
+
+    
+  }
+
+  captureNameUser() {
+
+    const token = localStorage.getItem('Kenziefood:token')
+
+    
+  }
+
 }
 
-export { DashboardTemplate }
+export {DashboardTemplate}
