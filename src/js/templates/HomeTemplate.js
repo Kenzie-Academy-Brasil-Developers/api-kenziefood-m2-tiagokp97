@@ -19,11 +19,12 @@ class HomeTemplate {
 
     HomeTemplate.#instance = this
 
-    this._buttonBread      = document.querySelector('.button-bread')
-    this._btnDrink         = document.querySelector('.button-glass')
-    this._btnFruit         = document.querySelector('.button-fruit')
-    this._btnAll           = document.querySelector('.button-all')
-    this._inputSearch      = document.querySelector('.input-search')
+
+    this._buttonBread       = document.querySelector('.button-bread')
+    this._btnDrink          = document.querySelector('.button-glass')
+    this._btnFruit          = document.querySelector('.button-fruit')
+    this._btnAll            = document.querySelector('.button-all')
+    this._inputSearch       = document.querySelector('.input-search')
     this._button            = document.querySelector('.head-card')
     this._modalCardMobile   = document.querySelector('.container-modal-card')
     this._exitModalCard     = document.querySelector('.exit-modal-card')
@@ -52,6 +53,7 @@ class HomeTemplate {
 
     this._productModels     = Product.getInstance()
 
+   
     this._BdLocalStorage    = JSON.parse(localStorage.getItem('Kenziefood:card')) || []
 
 
@@ -66,6 +68,13 @@ class HomeTemplate {
     this.allFilterBtn()
     this.inputSearch()
     this.captureButtonsModal()
+    this.teste()
+  }
+
+  async teste(){
+  console.log(this._token)
+  console.log(await this._productModels.getMyProducts(this._token))
+
   }
 
   static getInstance() {
@@ -232,16 +241,16 @@ class HomeTemplate {
   }
 
   createDesktop() {
-    const storange = JSON.parse(localStorage.getItem('Kenziefood:card')) || []
+    const storage = JSON.parse(localStorage.getItem('Kenziefood:card')) || []
     
-    if (storange.length > 0) {
+    if (storage.length > 0) {
       this._cardEmpty.style.display = 'none'
       this._cardImgEmpty.style.display = 'none'
       this._showcaseDesktop.innerHTML = ``
     }
 
-    for (let i = 0; i < storange.length; i++) {
-      const {categoria, imagem, nome, preco} = storange[i]
+    for (let i = 0; i < storage.length; i++) {
+      const {categoria, imagem, nome, preco} = storage[i]
 
       const article = document.createElement('article')
       article.classList.add('product-card')
@@ -266,15 +275,15 @@ class HomeTemplate {
     }
 
     let priceTotal = 0
-    for (let i = 0; i < storange.length; i++) {
+    for (let i = 0; i < storage.length; i++) {
 
-      const {preco} = storange[i]
+      const {preco} = storage[i]
       priceTotal += preco
     }
 
     
     this._totalPriceDesktop.innerText = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(priceTotal)
-    this._totalCountDesktop.innerText = storange.length
+    this._totalCountDesktop.innerText = storage.length
 
     const buttonsDesktop = document.querySelectorAll('.button-desktop-card')
 
@@ -282,16 +291,16 @@ class HomeTemplate {
   }
 
   createMobile() {
-    const storange = JSON.parse(localStorage.getItem('Kenziefood:card')) || []
+    const storage = JSON.parse(localStorage.getItem('Kenziefood:card')) || []
     
-    if (storange.length > 0) {
+    if (storage.length > 0) {
       this._modalEmptyMobile.style.display = 'none'
       this._modalimgMobile.style.display = 'none'
       this._showcaseModal.innerHTML = ``
     }
 
-    for (let i = 0; i < storange.length; i++) {
-      const {categoria, imagem, nome, preco} = storange[i]
+    for (let i = 0; i < storage.length; i++) {
+      const {categoria, imagem, nome, preco} = storage[i]
 
       const article = document.createElement('article')
       article.classList.add('product-modal')
@@ -316,14 +325,14 @@ class HomeTemplate {
     }
 
     let priceTotal = 0
-    for (let i = 0; i < storange.length; i++) {
+    for (let i = 0; i < storage.length; i++) {
 
-      const {preco} = storange[i]
+      const {preco} = storage[i]
       priceTotal += preco
     }
 
     this._priceModalTotal.innerText = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(priceTotal)
-    this._modalCountTotal.innerText = storange.length
+    this._modalCountTotal.innerText = storage.length
 
     const buttonRemoveMobile = document.querySelectorAll('.button-remove')
 
@@ -339,11 +348,11 @@ class HomeTemplate {
 
         const id = clickButton.id
 
-        const storange = JSON.parse(localStorage.getItem('Kenziefood:card')) || []
+        const storage = JSON.parse(localStorage.getItem('Kenziefood:card')) || []
 
-        for (let i = 0; i < storange.length; i++) {
+        for (let i = 0; i < storage.length; i++) {
           if (i !== Number(id)) {
-            bd.push(storange[i])
+            bd.push(storage[i])
           }
         }
 
@@ -374,6 +383,11 @@ class HomeTemplate {
         })
 
         if (this._token) {
+          if (innerWidth < 1100) {
+
+          } else {
+
+          }
         } else {
           this._BdLocalStorage = JSON.parse(localStorage.getItem('Kenziefood:card')) || []
 
