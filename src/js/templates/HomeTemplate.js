@@ -130,7 +130,7 @@ class HomeTemplate {
     if (innerWidth < 1100) {
       this.createMobile()
     } else {
-
+      this.createDesktop()
     }
     
   }
