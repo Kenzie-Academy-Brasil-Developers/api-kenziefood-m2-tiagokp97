@@ -3,6 +3,8 @@ import { Product } from '../models/Product.js'
 class DashboardTemplate {
   static #instance = null
 
+  static dataProducts = []
+
   constructor() {
     if (DashboardTemplate.#instance) {
       return DashboardTemplate.#instance
@@ -17,6 +19,16 @@ class DashboardTemplate {
     this._productInstance = Product.getInstance()
 
     this._productList = document.getElementById('productList')
+
+    this._allBtn = document.querySelector('.button-all')
+
+    this._inputSearch = document.querySelector('.input-search')
+
+    this._btnBread = document.querySelector('.button-bread')
+
+    this._btnFruit = document.querySelector('.button-fruit')
+
+    this._btnDrink = document.querySelector('.button-glass')
 
     this.listProducts()
 
@@ -43,58 +55,46 @@ class DashboardTemplate {
   }
 
   async listProducts() {
-
     const data = await this._productInstance.getAll()
-    data.forEach(product => {
-      this.createProduct(product)
-    }) 
+    data.forEach(product => {this.createProduct(product)}) 
   }
 
   async allFilter(){
-    const data = await this._productInstance.getAll()
-    const allBtn = document.querySelector('.button-all')
-
-    allBtn.addEventListener('click', function(){
-      this.clean()
-      this.listProducts()
+    this._allBtn.addEventListener('click', function(){
+    this.clean()
+    this.listProducts()   
     }.bind(this))
+  }
+  
+  async inputSearch(){
+  const data = await this._productInstance.getAll()
+  this._inputSearch.addEventListener('keyup', (event) => {
+  const pesquisa = event.target.value
+
+  const filtrados = data.filter((produto) => {
+  return produto.nome.toLowerCase().includes(pesquisa) || produto.categoria.toLowerCase().includes(pesquisa)
+  })
+    this.clean()
+    filtrados.forEach(product => {
+    this.createProduct(product)
+    }) 
+    })
   }
 
   async breadFilter(){
     const data = await this._productInstance.getAll()
     const breadList = data.filter((produto) => {
       return produto.categoria === 'Panificadora'
-    }) 
+      }) 
     breadList.forEach(product => {
-      this.createProduct(product)
+    this.createProduct(product)
     }) 
   }
-  
-  async inputSearch(){
-  const data = await this._productInstance.getAll()
-
-  const inputSearch = document.querySelector('.input-search')
-  inputSearch.addEventListener('keyup', (event) => {
-    const pesquisa = event.target.value
-
-    const filtrados = data.filter((produto) => {
-        return produto.nome.toLowerCase().includes(pesquisa) || produto.categoria.toLowerCase().includes(pesquisa)
-
-    })
- 
-    this.clean()
-    filtrados.forEach(product => {
-      this.createProduct(product)
-    }) 
-    })
-  }
-
 
   async breadFilterBtn(){
-    const btnFruit = document.querySelector('.button-fruit')
-    btnFruit.addEventListener('click', function(){
+    this._btnBread.addEventListener('click', function(){
       this.clean()
-      this.fruitFilter()
+      this.breadFilter()
     }.bind(this))
   }
 
@@ -109,10 +109,9 @@ class DashboardTemplate {
   }
 
   async fruitFilterBtn(){
-    const btnBread = document.querySelector('.button-bread')
-    btnBread.addEventListener('click', function(){
+    this._btnFruit.addEventListener('click', function(){
       this.clean()
-      this.breadFilter()
+      this.fruitFilter()
     }.bind(this))
   }
 
@@ -127,8 +126,7 @@ class DashboardTemplate {
   }
 
   async drinkFilterBtn(){
-    const btnDrink = document.querySelector('.button-glass')
-    btnDrink.addEventListener('click', function(){
+    this._btnDrink.addEventListener('click', function(){
       this.clean()
       this.drinkFilter()
     }.bind(this))
