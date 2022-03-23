@@ -1,3 +1,5 @@
+import { API } from "../API.js"
+
 class HomeTemplate {
   static #instance = null
 
@@ -6,12 +8,20 @@ class HomeTemplate {
       return HomeTemplate.#instance
     }
 
+    if (!API.getInstance()) {
+      new API()
+    }
+
     HomeTemplate.#instance = this
   }
 
   static getInstance() {
     return HomeTemplate.#instance
   }
+
+
+  
+
 }
 
 export { HomeTemplate }
