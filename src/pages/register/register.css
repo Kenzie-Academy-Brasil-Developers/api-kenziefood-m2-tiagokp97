@@ -1,49 +1,40 @@
 header {
-    height: 40px;
-    background-color: var(--pink-100);
-}
-
-body {
-    background-color: var(--grey-30);
+    display: flex;
+    height: 50px;
+    padding-left: 5px;
+    background-color: var(--grey-20);
 }
 
 .form-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 20px;
     margin-top: 20px;
-    letter-spacing: 0em;
-    text-align: left;
-    font-family: Poppins;
+    font-family: Inter;
     font-style: normal;
-    font-weight: 400;
 }
-
     .form-container h1 {
-        font-size: 2rem;
         color: var(--pink-100);
+        font-size: 2em;
     }
 
     .form-container .field {
-    width: 246px;
-    height: 40px;
-    border-radius: 4px;
-    padding-left: 10px;
-    line-height: 24px;
-    font-size: 14px;
-    border-color: var(--grey-20);
-    outline: none;
-
+        width: 246px;
+        height: 42px;
+        border: none;
+        border-radius: 4px;
+        padding-left: 10px;
+        outline: none;
+        background-color: var(--grey-20);
     }
 
-    .form-container button {
-    border:  none;
-    border-radius: 4px;
-    background-color: var(--pink-100);
-    color: white;
-    width: 130px;
-    height: 35px;
-    font-family: Inter;
-    font-size: 1em;
+    .form-container .form-register-button {
+        border: none;
+        background-color: var(--pink-100);
+        height: 35px;
+        color: white;
+        width: 120px;
+        border-radius: 4px;
+        font-family: Inter;
     }
