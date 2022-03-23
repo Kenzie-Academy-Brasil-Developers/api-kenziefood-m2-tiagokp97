@@ -3,8 +3,6 @@ import { Product } from '../models/Product.js'
 class DashboardTemplate {
   static #instance = null
 
-  static produtos = []
-
   constructor() {
     if (DashboardTemplate.#instance) {
       return DashboardTemplate.#instance
@@ -64,6 +62,7 @@ class DashboardTemplate {
   }
 
   async listProducts() {
+    await this.dataProdutos()
     this._data.forEach(product => {this.createProduct(product)}) 
   }
 
