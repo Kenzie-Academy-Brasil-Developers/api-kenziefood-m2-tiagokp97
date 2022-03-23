@@ -74,7 +74,6 @@ class DashboardTemplate {
 
     this.captureNameUser()
 
-    this.eventDeletaProduto()
   }
 
   static getInstance() {
@@ -103,7 +102,7 @@ class DashboardTemplate {
 
   async inputSearch() {
     this._inputSearch.addEventListener('keyup', (event) => {
-      const pesquisa = event.target.value
+      const pesquisa = event.target.value.toLowerCase()
 
       const filtrados = this._data.filter((produto) => {
         return produto.nome.toLowerCase().includes(pesquisa) || produto.categoria.toLowerCase().includes(pesquisa)
@@ -287,18 +286,6 @@ class DashboardTemplate {
     })
 
 
-  }
-
-  pegaBtnProduto(event){
-    const btn = event.target.closest("product-item__delete")
-    btn.remove()
-      }
-
-  eventDeletaProduto(){
-    const btnDelete = document.querySelectorAll(".product-item__delete")
-    btnDelete[0].addEventListener('click', function(){
-      console.log('teste')
-    })
   }
 
   captureNameUser() {

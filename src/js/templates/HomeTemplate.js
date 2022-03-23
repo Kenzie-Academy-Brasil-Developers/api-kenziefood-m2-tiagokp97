@@ -68,14 +68,8 @@ class HomeTemplate {
     this.allFilterBtn()
     this.inputSearch()
     this.captureButtonsModal()
-    this.teste()
   }
 
-  async teste(){
-  console.log(this._token)
-  console.log(await this._productModels.getMyProducts(this._token))
-
-  }
 
   static getInstance() {
     return HomeTemplate.#instance
@@ -89,7 +83,8 @@ class HomeTemplate {
   async inputSearch(){
     const product = await this._productModels.getAll()
       this._inputSearch.addEventListener('keyup', (event) => {
-      const pesquisa = event.target.value
+      const pesquisa = event.target.value.toLowerCase()
+      
         
       const filtrados = product.filter((produto) => {
       return produto.nome.toLowerCase().includes(pesquisa) || produto.categoria.toLowerCase().includes(pesquisa)
