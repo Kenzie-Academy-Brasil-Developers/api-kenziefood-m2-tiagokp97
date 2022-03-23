@@ -1,4 +1,5 @@
 import { API } from '../API.js'
+import {Product} from '../models/Product.js'
 
 class HomeTemplate {
   static #instance = null
@@ -10,6 +11,10 @@ class HomeTemplate {
 
     if (!API.getInstance()) {
       new API()
+    }
+
+    if (!Product.getInstance()) {
+      new Product()
     }
 
     HomeTemplate.#instance = this
@@ -24,17 +29,13 @@ class HomeTemplate {
 
     this._token            = localStorage.getItem('Kenziefood:token')
 
-    this._APIInstance      = API.getInstance()
-
-    this._productsURL      = `${this._APIInstance.baseURL}products`
-
 
 
 
     this.eventCardMobile()
     this.verifyLogin()
     this.getApiHomePage()
-    this.createTempleProduct(this.getApiHomePage())
+    this.createTempleProduct()
   }
 
   static getInstance() {
@@ -82,7 +83,6 @@ class HomeTemplate {
 
     const resultadoPromisse = await promisse
 
-    console.log(promisse)
     resultadoPromisse.foreach((produto) => {
 
       const {categoria, descricao, id, imagem, } = produto
@@ -91,12 +91,6 @@ class HomeTemplate {
   }
   
   async getApiHomePage() {
-    fetch(this._productsURL)
-    .then((resultado) => resultado.json())
-    .then((data) => {
-
-      return data
-    })
 
   }
 }
