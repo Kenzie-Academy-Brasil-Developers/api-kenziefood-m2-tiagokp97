@@ -55,6 +55,24 @@ class Product {
     }
   }
 
+  async create(data, token) {
+    const response = await fetch(this._myProductsURL, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+
+    const responseData = await response.json()
+
+    if (response.status !== 201) {
+      throw new Error(responseData.message)
+    } else {
+      return responseData
+    }
+  }
 }
 
 export { Product }

@@ -360,6 +360,12 @@ header {
   border-radius: 32px;
 }
 
+.create-modal form input[type="radio"][checked] + label {
+  color: var(--grey-10);
+
+  background: var(--pink-100);
+}
+
 .radio-group label:nth-of-type(2), .radio-group label:nth-of-type(3) {
   margin-left: 17px;
 }

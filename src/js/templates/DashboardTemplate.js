@@ -39,7 +39,10 @@ class DashboardTemplate {
     this._nameUser = document.querySelector('#name-user')
 
     this._btnCreateProduct = document.getElementById('btnCreateProduct')
+    this._btnCancelCreation = document.getElementById('btnCancelCreation')
     this._modalCreateProduct = document.getElementById('modalCreateProduct')
+    this._radioButtons = document.querySelectorAll('[type="radio"]')
+    this._creationForm = document.getElementById('creationForm')
 
     this._userToken = localStorage.getItem('Kenziefood:token')
 
@@ -211,6 +214,48 @@ class DashboardTemplate {
   addListener() {
     this._btnCreateProduct.addEventListener('click', function () {
       this._modalCreateProduct.showModal()
+    }.bind(this))
+
+    this._btnCancelCreation.addEventListener('click', function () {
+      this._modalCreateProduct.close()
+    }.bind(this))
+
+    this._radioButtons.forEach(button => {
+      button.addEventListener('change', function (event) {
+        this._radioButtons.forEach(rbtn => {
+          if (rbtn === event.target) {
+            rbtn.setAttribute('checked', true)
+          }
+        })
+
+        this._radioButtons.forEach(rbtn => {
+          if (rbtn !== event.target) {
+            rbtn.removeAttribute('checked')
+          }
+        })
+      }.bind(this))
+    })
+
+    this._creationForm.addEventListener('submit', async function (event) {
+      event.preventDefault()
+
+      const data = {}
+
+      for (let i = 0; i < event.target.length; i++) {
+        if (event.target[i].name) {
+          if (event.target[i].type === 'radio') {
+            if (event.target[i].checked) {
+              data[event.target[i].name] = event.target[i].value
+            }
+          } else {
+            data[event.target[i].name] = event.target[i].value
+          }
+        }
+      }
+
+      await this._productInstance.create(data, this._userToken)
+      this.clean()
+      this.listProducts()
     }.bind(this))
   }
 

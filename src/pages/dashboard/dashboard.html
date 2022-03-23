@@ -78,18 +78,18 @@
       <h3>Cadastro de produto</h3>
     </header>
 
-    <form>
+    <form id="creationForm">
       <label for="name">Nome do Produto</label>
       <input id="name" name="nome" type="text" placeholder="Digitar o nome" />
-      <label for="description">Nome do Produto</label>
+      <label for="description">Descrição</label>
       <input id="description" name="descricao" type="text" placeholder="Digitar a descrição" />
       <label>Categorias</label>
       <div class="radio-group">
-        <input type="radio" id="category-bread" name="categoria" value="panificadora">
+        <input type="radio" id="category-bread" name="categoria" value="Panificadora">
         <label for="category-bread">Panificadora</label>
-        <input type="radio" id="category-fruit" name="categoria" value="frutas">
+        <input type="radio" id="category-fruit" name="categoria" value="Frutas">
         <label for="category-fruit">Frutas</label>
-        <input type="radio" id="category-drink" name="categoria" value="bebidas">
+        <input type="radio" id="category-drink" name="categoria" value="Bebidas">
         <label for="category-drink">Bebidas</label>
       </div>
       <label for="price">Valor do Produto</label>
@@ -97,7 +97,7 @@
       <label for="image">Link da imagem</label>
       <input id="image" type="text" name="imagem" placeholder="Inserir o link">
       <menu>
-        <button id="cancel" class="close-dialog" type="reset">X</button>
+        <button id="btnCancelCreation" class="close-dialog" type="reset">X</button>
         <button type="submit" class="btn-submit create-product">Cadastrar Produto</button>
       </menu>
     </form>
