@@ -41,10 +41,20 @@ class DashboardTemplate {
     this._btnCreateProduct = document.getElementById('btnCreateProduct')
     this._btnCancelCreation = document.getElementById('btnCancelCreation')
     this._modalCreateProduct = document.getElementById('modalCreateProduct')
-    this._radioButtons = document.querySelectorAll('[type="radio"]')
+    this._createRadioButtons = document.querySelectorAll('.btn-create-radio')
     this._creationForm = document.getElementById('creationForm')
 
+    this._btnCancelEdition = document.getElementById('btnCancelEdition')
+    this._btnDeleteEdition = document.getElementById('btnDeleteEdition')
     this._modalEditProduct = document.getElementById('modalEditProduct')
+    this._editRadioButtons = document.querySelectorAll('.btn-edit-radio')
+    this._editForm = document.getElementById('editForm')
+    this._editId = document.getElementById('editId')
+    this._editName = document.getElementById('editName')
+    this._editDescription = document.getElementById('editDescription')
+    this._editPrice = document.getElementById('editPrice')
+    this._editImage = document.getElementById('editImage')
+
 
     this._userToken = localStorage.getItem('Kenziefood:token')
 
@@ -99,7 +109,7 @@ class DashboardTemplate {
 
   async inputSearch() {
     this._inputSearch.addEventListener('keyup', (event) => {
-      const pesquisa = event.target.value
+      const pesquisa = event.target.value.toLowerCase()
 
       const filtrados = this._data.filter((produto) => {
         return produto.nome.toLowerCase().includes(pesquisa) || produto.categoria.toLowerCase().includes(pesquisa)
@@ -151,7 +161,7 @@ class DashboardTemplate {
       this.createProduct(product)
     })
   }
-  
+
   async drinkFilterBtn() {
     this._btnDrink.addEventListener('click', function () {
       this.clean()
@@ -184,6 +194,28 @@ class DashboardTemplate {
     editButton.classList.add('product-item__action')
     removeButton.classList.add('product-item__delete')
     removeButton.classList.add('product-item__action')
+
+    editButton.addEventListener('click', function () {
+      this._editId.value = product.id
+      this._editName.value = product.nome
+      this._editDescription.value = product.descricao
+      this._editPrice.value = product.preco
+      this._editImage.value = product.imagem
+
+      this._editRadioButtons.forEach(rbtn => {
+        if (rbtn.value === product.categoria) {
+          rbtn.setAttribute('checked', true)
+        }
+      })
+
+      this._createRadioButtons.forEach(rbtn => {
+        if (rbtn.value !== product.categoria) {
+          rbtn.removeAttribute('checked')
+        }
+      })
+
+      this._modalEditProduct.showModal()
+    }.bind(this))
 
     image.src = product.imagem
     image.alt = product.nome
@@ -219,18 +251,46 @@ class DashboardTemplate {
     }.bind(this))
 
     this._btnCancelCreation.addEventListener('click', function () {
+      this._createRadioButtons.forEach(rbtn => {
+        rbtn.removeAttribute('checked')
+      })
+
       this._modalCreateProduct.close()
     }.bind(this))
 
-    this._radioButtons.forEach(button => {
+    this._btnCancelEdition.addEventListener('click', function () {
+      this._editRadioButtons.forEach(rbtn => {
+        rbtn.removeAttribute('checked')
+      })
+
+      this._modalEditProduct.close()
+    }.bind(this))
+
+    this._createRadioButtons.forEach(button => {
       button.addEventListener('change', function (event) {
-        this._radioButtons.forEach(rbtn => {
+        this._createRadioButtons.forEach(rbtn => {
           if (rbtn === event.target) {
             rbtn.setAttribute('checked', true)
           }
         })
 
-        this._radioButtons.forEach(rbtn => {
+        this._createRadioButtons.forEach(rbtn => {
+          if (rbtn !== event.target) {
+            rbtn.removeAttribute('checked')
+          }
+        })
+      }.bind(this))
+    })
+
+    this._editRadioButtons.forEach(button => {
+      button.addEventListener('change', function (event) {
+        this._editRadioButtons.forEach(rbtn => {
+          if (rbtn === event.target) {
+            rbtn.setAttribute('checked', true)
+          }
+        })
+
+        this._editRadioButtons.forEach(rbtn => {
           if (rbtn !== event.target) {
             rbtn.removeAttribute('checked')
           }
@@ -258,6 +318,36 @@ class DashboardTemplate {
       await this._productInstance.create(data, this._userToken)
       this.clean()
       this.listProducts()
+      this._modalCreateProduct.close()
+    }.bind(this))
+
+    this._editForm.addEventListener('submit', async function (event) {
+      event.preventDefault()
+
+      const data = {}
+      let id = null
+
+      for (let i = 0; i < event.target.length; i++) {
+        if (event.target[i].name) {
+          if (event.target[i].type === 'radio') {
+            if (event.target[i].checked) {
+              data[event.target[i].name] = event.target[i].value
+            }
+          } else {
+            if (event.target[i].name === 'id') {
+              id = event.target[i].value
+            } else {
+              data[event.target[i].name] = event.target[i].value
+            }
+          }
+        }
+      }
+
+      await this._productInstance.edit(id, data, this._userToken)
+
+      this.clean()
+      this.listProducts()
+      this._modalEditProduct.close()
     }.bind(this))
   }
 

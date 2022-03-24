@@ -85,11 +85,11 @@
       <input id="description" name="descricao" type="text" placeholder="Digitar a descrição" />
       <label>Categorias</label>
       <div class="radio-group">
-        <input type="radio" id="category-bread" name="categoria" value="Panificadora">
+        <input class="btn-create-radio" type="radio" id="category-bread" name="categoria" value="Panificadora">
         <label for="category-bread">Panificadora</label>
-        <input type="radio" id="category-fruit" name="categoria" value="Frutas">
+        <input class="btn-create-radio" type="radio" id="category-fruit" name="categoria" value="Frutas">
         <label for="category-fruit">Frutas</label>
-        <input type="radio" id="category-drink" name="categoria" value="Bebidas">
+        <input class="btn-create-radio" type="radio" id="category-drink" name="categoria" value="Bebidas">
         <label for="category-drink">Bebidas</label>
       </div>
       <label for="price">Valor do Produto</label>
@@ -105,34 +105,35 @@
 
   <dialog id="modalEditProduct" class="create-modal">
     <header>
-      <h3>Edição do produto</h3>
+      <h3>Edição de produto</h3>
     </header>
 
-    <form id="creationForm">
-      <label for="name">Nome do Produto</label>
-      <input id="name" name="nome" type="text" placeholder="Digitar o nome" />
-      <label for="description">Descrição</label>
-      <input id="description" name="descricao" type="text" placeholder="Digitar a descrição" />
+    <form id="editForm">
+      <input id="editId" type="hidden" name="id">
+      <label for="editName">Nome do Produto</label>
+      <input id="editName" name="nome" type="text" placeholder="Digitar o nome" />
+      <label for="editDescription">Descrição</label>
+      <input id="editDescription" name="descricao" type="text" placeholder="Digitar a descrição" />
       <label>Categorias</label>
       <div class="radio-group">
-        <input type="radio" id="category-bread" name="categoria" value="Panificadora">
-        <label for="category-bread">Panificadora</label>
-        <input type="radio" id="category-fruit" name="categoria" value="Frutas">
-        <label for="category-fruit">Frutas</label>
-        <input type="radio" id="category-drink" name="categoria" value="Bebidas">
-        <label for="category-drink">Bebidas</label>
+        <input class="btn-edit-radio" type="radio" id="editCategoryBread" name="categoria" value="Panificadora">
+        <label for="editCategoryBread">Panificadora</label>
+        <input class="btn-edit-radio" type="radio" id="editCategoryFruit" name="categoria" value="Frutas">
+        <label for="editCategoryFruit">Frutas</label>
+        <input class="btn-edit-radio" type="radio" id="editCategoryDrink" name="categoria" value="Bebidas">
+        <label for="editCategoryDrink">Bebidas</label>
       </div>
-      <label for="price">Valor do Produto</label>
-      <input id="price" type="number" name="preco" placeholder="Digitar o valor aqui">
-      <label for="image">Link da imagem</label>
-      <input id="image" type="text" name="imagem" placeholder="Inserir o link">
+      <label for="editPrice">Valor do Produto</label>
+      <input id="editPrice" type="number" name="preco" placeholder="Digitar o valor aqui">
+      <label for="editImage">Link da imagem</label>
+      <input id="editImage" type="text" name="imagem" placeholder="Inserir o link">
       <menu>
-        <button id="btnCancelCreation" class="close-dialog" type="reset">X</button>
-        <button type="submit" class="btn-submit create-product">Salvar alterações</button>
+        <button id="btnCancelEdition" class="close-dialog" type="reset">X</button>
+        <button id="btnDeleteEdition" class="btn-delete-edition">Excluir</button>
+        <button type="submit" class="btn-edit-submit create-product">Salvar Produto</button>
       </menu>
     </form>
   </dialog>
-
 
   <script type="module" src="./dashboard.js"></script>
 </body>

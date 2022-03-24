@@ -73,6 +73,26 @@ class Product {
       return responseData
     }
   }
+
+  async edit(id, data, token) {
+    const response = await fetch(`${this._myProductsURL}/${id}`, {
+      method: 'PATCH',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    console.log(response)
+    const responseData = await response.json()
+    console.log(responseData)
+
+    if (response.status !== 202) {
+      throw new Error(responseData.message)
+    } else {
+      return responseData
+    }
+  }
 }
 
 export { Product }

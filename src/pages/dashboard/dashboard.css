@@ -367,10 +367,6 @@ header {
   background: var(--pink-100);
 }
 
-.radio-group label:nth-of-type(2), .radio-group label:nth-of-type(3) {
-  margin-left: 17px;
-}
-
 .create-modal form .btn-submit {
   width: 100%;
   margin: 0;
@@ -562,4 +558,9 @@ header {
   .product-list .product-item__category + .product-item__category {
     margin-left: 9px;
   }
+
+
+.radio-group label:nth-of-type(2), .radio-group label:nth-of-type(3) {
+  margin-left: 17px;
+}
 }
