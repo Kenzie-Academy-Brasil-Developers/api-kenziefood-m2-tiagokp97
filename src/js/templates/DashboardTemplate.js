@@ -55,6 +55,10 @@ class DashboardTemplate {
     this._editPrice = document.getElementById('editPrice')
     this._editImage = document.getElementById('editImage')
 
+    this._modalDeleteProduct = document.getElementById('modalDeleteProduct')
+    this._btnCancelDelete = document.getElementById('btnCancelDelete')
+    this._btnYes = document.getElementById('btnYes')
+    this._btnNo = document.getElementById('btnNo')
 
     this._userToken = localStorage.getItem('Kenziefood:token')
 
@@ -217,6 +221,10 @@ class DashboardTemplate {
       this._modalEditProduct.showModal()
     }.bind(this))
 
+    removeButton.addEventListener('click', function () {
+      this._modalDeleteProduct.showModal()
+    }.bind(this))
+
     image.src = product.imagem
     image.alt = product.nome
     figcaption.innerText = product.nome
@@ -264,6 +272,14 @@ class DashboardTemplate {
       })
 
       this._modalEditProduct.close()
+    }.bind(this))
+
+    this._btnCancelDelete.addEventListener('click', function () {
+      this._modalDeleteProduct.close()
+    }.bind(this))
+
+    this._btnNo.addEventListener('click', function () {
+      this._modalDeleteProduct.close()
     }.bind(this))
 
     this._createRadioButtons.forEach(button => {
