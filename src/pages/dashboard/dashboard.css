@@ -13,13 +13,15 @@
   from{opacity: 0;}
   to{opacity: 1;}
 }
+
 @keyframes closeDialog {
   from{background-color: #fff; color: #000;}
   to{background-color: var(--pink-100); color: #fff;}
 }
+
 @keyframes animationProductItem {
-  from{background-color: #fff;}
-  to{background-color: var(--pink-100);}
+  from{background-color: #fff; color: #000;}
+  to{background-color: var(--pink-100); color: #fff ;}
 }
 
 header {
@@ -86,6 +88,7 @@ header {
       border-radius: 10px 0px 10px 10px;
       z-index: 1;
       animation-name: animationModal;
+      animation-fill-mode: forwards;
       animation-duration: 2s;
       backdrop-filter: blur(17px);
       }
@@ -114,11 +117,13 @@ header {
           .first-button-modal:hover {
             animation-name: animationButtonsFirst;
             animation-duration: 2s;
+            animation-fill-mode: forwards;
         }
 
         .second-button-modal:hover {
             animation-name: animationButtonsSecond;
             animation-duration: 2s;
+            animation-fill-mode: forwards;
         }
 
 
@@ -149,6 +154,7 @@ header {
 
   .ul-buttons > button:hover {
     animation-name: animationProductItem;
+    animation-fill-mode: forwards;
     animation-duration: 2s;
   }
   
@@ -298,6 +304,7 @@ header {
 
 .product-item .product-item__actions li button:hover {
   animation-name: animationProductItem;
+  animation-fill-mode: forwards;
   animation-duration: 2s;
 }
 
@@ -351,6 +358,7 @@ header {
 
 .btn-delete-edition:hover {
   animation-name: closeDialog;
+  animation-fill-mode: forwards;
   animation-duration: 2s;
 }
 
@@ -374,6 +382,7 @@ menu > .btn-edit-submit {
 
 .create-modal form label:hover {
   animation-name: closeDialog;
+  animation-fill-mode: forwards;
   animation-duration: 2s;
 }
 
@@ -445,6 +454,7 @@ menu > .btn-edit-submit {
 
 .create-modal .close-dialog:hover {
   animation-name: closeDialog;
+  animation-fill-mode: forwards;
   animation-duration: 2s;
 }
 
@@ -539,6 +549,7 @@ menu > .btn-edit-submit {
 
   .delete-modal > menu > button:first-child:hover {
     animation-name: closeDialog;
+    animation-fill-mode: forwards;
     animation-duration: 2s;
   }
 
@@ -785,6 +796,7 @@ menu > .btn-edit-submit {
 
   .delete-modal > menu > button:first-child:hover {
     animation-name: closeDialog;
+    animation-fill-mode: forwards;
     animation-duration: 2s;
   }
 
@@ -816,6 +828,7 @@ menu > .btn-edit-submit {
   
   .btn-delete-edition:hover {
     animation-name: closeDialog;
+    animation-fill-mode: forwards;
     animation-duration: 2s;
   }
   
