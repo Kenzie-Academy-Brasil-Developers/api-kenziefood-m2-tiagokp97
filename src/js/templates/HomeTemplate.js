@@ -102,7 +102,9 @@ class HomeTemplate {
   removeLoading() {
     const loader = document.querySelector('.loader')
 
-    this._showcase.removeChild(loader)
+    if (loader) {
+      this._showcase.removeChild(loader)
+    }
   }
 
   static getInstance() {
