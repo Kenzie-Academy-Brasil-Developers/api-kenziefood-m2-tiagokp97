@@ -97,7 +97,7 @@ class DashboardTemplate {
 
   async inputSearch() {
     this._inputSearch.addEventListener('keyup', (event) => {
-      const pesquisa = event.target.value
+      const pesquisa = event.target.value.toLowerCase()
 
       const filtrados = this._data.filter((produto) => {
         return produto.nome.toLowerCase().includes(pesquisa) || produto.categoria.toLowerCase().includes(pesquisa)
@@ -182,6 +182,10 @@ class DashboardTemplate {
     editButton.classList.add('product-item__action')
     removeButton.classList.add('product-item__delete')
     removeButton.classList.add('product-item__action')
+
+    editButton.addEventListener('click', function () {
+
+    })
 
     image.src = product.imagem
     image.alt = product.nome
