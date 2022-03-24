@@ -83,14 +83,27 @@ class Product {
       },
       body: JSON.stringify(data)
     })
-    console.log(response)
+
     const responseData = await response.json()
-    console.log(responseData)
 
     if (response.status !== 202) {
       throw new Error(responseData.message)
     } else {
       return responseData
+    }
+  }
+
+  async delete(id, token) {
+    const response = await fetch(`${this._myProductsURL}/${id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+
+    if (response.status !== 204) {
+      const responseData = await response.json()
+      throw new Error(responseData.message)
     }
   }
 }
