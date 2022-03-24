@@ -121,8 +121,9 @@ class DashboardTemplate {
 
   removeLoading() {
     const loader = document.querySelector('.loader')
-
-    this._productList.removeChild(loader)
+    if (loader) {
+      this._productList.removeChild(loader)
+    }
   }
 
   async dataProdutos() {
