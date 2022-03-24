@@ -344,7 +344,9 @@ header {
   line-height: 19px;
   letter-spacing: 0em;
   text-align: center;
-  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 .btn-delete-edition:hover {
@@ -356,6 +358,10 @@ menu > .btn-edit-submit {
   margin: 0px;
   display: inline-block;
   height: 52px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-top: 10px;
 }
 
 
@@ -479,14 +485,13 @@ menu > .btn-edit-submit {
   }
 
   .delete-modal > header {
-    width: 496px;
+    width: 362px;
     height: 70px;
     border-radius: 8px 8px 0px 0px;
     box-shadow: none;
     background-color: var(--grey-10);
   }
   .delete-modal > header > h3 {
-    margin-top: 25px;
     font-family: Poppins;
     font-size: 14px;
     font-style: normal;
@@ -495,6 +500,7 @@ menu > .btn-edit-submit {
     letter-spacing: 0em;
     text-align: left;
     margin-left: 25px;
+    padding-top: 25px;
   }
   
   .delete-modal > h2 {
@@ -507,20 +513,19 @@ menu > .btn-edit-submit {
     line-height: 27px;
     letter-spacing: 0em;
     text-align: center;
-
   }
 
 
   .delete-modal > menu {
-    width: 496px;
+    width: 362px;
     height: 150px;
     position: relative;
   }
 
   .delete-modal > menu > button:first-child {
     position: absolute;
-    top: -122px;
-    left: 420px;
+    top: -165px;
+    left: 320px;
     background: #E9ECEF;
     border-radius: 4px;
     padding: 5px 11px;
@@ -542,8 +547,10 @@ menu > .btn-edit-submit {
     height: 52px;
     border-radius: 32px;
     border: 1.5px solid #F8F9FA;
-    margin-left: 20px;
-    margin-top: 49px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
   }
 
 @media only screen and (min-width: 1100px) {
@@ -720,4 +727,105 @@ menu > .btn-edit-submit {
 .radio-group label:nth-of-type(2), .radio-group label:nth-of-type(3) {
   margin-left: 17px;
 }
+
+
+.delete-modal {
+  border: none;
+  border-radius: 8px 8px 8px 8px;
+  background: #FFFFFF;
+  padding: 0px;
+  }
+
+  .delete-modal > header {
+    width: 496px;
+    height: 70px;
+    border-radius: 8px 8px 0px 0px;
+    box-shadow: none;
+    background-color: var(--grey-10);
+  }
+  .delete-modal > header > h3 {
+    margin-top: 25px;
+    padding-top: 0px;
+  }
+  
+  .delete-modal > h2 {
+    margin-top: 50px;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 27px;
+    letter-spacing: 0em;
+    text-align: center;
+
+  }
+
+
+  .delete-modal > menu {
+    width: 496px;
+    height: 150px;
+    position: relative;
+  }
+
+  .delete-modal > menu > button:first-child {
+    position: absolute;
+    top: -126px;
+    left: 420px;
+    background: #E9ECEF;
+    border-radius: 4px;
+    padding: 5px 11px;
+    color: var(--grey-40);
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    border: none;
+  }
+
+  .delete-modal > menu > button:first-child:hover {
+    animation-name: closeDialog;
+    animation-duration: 2s;
+  }
+
+  .btn-option {
+    width: 210px;
+    height: 52px;
+    border-radius: 32px;
+    border: 1.5px solid #F8F9FA;
+    margin-left: 20px;
+    margin-top: 49px;
+    display: inline-block;
+  }
+
+  .btn-delete-edition {
+    border: 1.5px solid #F8F9FA;
+    background: #F8F9FA;
+    border-radius: 32px;
+    width: 192px;
+    height: 52px;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: center;
+    display: inline-block;
+  }
+  
+  .btn-delete-edition:hover {
+    animation-name: closeDialog;
+    animation-duration: 2s;
+  }
+  
+  menu > .btn-edit-submit {
+    margin: 0px;
+    display: inline-block;
+    height: 52px;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+
+
 }
