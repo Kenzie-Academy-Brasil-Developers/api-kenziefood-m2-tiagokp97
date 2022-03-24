@@ -256,7 +256,7 @@ class HomeTemplate {
             <li>quantidade ${quantidade || 1}<li>
           </ul>
         </li>
-        <li class="price-product-card">${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(preco)}</li>
+        <li class="price-product-card">${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(preco * (quantidade || 1))}</li>
       </ul>
       <button class="button-desktop-card" id="${i}">
         <img src="/src/assets/icon_trash.svg" alt="imagem botao apagar">
@@ -316,7 +316,7 @@ class HomeTemplate {
             <li>quantidade ${quantidade || 1}<li>
           </ul>
         </li>
-        <li class="price-product-modal">${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(preco)}</li>
+        <li class="price-product-modal">${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(preco * (quantidade || 1))}</li>
       </ul>
       <button class="button-remove" id="${i}">
         <img src="/src/assets/icon_trash.svg" alt="">
