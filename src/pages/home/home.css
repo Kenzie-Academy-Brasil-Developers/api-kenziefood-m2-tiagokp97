@@ -80,6 +80,7 @@ header {
     }
 
     .icon-modal {
+      cursor: pointer;
         position: absolute;
         top: 15px;
         right: 10px;
@@ -159,6 +160,7 @@ header {
             font-size: 16px;
             font-family: 'Poppins';
             background-color: rgb(153, 153, 153, 0);
+            white-space: nowrap;
         }
     
         .container-modal-login > h3 {
