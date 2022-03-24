@@ -87,6 +87,7 @@ header {
       z-index: 1;
       animation-name: animationModal;
       animation-duration: 2s;
+      backdrop-filter: blur(17px);
       }
   
       .container-modal-login > button {
@@ -330,6 +331,34 @@ header {
   padding: 28px 36px;
 }
 
+.btn-delete-edition {
+  border: 1.5px solid #F8F9FA;
+  background: #F8F9FA;
+  border-radius: 32px;
+  width: 192px;
+  height: 52px;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: center;
+  display: inline-block;
+}
+
+.btn-delete-edition:hover {
+  animation-name: closeDialog;
+  animation-duration: 2s;
+}
+
+menu > .btn-edit-submit {
+  margin: 0px;
+  display: inline-block;
+  height: 52px;
+}
+
+
 .create-modal form label {
   display: inline-block;
   margin-bottom: 16px;
@@ -414,10 +443,10 @@ header {
 }
 
 .delete-modal {
-  display: block;
   border: none;
-  border-radius: 0px 0px 8px 8px;
+  border-radius: 8px 8px 8px 8px;
   background: #FFFFFF;
+  padding: 0px;
   }
 
   .delete-modal > header {
@@ -455,7 +484,7 @@ header {
 
   .delete-modal > menu {
     width: 496px;
-    height: 213px;
+    height: 150px;
     position: relative;
   }
 
@@ -472,6 +501,11 @@ header {
     font-weight: 400;
     line-height: 20px;
     border: none;
+  }
+
+  .delete-modal > menu > button:first-child:hover {
+    animation-name: closeDialog;
+    animation-duration: 2s;
   }
 
   .btn-option {

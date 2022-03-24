@@ -98,6 +98,7 @@ header {
     z-index: 1;
     animation-name: animationModal;
     animation-duration: 2s;
+    backdrop-filter: blur(17px);
         }
 
         .container-modal > button {
@@ -144,6 +145,7 @@ header {
         z-index: 1;
         animation-name: animationModal;
         animation-duration: 2s;
+        backdrop-filter: blur(17px);
         }
     
         .container-modal-login > button {
