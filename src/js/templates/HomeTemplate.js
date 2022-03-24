@@ -265,15 +265,24 @@ class HomeTemplate {
     }
 
     let priceTotal = 0
+    
     for (let i = 0; i < storage.length; i++) {
 
       const {preco, quantidade} = storage[i]
       priceTotal += preco * (quantidade || 1)
     }
 
+    let count = 0
+
+    for (let i = 0; i < storage.length; i++) {
+
+      const {quantidade} = storage[i]
+      count += 1 * (quantidade || 1)
+    }
+
     
     this._totalPriceDesktop.innerText = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(priceTotal)
-    this._totalCountDesktop.innerText = storage.length
+    this._totalCountDesktop.innerText = count
 
     const buttonsDesktop = document.querySelectorAll('.button-desktop-card')
 
@@ -322,8 +331,16 @@ class HomeTemplate {
       priceTotal += preco * (quantidade || 1)
     }
 
+    let count = 0
+
+    for (let i = 0; i < storage.length; i++) {
+
+      const {quantidade} = storage[i]
+      count += 1 * (quantidade || 1)
+    }
+
     this._priceModalTotal.innerText = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(priceTotal)
-    this._modalCountTotal.innerText = storage.length
+    this._modalCountTotal.innerText = count
 
     const buttonRemoveMobile = document.querySelectorAll('.button-remove')
 
