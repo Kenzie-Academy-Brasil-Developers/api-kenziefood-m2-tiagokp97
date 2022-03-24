@@ -20,6 +20,7 @@ class Product {
 
     this._myProductsURL = `${this._APIInstance.baseURL}my/products`
 
+
   }
 
   static getInstance() {
@@ -67,7 +68,7 @@ class Product {
       })
 
       const responseData = await response.json()
-
+      
       if (response.status !== 201) {
         throw new Error(responseData.error)
       } else {

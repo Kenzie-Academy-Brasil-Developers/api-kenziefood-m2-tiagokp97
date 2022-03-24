@@ -1,5 +1,6 @@
 import { API } from '../API.js'
 import { Product } from '../models/Product.js'
+import { Cart } from '../models/Cart.js'
 
 class HomeTemplate {
   static #instance = null
@@ -15,6 +16,10 @@ class HomeTemplate {
 
     if (!Product.getInstance()) {
       new Product()
+    }
+
+    if (!Cart.getInstance()) {
+      new Cart()
     }
 
     HomeTemplate.#instance = this
@@ -52,20 +57,30 @@ class HomeTemplate {
 
     this._productModels = Product.getInstance()
 
+    this._cardModels = Cart.getInstance()
+
     this._BdLocalStorage = JSON.parse(localStorage.getItem('Kenziefood:card')) || []
 
 
 
+    
+    
     this.eventCardMobile()
     this.verifyLogin()
     this.createTempleProductMobile()
-    this.createTempleProduct(this.getProducts())
     this.breadFilterBtn()
     this.fruitFilterBtn()
     this.drinkFilterBtn()
     this.allFilterBtn()
     this.inputSearch()
     this.captureButtonsModal()
+    this.createDesktopLogin()
+
+    if (this._token) {
+      this.createTempleProduct()
+    } else {
+      this.createShowcase(this._productModels.getAll())
+    }
   }
 
   static getInstance() {
@@ -183,11 +198,12 @@ class HomeTemplate {
     }
   }
 
-  async createTempleProduct(promisse) {
-    const resultPromisse = await promisse
+  async createTempleProduct() {
 
-    resultPromisse.forEach((product) => {
-      const { categoria, descricao, id, imagem, nome, preco } = product
+    const getResponseData = await this._productModels.getMyProducts(this._token)
+
+    for (let i = 0; i < getResponseData.length; i++) {
+      const { categoria, id, descricao, imagem, nome, preco } = getResponseData[i]
 
       const article = document.createElement('article')
       article.classList.add('product')
@@ -211,20 +227,118 @@ class HomeTemplate {
 
 
       this._showcase.appendChild(article)
-    })
+    }
 
     const buttonProduct = document.querySelectorAll('.button-product')
 
-    this.captureProduct(buttonProduct)
+    const buttonRemove = document.querySelectorAll('.button-desktop-card')
+    if (!this._token) {
+      this.captureProduct(buttonProduct)
+    } else {
+      this.captureProductLogin(buttonProduct)
+      this.captureButtonsRemove(buttonRemove)
+    }
   }
 
   async createTempleProductMobile() {
     if (innerWidth < 1100) {
-      this.createMobile()
+      if (!this._token) {
+        this.createMobile()
+      }
     } else {
-      this.createDesktop()
+      if (!this._token) {
+        this.createDesktop()
+      }
+    }
+
+  }
+
+  captureProductLogin(btns) {
+    btns.forEach((button) => {
+      button.addEventListener('click', async function (evento) {
+        const localeClick = evento.currentTarget
+
+        const myProducts = await this._productModels.getMyProducts(this._token)
+
+        const resultFind = myProducts.find((product) => {
+          if (product.id === Number(localeClick.id)) {
+            return product
+          }
+        })
+
+        const {id} = resultFind
+
+        const postCart = await this._cardModels.postCart({product_id: id},this._token)
+
+        if (innerWidth > 1100) {
+          this.createDesktopLogin()
+        }
+
+      }.bind(this))
+
+    })
+  }
+
+  async captureButtonsRemove(btns) {
+    btns.forEach((btn) => {
+      btn.addEventListener('click', async function (evento) {
+        const localeClick = evento.currentTarget
+  
+        const idClick = localeClick.id
+        console.log(idClick)
+        const removeItem = await this._cardModels.deleteCart(idClick, this._token)
+
+        console.log(removeItem)
+        await this.createDesktopLogin()
+
+      }.bind(this))
+    })
+  }
+
+  async createDesktopLogin() {
+    if (this._token) {
+
+      const getCartModels = await this._cardModels.getCart(this._token)
+
+      if (getCartModels.length > 0) {
+        this._cardEmpty.style.display = 'none'
+        this._cardImgEmpty.style.display = 'none'
+        this._showcaseDesktop.innerHTML = ``
+      }
+
+      getCartModels.forEach((product) => {
+        const {quantity, products} = product
+
+        const {categoria, id, imagem, nome, preco} = products
+        
+        const article = document.createElement('article')
+        article.classList.add('product-card')
+  
+        article.innerHTML = `
+        <img src="${imagem}" alt="${nome}">
+        <ul>
+          <li class="product-card-name">${nome}</li>
+          <li>
+            <ul class="product-card-section">
+              <li>${categoria}</li>
+              <li>quantidade ${quantity}<li>
+            </ul>
+          </li>
+          <li class="price-product-card">${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(preco * quantity)}</li>
+        </ul>
+        <button class="button-desktop-card" id="${id}">
+          <img src="/src/assets/icon_trash.svg" alt="imagem botao apagar">
+        </button>
+        `
+  
+        this._showcaseDesktop.appendChild(article)
+      })
+
 
     }
+  }
+
+  createMobileLogin() {
 
   }
 
@@ -373,11 +487,14 @@ class HomeTemplate {
         // se tiver quantidade retira -1
 
         localStorage.setItem('Kenziefood:card', JSON.stringify(bd))
+
         this._showcaseModal.innerHTML = ``
+
         if (innerWidth > 1100) {
           this._showcaseDesktop.innerHTML = ``
           this.createDesktop()
         }
+
         this.createMobile()
 
       }.bind(this))
@@ -432,8 +549,9 @@ class HomeTemplate {
           localStorage.setItem('Kenziefood:card', local)
         }
 
-
-        this.createTempleProductMobile()
+        if (!this._token) {
+          this.createTempleProductMobile()
+        }
 
       }.bind(this))
 
@@ -459,6 +577,42 @@ class HomeTemplate {
     })
   }
 
+  async createShowcase(promisse) {
+    const resultado = await promisse
+
+    resultado.forEach((product) => {
+      const { categoria, id, descricao, imagem, nome, preco } = product
+
+      const article = document.createElement('article')
+      article.classList.add('product')
+
+      article.innerHTML = `
+      <img src="${imagem}" alt="${nome}" />
+      <h2>${nome}</h2>
+      <p>${descricao}</p>
+      <ul class="section">
+      <li>${categoria}</li>
+      </ul>
+      <ul class="price-and-buy">
+      <li class="price">R$ ${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(preco)}</li>
+        <li class="buy">
+        <button class="button-product" id="${id}">
+        <i class="fa-solid fa-cart-plus"></i>
+          </button>
+          </li>
+      </ul>
+      `
+      this._showcase.appendChild(article)
+    })
+
+    const buttonProduct = document.querySelectorAll('.button-product')
+
+    
+
+    this.captureProduct(buttonProduct)
+
+  
+  }
 }
 
 export { HomeTemplate }
