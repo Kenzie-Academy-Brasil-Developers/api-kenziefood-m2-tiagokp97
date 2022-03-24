@@ -220,13 +220,10 @@ class HomeTemplate {
 
   async createTempleProductMobile() {
     if (innerWidth < 1100) {
-      if (!this._token) {
-        this.createMobile()
-      }
+      this.createMobile()
     } else {
-      if (!this._token) {
-        this.createDesktop()
-      }
+      this.createDesktop()
+
     }
 
   }
