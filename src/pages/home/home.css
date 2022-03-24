@@ -9,20 +9,26 @@
     to{background-color: var(--pink-100); color: #fff; width: 150px;}
 }
 
-@keyframes animationButtonsFirst {
+@keyframes animationModalFirst {
 
-    from{background-color: #fff; width: 128px;}
-    to{background-color: var(--pink-100); color: #fff; width: 150px;}
+    from{width: 50px;}
+    to{background-color: var(--pink-100); color: #fff; width: 140px;}
 }
 
-@keyframes animationButtonsSecond {
-    from{background-color: #fff; width: 62px;}
-    to{background-color: var(--pink-100); color: #fff; width: 150px;}
+@keyframes animationModalSecond {
+    from{background-color: #fff; width: 90px;}
+    to{background-color: var(--pink-100); color: #fff; width: 140px;}
 }
 
 @keyframes animationModal {
     from{opacity: 0;}
     to{opacity: 1;}
+}
+
+@keyframes animationButtons {
+
+    from{background-color: #fff; color: #000;}
+    to{background-color: var(--pink-100); color: #fff;}
 }
 
 
@@ -86,10 +92,12 @@ header {
     right: 30px;
     background-color: rgb(153, 153, 153, 0.25);
     text-align: right;
-    width: 100px;
+    width: 150px;
     border: 1px solid rgb(153, 153, 153, 0.25);
     border-radius: 10px 0px 10px 10px;
     z-index: 1;
+    animation-name: animationModal;
+    animation-duration: 2s;
         }
 
         .container-modal > button {
@@ -102,6 +110,17 @@ header {
         border-radius: 5px;
         font-size: 16px;
         font-family: 'Poppins';
+        background-color: rgb(153, 153, 153, 0);
+        }
+
+        .first-button:hover {
+            animation-name: animationModalFirst;
+            animation-duration: 2s;
+        }
+
+        .second-button:hover {
+            animation-name: animationModalSecond;
+            animation-duration: 2s;
         }
 
         .container-modal > h3 {
@@ -123,6 +142,8 @@ header {
         border: 1px solid rgb(153, 153, 153, 0.25);
         border-radius: 10px 0px 10px 10px;
         z-index: 1;
+        animation-name: animationModal;
+        animation-duration: 2s;
         }
     
         .container-modal-login > button {
@@ -180,6 +201,11 @@ header {
         justify-content: center;
         align-items: center;
         height: 48px;
+    }
+
+    .ul-buttons > button:hover {
+        animation-name: animationButtons;
+        animation-duration: 2s;
     }
     
     .button-bread, .button-fruit, .button-glass {
