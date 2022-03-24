@@ -80,6 +80,7 @@ class HomeTemplate {
 
     if (this._token) {
       this.createTempleProduct()
+      this.createMobileLogin()
     } else {
       this.createShowcase(this._productModels.getAll())
     }
