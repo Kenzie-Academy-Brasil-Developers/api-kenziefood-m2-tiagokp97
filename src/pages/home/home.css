@@ -80,6 +80,7 @@ header {
     }
 
     .icon-modal {
+      cursor: pointer;
         position: absolute;
         top: 15px;
         right: 10px;
@@ -97,6 +98,7 @@ header {
     border-radius: 10px 0px 10px 10px;
     z-index: 1;
     animation-name: animationModal;
+    animation-fill-mode: forwards;
     animation-duration: 2s;
     backdrop-filter: blur(17px);
         }
@@ -116,11 +118,13 @@ header {
 
         .first-button:hover {
             animation-name: animationModalFirst;
+            animation-fill-mode: forwards;
             animation-duration: 2s;
         }
 
         .second-button:hover {
             animation-name: animationModalSecond;
+            animation-fill-mode: forwards;
             animation-duration: 2s;
         }
 
@@ -144,6 +148,7 @@ header {
         border-radius: 10px 0px 10px 10px;
         z-index: 1;
         animation-name: animationModal;
+        animation-fill-mode: forwards;
         animation-duration: 2s;
         backdrop-filter: blur(17px);
         }
@@ -172,11 +177,13 @@ header {
 
         .first-button-modal:hover {
             animation-name: animationButtonsFirst;
+            animation-fill-mode: forwards;
             animation-duration: 2s;
         }
 
         .second-button-modal:hover {
             animation-name: animationButtonsSecond;
+            animation-fill-mode: forwards;
             animation-duration: 2s;
         }
 
@@ -208,6 +215,7 @@ header {
 
     .ul-buttons > button:hover {
         animation-name: animationButtons;
+        animation-fill-mode: forwards;
         animation-duration: 2s;
     }
     

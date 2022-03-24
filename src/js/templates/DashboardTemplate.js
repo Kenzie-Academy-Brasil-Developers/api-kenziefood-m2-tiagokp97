@@ -71,6 +71,7 @@ class DashboardTemplate {
 
     this.dataProdutos()
 
+    this.addLoading()
     this.listProducts()
 
     this.breadFilterBtn()
@@ -103,6 +104,27 @@ class DashboardTemplate {
    return window.location.href = "/src/pages/home/home.html"
   } 
   }  
+
+  addLoading() {
+    const loader = document.createElement('div')
+    const text = document.createElement('p')
+    const inner = document.createElement('div')
+
+    loader.classList.add('loader')
+    text.innerText = 'Carregando...'
+    inner.classList.add('inner-loader')
+
+    loader.appendChild(text)
+    loader.appendChild(inner)
+    this._productList.appendChild(loader)
+  }
+
+  removeLoading() {
+    const loader = document.querySelector('.loader')
+
+    this._productList.removeChild(loader)
+  }
+
   async dataProdutos() {
     this._data = await this._productInstance.getMyProducts(this._userToken)
   }
@@ -113,6 +135,7 @@ class DashboardTemplate {
 
   async listProducts() {
     await this.dataProdutos()
+    this.removeLoading()
     this._data.forEach(product => { this.createProduct(product) })
   }
 

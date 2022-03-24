@@ -59,6 +59,7 @@ class HomeTemplate {
 
     this.eventCardMobile()
     this.verifyLogin()
+    this.addLoading()
     this.createTempleProductMobile()
     this.createTempleProduct(this.getProducts())
     this.breadFilterBtn()
@@ -67,6 +68,26 @@ class HomeTemplate {
     this.allFilterBtn()
     this.inputSearch()
     this.captureButtonsModal()
+  }
+
+  addLoading() {
+    const loader = document.createElement('div')
+    const text = document.createElement('p')
+    const inner = document.createElement('div')
+
+    loader.classList.add('loader')
+    text.innerText = 'Carregando...'
+    inner.classList.add('inner-loader')
+
+    loader.appendChild(text)
+    loader.appendChild(inner)
+    this._showcase.appendChild(loader)
+  }
+
+  removeLoading() {
+    const loader = document.querySelector('.loader')
+
+    this._showcase.removeChild(loader)
   }
 
   static getInstance() {
@@ -212,6 +233,7 @@ class HomeTemplate {
   async createTempleProduct(promisse) {
     const resultPromisse = await promisse
 
+    this.removeLoading()
     resultPromisse.forEach((product) => {
       const { categoria, descricao, id, imagem, nome, preco } = product
 
@@ -234,7 +256,6 @@ class HomeTemplate {
           </li>
       </ul>
       `
-
 
       this._showcase.appendChild(article)
     })
