@@ -61,6 +61,10 @@ class DashboardTemplate {
     this._btnNo = document.getElementById('btnNo')
     this._deleteId = document.getElementById('deleteId')
 
+    this._modalStatus = document.getElementById('modalStatus')
+    this._btnCancelStatus = document.getElementById('btnCancelStatus')
+    this._statusMessage = document.getElementById('statusMessage')
+
     this._userToken = localStorage.getItem('Kenziefood:token')
 
     this._data = []
@@ -281,6 +285,10 @@ class DashboardTemplate {
       this._modalDeleteProduct.close()
     }.bind(this))
 
+    this._btnCancelStatus.addEventListener('click', function () {
+      this._modalStatus.close()
+    }.bind(this))
+
     this._btnNo.addEventListener('click', function () {
       this._modalDeleteProduct.close()
     }.bind(this))
@@ -334,10 +342,21 @@ class DashboardTemplate {
         }
       }
 
-      await this._productInstance.create(data, this._userToken)
-      this.clean()
-      this.listProducts()
-      this._modalCreateProduct.close()
+      try {
+        await this._productInstance.create(data, this._userToken)
+        this._statusMessage.innerText = 'Produto adicionado com sucesso'
+        this._modalStatus.classList.remove('status-error')
+        this._modalStatus.classList.add('status-info')
+        this.clean()
+        this.listProducts()
+      } catch (err) {
+        this._statusMessage.innerText = 'Ocorreu algum erro, o produto não foi adicionado'
+        this._modalStatus.classList.remove('status-info')
+        this._modalStatus.classList.add('status-error')
+      } finally {
+        this._modalStatus.showModal()
+        this._modalCreateProduct.close()
+      }
     }.bind(this))
 
     this._editForm.addEventListener('submit', async function (event) {
@@ -362,21 +381,41 @@ class DashboardTemplate {
         }
       }
 
-      await this._productInstance.edit(id, data, this._userToken)
-
-      this.clean()
-      this.listProducts()
-      this._modalEditProduct.close()
+      try {
+        await this._productInstance.edit(id, data, this._userToken)
+        this._statusMessage.innerText = 'Produto editado com sucesso'
+        this._modalStatus.classList.remove('status-error')
+        this._modalStatus.classList.add('status-info')
+        this.clean()
+        this.listProducts()
+      } catch (err) {
+        this._statusMessage.innerText = 'Ocorreu algum erro, o produto não foi editado'
+        this._modalStatus.classList.remove('status-info')
+        this._modalStatus.classList.add('status-error')
+      } finally {
+        this._modalStatus.showModal()
+        this._modalEditProduct.close()
+      }
     }.bind(this))
 
     this._btnYes.addEventListener('click', async function () {
       const id = this._deleteId.value
 
-      await this._productInstance.delete(id, this._userToken)
-
-      this.clean()
-      this.listProducts()
-      this._modalDeleteProduct.close()
+      try {
+        await this._productInstance.delete(id, this._userToken)
+        this._statusMessage.innerText = 'Produto removido com sucesso'
+        this._modalStatus.classList.remove('status-error')
+        this._modalStatus.classList.add('status-info')
+        this.clean()
+        this.listProducts()
+      } catch (err) {
+        this._statusMessage.innerText = 'Ocorreu algum erro, o produto não foi removido'
+        this._modalStatus.classList.remove('status-info')
+        this._modalStatus.classList.add('status-error')
+      } finally {
+        this._modalStatus.showModal()
+        this._modalDeleteProduct.close()
+      }
     }.bind(this))
   }
 

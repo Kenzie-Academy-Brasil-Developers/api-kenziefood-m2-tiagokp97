@@ -394,6 +394,35 @@ header {
   border-radius: 4px;
 }
 
+.create-modal.status-info,
+.create-modal.status-error {
+  position: fixed;
+  top: auto;
+  bottom: 29px;
+  right: 14px;
+  left: auto;
+  margin: 0;
+}
+
+.create-modal .message {
+  margin: 15px 28px 26px;
+  font: 400 14px 'Poppins', sans-serif;
+}
+
+.create-modal.status-info .bottom-color {
+  background: var(--green-100);
+}
+
+.create-modal.status-error .bottom-color {
+  background: var(--pink-100);
+}
+
+.create-modal .bottom-color {
+  height: 8px;
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+}
+
 @media only screen and (min-width: 1100px) {
   header {
     display: flex;
