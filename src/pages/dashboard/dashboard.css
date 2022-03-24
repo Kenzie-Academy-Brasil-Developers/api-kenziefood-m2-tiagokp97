@@ -394,7 +394,6 @@ header {
   border-radius: 4px;
 }
 
-<<<<<<< HEAD
 .create-modal.status-info,
 .create-modal.status-error {
   position: fixed;
@@ -423,7 +422,6 @@ header {
   border-bottom-left-radius: inherit;
   border-bottom-right-radius: inherit;
 }
-=======
 .delete-modal {
   display: block;
   border: none;
@@ -493,7 +491,6 @@ header {
     margin-left: 20px;
     margin-top: 49px;
   }
->>>>>>> 58ca94f3369e1ee29495d19c255414c78d43b356
 
 @media only screen and (min-width: 1100px) {
   header {

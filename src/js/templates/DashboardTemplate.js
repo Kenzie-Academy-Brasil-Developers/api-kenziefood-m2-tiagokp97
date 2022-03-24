@@ -398,6 +398,12 @@ class DashboardTemplate {
       }
     }.bind(this))
 
+    this._btnDeleteEdition.addEventListener('click', function () {
+      this._deleteId.value = this._editId.value
+
+      this._modalDeleteProduct.showModal()
+    }.bind(this))
+
     this._btnYes.addEventListener('click', async function () {
       const id = this._deleteId.value
 
@@ -415,6 +421,7 @@ class DashboardTemplate {
       } finally {
         this._modalStatus.showModal()
         this._modalDeleteProduct.close()
+        this._modalEditProduct.close()
       }
     }.bind(this))
   }
