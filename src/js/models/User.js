@@ -36,7 +36,9 @@ class User {
     })
 
     const responseData = await response.json()
-    if (response.status !== 200){
+
+      if (response.status !== 200){
+
       throw new Error(`${responseData.message}`)
   }  else { 
      window.location.href = "/src/pages/login/login.html"

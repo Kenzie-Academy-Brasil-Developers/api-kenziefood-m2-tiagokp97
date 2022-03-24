@@ -23,10 +23,6 @@ class Cart {
     return Cart.#instance
   }
 
-  // Fetch
-  async removeItem() {
-    //TODO
-  }
 }
 
 export { Cart }
