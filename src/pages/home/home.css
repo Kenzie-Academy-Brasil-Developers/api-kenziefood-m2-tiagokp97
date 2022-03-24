@@ -1,3 +1,31 @@
+@keyframes animationButtonsFirst {
+
+    from{background-color: #fff; width: 128px;}
+    to{background-color: var(--pink-100); color: #fff; width: 150px;}
+}
+
+@keyframes animationButtonsSecond {
+    from{background-color: #fff; width: 62px;}
+    to{background-color: var(--pink-100); color: #fff; width: 150px;}
+}
+
+@keyframes animationButtonsFirst {
+
+    from{background-color: #fff; width: 128px;}
+    to{background-color: var(--pink-100); color: #fff; width: 150px;}
+}
+
+@keyframes animationButtonsSecond {
+    from{background-color: #fff; width: 62px;}
+    to{background-color: var(--pink-100); color: #fff; width: 150px;}
+}
+
+@keyframes animationModal {
+    from{opacity: 0;}
+    to{opacity: 1;}
+}
+
+
 header {
     height: 110px;
     padding-right: 30px;
@@ -107,6 +135,7 @@ header {
             border-radius: 5px;
             font-size: 16px;
             font-family: 'Poppins';
+            background-color: rgb(153, 153, 153, 0);
         }
     
         .container-modal-login > h3 {
@@ -115,6 +144,16 @@ header {
             margin-bottom: 10px;
             font-family: 'Poppins';
             color: var(--pink-100);
+        }
+
+        .first-button-modal:hover {
+            animation-name: animationButtonsFirst;
+            animation-duration: 2s;
+        }
+
+        .second-button-modal:hover {
+            animation-name: animationButtonsSecond;
+            animation-duration: 2s;
         }
 
 
@@ -607,17 +646,19 @@ header {
         
         .icon-modal {
             top: 24px;
-        right: 130px;
-    }
+            right: 130px;
+        }   
     
         .container-modal {
             top: 59px;
             right: 148px;
+
         }
 
         .container-modal-login {
             top: 59px;
             right: 148px;
+
         }
         
     .ul-buttons {
