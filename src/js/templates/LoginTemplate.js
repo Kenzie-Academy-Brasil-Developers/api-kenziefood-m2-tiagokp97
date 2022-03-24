@@ -29,7 +29,11 @@ class LoginTemplate {
 
     this._loginURL = `${this._APIInstance.baseURL}/auth/login`
 
+    this._userToken = localStorage.getItem('Kenziefood:token')
+
     this.createListner()
+
+    this.alreadyLoged()
 
   }
 
@@ -37,6 +41,11 @@ class LoginTemplate {
     return LoginTemplate.#instance
   }
 
+  alreadyLoged(){
+    if (this._userToken){
+      return window.location.href = "/src/pages/dashboard/dashboard.html"
+     } 
+  }
 
   async createListner() {
     const dataForm = {}
@@ -55,11 +64,9 @@ class LoginTemplate {
       await this._UserInstance.login(dataForm)
       localStorage.setItem('Kenziefood:token', token)
       window.location.href = "/src/pages/dashboard/dashboard.html"
-
     }.bind(this))
 
   }
-
 
 }
 
