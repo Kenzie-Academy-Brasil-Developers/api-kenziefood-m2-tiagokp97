@@ -13,8 +13,11 @@
   from{opacity: 0;}
   to{opacity: 1;}
 }
-
 @keyframes closeDialog {
+  from{background-color: #fff; color: #000;}
+  to{background-color: var(--pink-100); color: #fff;}
+}
+@keyframes animationProductItem {
   from{background-color: #fff;}
   to{background-color: var(--pink-100);}
 }
@@ -84,6 +87,7 @@ header {
       z-index: 1;
       animation-name: animationModal;
       animation-duration: 2s;
+      backdrop-filter: blur(17px);
       }
   
       .container-modal-login > button {
@@ -141,6 +145,11 @@ header {
       justify-content: center;
       align-items: center;
       height: 48px;
+  }
+
+  .ul-buttons > button:hover {
+    animation-name: animationProductItem;
+    animation-duration: 2s;
   }
   
   .button-bread, .button-fruit, .button-glass {
@@ -283,17 +292,20 @@ header {
 .product-item .product-item__actions li button {
   width: 38px;
   height: 38px;
-  
   border: none;
   border-radius: 50%;
+}
+
+.product-item .product-item__actions li button:hover {
+  animation-name: animationProductItem;
+  animation-duration: 2s;
 }
 
 .create-modal {
   width: 496px;
 
   padding: 0;
-  transition: ease-in;
-  transition-duration: 2s;
+
   position: relative;
   display: block;
   border: none;
@@ -319,11 +331,44 @@ header {
   padding: 28px 36px;
 }
 
+.btn-delete-edition {
+  border: 1.5px solid #F8F9FA;
+  background: #F8F9FA;
+  border-radius: 32px;
+  width: 192px;
+  height: 52px;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: center;
+  display: inline-block;
+}
+
+.btn-delete-edition:hover {
+  animation-name: closeDialog;
+  animation-duration: 2s;
+}
+
+menu > .btn-edit-submit {
+  margin: 0px;
+  display: inline-block;
+  height: 52px;
+}
+
+
 .create-modal form label {
   display: inline-block;
   margin-bottom: 16px;
 
   font: 400 14px 'Inter', sans-serif;
+}
+
+.create-modal form label:hover {
+  animation-name: closeDialog;
+  animation-duration: 2s;
 }
 
 .create-modal form input[type="text"],
@@ -381,10 +426,8 @@ header {
   position: absolute;
   top: 20px;
   right: 28px;
-
   padding: 5px 11px;
   color: var(--grey-40);
-
   font-family: 'Nunito', sans-serif;
   font-size: 14px;
   font-weight: 400;
@@ -394,7 +437,11 @@ header {
   border-radius: 4px;
 }
 
-<<<<<<< HEAD
+.create-modal .close-dialog:hover {
+  animation-name: closeDialog;
+  animation-duration: 2s;
+}
+
 .create-modal.status-info,
 .create-modal.status-error {
   position: fixed;
@@ -423,12 +470,12 @@ header {
   border-bottom-left-radius: inherit;
   border-bottom-right-radius: inherit;
 }
-=======
+
 .delete-modal {
-  display: block;
   border: none;
-  border-radius: 0px 0px 8px 8px;
+  border-radius: 8px 8px 8px 8px;
   background: #FFFFFF;
+  padding: 0px;
   }
 
   .delete-modal > header {
@@ -466,7 +513,7 @@ header {
 
   .delete-modal > menu {
     width: 496px;
-    height: 213px;
+    height: 150px;
     position: relative;
   }
 
@@ -485,6 +532,11 @@ header {
     border: none;
   }
 
+  .delete-modal > menu > button:first-child:hover {
+    animation-name: closeDialog;
+    animation-duration: 2s;
+  }
+
   .btn-option {
     width: 210px;
     height: 52px;
@@ -493,7 +545,6 @@ header {
     margin-left: 20px;
     margin-top: 49px;
   }
->>>>>>> 58ca94f3369e1ee29495d19c255414c78d43b356
 
 @media only screen and (min-width: 1100px) {
   header {
