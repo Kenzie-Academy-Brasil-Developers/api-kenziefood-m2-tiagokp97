@@ -159,6 +159,7 @@ header {
             font-size: 16px;
             font-family: 'Poppins';
             background-color: rgb(153, 153, 153, 0);
+            white-space: nowrap;
         }
     
         .container-modal-login > h3 {
@@ -780,7 +781,7 @@ header {
             }
             
             .ul-price > li {
-                margin-left: 18px;
+                margin-left: 18px; 
                 margin-bottom: 22px;
             }
 

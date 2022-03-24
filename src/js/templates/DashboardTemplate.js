@@ -90,12 +90,19 @@ class DashboardTemplate {
     this.captureButtonModal()
 
     this.captureNameUser()
+    this.anonimousUserBlock()
   }
+
 
   static getInstance() {
     return DashboardTemplate.#instance
   }
 
+  anonimousUserBlock(){
+  if (!this._userToken){
+   return window.location.href = "/src/pages/home/home.html"
+  } 
+  }  
   async dataProdutos() {
     this._data = await this._productInstance.getMyProducts(this._userToken)
   }
@@ -111,6 +118,8 @@ class DashboardTemplate {
 
   async allFilter() {
     this._allBtn.addEventListener('click', function () {
+      this.uncolourAllButtons()
+      this.paintButton(this._allBtn)
       this.clean()
       this.listProducts()
     }.bind(this))
@@ -141,6 +150,8 @@ class DashboardTemplate {
 
   async breadFilterBtn() {
     this._btnBread.addEventListener('click', function () {
+      this.uncolourAllButtons()
+      this.paintButton(this._btnBread)
       this.clean()
       this.breadFilter()
     }.bind(this))
@@ -157,6 +168,8 @@ class DashboardTemplate {
 
   async fruitFilterBtn() {
     this._btnFruit.addEventListener('click', function () {
+      this.uncolourAllButtons()
+      this.paintButton(this._btnFruit)
       this.clean()
       this.fruitFilter()
     }.bind(this))
@@ -173,9 +186,28 @@ class DashboardTemplate {
 
   async drinkFilterBtn() {
     this._btnDrink.addEventListener('click', function () {
+      this.uncolourAllButtons()
+      this.paintButton(this._btnDrink)
       this.clean()
       this.drinkFilter()
     }.bind(this))
+  }
+
+  async uncolourAllButtons(){
+    this._btnBread.style.backgroundColor = "#FFF7F4";
+    this._btnDrink.style.backgroundColor = "#FFF7F4";
+    this._btnFruit.style.backgroundColor = "#FFF7F4"; 
+    this._allBtn.style.backgroundColor = "#FFF7F4";
+
+    this._btnBread.style.color = "black";
+    this._btnDrink.style.color = "black";
+    this._btnFruit.style.color = "black"; 
+    this._allBtn.style.color = "black"; 
+  }
+
+  paintButton(param){
+   param.style.backgroundColor = "#FF2253";
+   param.style.color = "white";
   }
 
   createProduct(product) {
@@ -259,6 +291,8 @@ class DashboardTemplate {
 
     this._productList.appendChild(article)
   }
+
+
 
   addListener() {
     this._btnCreateProduct.addEventListener('click', function () {
@@ -452,6 +486,11 @@ class DashboardTemplate {
 
   captureNameUser() {
     const token = localStorage.getItem('Kenziefood:token')
+  }
+
+  keepBtnColor(button){
+  
+
   }
 
 }

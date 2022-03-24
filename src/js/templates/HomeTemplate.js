@@ -45,6 +45,7 @@ class HomeTemplate {
     this._showcaseDesktop = document.querySelector('.shopping-card')
     this._totalPriceDesktop = document.querySelector('.total-price')
     this._totalCountDesktop = document.querySelector('.total-count')
+    this._allButtons = document.querySelectorAll('.all-buttons')
 
     this.clear()
 
@@ -92,6 +93,8 @@ class HomeTemplate {
 
   async allFilterBtn() {
     this._btnAll.addEventListener('click', function () {
+      this.uncolourAllButtons()
+      this.paintButton(this._btnAll)
       this.clear()
       this.createTempleProduct(this.getProducts())
     }.bind(this))
@@ -111,6 +114,8 @@ class HomeTemplate {
 
   async breadFilterBtn() {
     this._buttonBread.addEventListener('click', function () {
+      this.uncolourAllButtons()
+      this.paintButton(this._buttonBread)
       this.clear()
       this.createTempleProduct(this.filterBreadProducts())
     }.bind(this))
@@ -126,6 +131,8 @@ class HomeTemplate {
 
   async drinkFilterBtn() {
     this._btnDrink.addEventListener('click', function () {
+      this.uncolourAllButtons()
+      this.paintButton(this._btnDrink)
       this.clear()
       this.createTempleProduct(this.filteredDrinkProducts())
     }.bind(this))
@@ -141,9 +148,28 @@ class HomeTemplate {
 
   async fruitFilterBtn() {
     this._btnFruit.addEventListener('click', function () {
+      this.uncolourAllButtons()
+      this.paintButton(this._btnFruit)
       this.clear()
       this.createTempleProduct(this.filteredFruitProducts())
     }.bind(this))
+  }
+
+  async uncolourAllButtons(){
+    this._buttonBread.style.backgroundColor = "#FFF7F4";
+    this._btnDrink.style.backgroundColor = "#FFF7F4";
+    this._btnFruit.style.backgroundColor = "#FFF7F4"; 
+    this._btnAll.style.backgroundColor = "#FFF7F4";
+    
+    this._buttonBread.style.color = "black";
+    this._btnDrink.style.color = "black";
+    this._btnFruit.style.color = "black"; 
+    this._btnAll.style.color = "black"; 
+  }
+  
+  paintButton(param){
+   param.style.backgroundColor = "#FF2253";
+   param.style.color = "white";
   }
 
   eventCardMobile() {
