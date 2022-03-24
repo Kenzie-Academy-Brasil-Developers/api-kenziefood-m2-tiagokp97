@@ -56,54 +56,66 @@ class Product {
   }
 
   async create(data, token) {
-    const response = await fetch(this._myProductsURL, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
+    try {
+      const response = await fetch(this._myProductsURL, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
 
-    const responseData = await response.json()
+      const responseData = await response.json()
 
-    if (response.status !== 201) {
-      throw new Error(responseData.message)
-    } else {
-      return responseData
+      if (response.status !== 201) {
+        throw new Error(responseData.error)
+      } else {
+        return responseData
+      }
+    } catch (err) {
+      throw new Error(err.message)
     }
   }
 
   async edit(id, data, token) {
-    const response = await fetch(`${this._myProductsURL}/${id}`, {
-      method: 'PATCH',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
+    try {
+      const response = await fetch(`${this._myProductsURL}/${id}`, {
+        method: 'PATCH',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
 
-    const responseData = await response.json()
+      const responseData = await response.json()
 
-    if (response.status !== 202) {
-      throw new Error(responseData.message)
-    } else {
-      return responseData
+      if (response.status !== 202) {
+        throw new Error(responseData.message)
+      } else {
+        return responseData
+      }
+    } catch (err) {
+      throw new Error(err.message)
     }
   }
 
   async delete(id, token) {
-    const response = await fetch(`${this._myProductsURL}/${id}`, {
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
+    try {
+      const response = await fetch(`${this._myProductsURL}/${id}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
 
-    if (response.status !== 204) {
-      const responseData = await response.json()
-      throw new Error(responseData.message)
+      if (response.status !== 204) {
+        const responseData = await response.json()
+        throw new Error(responseData.message)
+      }
+    } catch (err) {
+      throw new Error(err.message)
     }
   }
 }
