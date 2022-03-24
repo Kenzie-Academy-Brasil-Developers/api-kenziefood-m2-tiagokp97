@@ -344,6 +344,10 @@ header {
   margin-bottom: 40px;
 }
 
+.create-modal:not([open]) {
+  display: none;
+}
+
 .create-modal form input[type="radio"] {
   display: none;
 }
