@@ -68,13 +68,6 @@ class HomeTemplate {
     this.allFilterBtn()
     this.inputSearch()
     this.captureButtonsModal()
-    this.teste()
-  }
-
-  async teste(){
-  console.log(this._token)
-  console.log(await this._productModels.getMyProducts(this._token))
-
   }
 
   static getInstance() {
@@ -229,13 +222,9 @@ class HomeTemplate {
 
   async createTempleProductMobile() {
     if (innerWidth < 1100) {
-      if (!this._token){
-        this.createMobile()
-      }
+      this.createMobile()
     } else {
-      if (!this._token){
-        this.createDesktop()
-      }
+      this.createDesktop()
     }
     
   }
@@ -250,7 +239,7 @@ class HomeTemplate {
     }
 
     for (let i = 0; i < storage.length; i++) {
-      const {categoria, imagem, nome, preco} = storage[i]
+      const {categoria, imagem, nome, preco, quantidade} = storage[i]
 
       const article = document.createElement('article')
       article.classList.add('product-card')
@@ -261,7 +250,8 @@ class HomeTemplate {
         <li class="product-card-name">${nome}</li>
         <li>
           <ul class="product-card-section">
-            <p>${categoria}</p>
+            <li>${categoria}</li>
+            <li>quantidade ${quantidade || 1}<li>
           </ul>
         </li>
         <li class="price-product-card">${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(preco)}</li>
@@ -277,8 +267,8 @@ class HomeTemplate {
     let priceTotal = 0
     for (let i = 0; i < storage.length; i++) {
 
-      const {preco} = storage[i]
-      priceTotal += preco
+      const {preco, quantidade} = storage[i]
+      priceTotal += preco * (quantidade || 1)
     }
 
     
@@ -300,7 +290,7 @@ class HomeTemplate {
     }
 
     for (let i = 0; i < storage.length; i++) {
-      const {categoria, imagem, nome, preco} = storage[i]
+      const {categoria, imagem, nome, preco, quantidade} = storage[i]
 
       const article = document.createElement('article')
       article.classList.add('product-modal')
@@ -312,6 +302,7 @@ class HomeTemplate {
         <li>
           <ul class="product-modal-section">
             <li>${categoria}</li>
+            <li>quantidade ${quantidade || 1}<li>
           </ul>
         </li>
         <li class="price-product-modal">${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(preco)}</li>
@@ -327,8 +318,8 @@ class HomeTemplate {
     let priceTotal = 0
     for (let i = 0; i < storage.length; i++) {
 
-      const {preco} = storage[i]
-      priceTotal += preco
+      const {preco, quantidade} = storage[i]
+      priceTotal += preco * (quantidade || 1)
     }
 
     this._priceModalTotal.innerText = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(priceTotal)
@@ -353,8 +344,17 @@ class HomeTemplate {
         for (let i = 0; i < storage.length; i++) {
           if (i !== Number(id)) {
             bd.push(storage[i])
+          } else {
+          if (storage[i].quantidade > 1) {
+            storage[i].quantidade -= 1
+            bd.push(storage[i])
           }
         }
+        }
+        // passe por esse for 
+        // verifique se o produto tem quantidade
+        // se nao tiver quantidade retira o produto
+        // se tiver quantidade retira -1
 
         localStorage.setItem('Kenziefood:card',JSON.stringify(bd))
         this._showcaseModal.innerHTML = ``
@@ -382,23 +382,43 @@ class HomeTemplate {
           }
         })
 
-        if (this._token) {
-          if (innerWidth < 1100) {
 
-          } else {
+        this._BdLocalStorage = JSON.parse(localStorage.getItem('Kenziefood:card')) || []
 
+        let verifyProduct = false
+
+        this._BdLocalStorage.forEach((product) => {
+
+          if (product.nome === resultFind.nome) {
+            if (!product.quantidade) {
+              product.quantidade = 1
+            }
+            product.quantidade = product.quantidade + 1
+            verifyProduct = true
           }
-        } else {
-          this._BdLocalStorage = JSON.parse(localStorage.getItem('Kenziefood:card')) || []
+
+        })
+
+        if (verifyProduct === true) {
+          resultFind.quantidade += 1 
 
           const productsStorange = [resultFind,...this._BdLocalStorage]
-  
+          
           const local = JSON.stringify(productsStorange)
-  
-          localStorage.setItem('Kenziefood:card',local)
+          
+          localStorage.setItem('Kenziefood:card',JSON.stringify(this._BdLocalStorage))
 
-          this.createTempleProductMobile()
+        } else {
+          const productsStorange = [resultFind,...this._BdLocalStorage]
+          
+          const local = JSON.stringify(productsStorange)
+          
+          localStorage.setItem('Kenziefood:card',local)
         }
+        
+
+        this.createTempleProductMobile()
+
       }.bind(this))
 
     })

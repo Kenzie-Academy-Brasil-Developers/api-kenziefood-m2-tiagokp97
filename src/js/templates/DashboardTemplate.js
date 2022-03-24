@@ -46,8 +46,6 @@ class DashboardTemplate {
 
     this._modalEditProduct = document.getElementById('modalEditProduct')
 
-
-
     this._userToken = localStorage.getItem('Kenziefood:token')
 
     this._data = []
@@ -73,8 +71,6 @@ class DashboardTemplate {
     this.captureButtonModal()
 
     this.captureNameUser()
-
-    this.eventDeletaProduto()
   }
 
   static getInstance() {
@@ -155,7 +151,7 @@ class DashboardTemplate {
       this.createProduct(product)
     })
   }
-
+  
   async drinkFilterBtn() {
     this._btnDrink.addEventListener('click', function () {
       this.clean()
@@ -287,18 +283,6 @@ class DashboardTemplate {
     })
 
 
-  }
-
-  pegaBtnProduto(event){
-    const btn = event.target.closest("product-item__delete")
-    btn.remove()
-      }
-
-  eventDeletaProduto(){
-    const btnDelete = document.querySelectorAll(".product-item__delete")
-    btnDelete[0].addEventListener('click', function(){
-      console.log('teste')
-    })
   }
 
   captureNameUser() {

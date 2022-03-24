@@ -294,10 +294,11 @@ header {
   padding: 0;
 
   position: relative;
-
+  display: block;
   border: none;
   border-radius: 8px;
 }
+
 
 .create-modal header {
   background: var(--grey-10);

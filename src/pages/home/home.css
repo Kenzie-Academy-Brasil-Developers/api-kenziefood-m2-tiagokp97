@@ -340,7 +340,7 @@ header {
         
     }
     
-    .product-card-section > p {
+    .product-card-section > li {
         margin-left: 10px;
         color: #868E96;
         margin-bottom: 10px;
