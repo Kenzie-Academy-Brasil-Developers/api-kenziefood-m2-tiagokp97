@@ -393,7 +393,7 @@ class HomeTemplate {
 
         const { quantity, products } = getCartModels[i]
 
-        const {preco} = products
+        const { preco } = products
 
         priceTotal += preco * quantity
       }
@@ -402,9 +402,9 @@ class HomeTemplate {
 
       for (let i = 0; i < getCartModels.length; i++) {
 
-        const {quantity, products } = getCartModels[i]
+        const { quantity, products } = getCartModels[i]
 
-        const {preco} = products
+        const { preco } = products
 
         count += 1 * quantity
       }
@@ -460,7 +460,7 @@ class HomeTemplate {
     for (let i = 0; i < getCartModels.length; i++) {
 
       const { quantity, products } = getCartModels[i]
-      const {preco} = products
+      const { preco } = products
       priceTotal += preco * quantity
     }
 
@@ -717,6 +717,7 @@ class HomeTemplate {
   async createShowcase(promisse) {
     const resultado = await promisse
 
+    this.removeLoading()
     resultado.forEach((product) => {
       const { categoria, id, descricao, imagem, nome, preco } = product
 
