@@ -59,6 +59,7 @@ class DashboardTemplate {
     this._btnCancelDelete = document.getElementById('btnCancelDelete')
     this._btnYes = document.getElementById('btnYes')
     this._btnNo = document.getElementById('btnNo')
+    this._deleteId = document.getElementById('deleteId')
 
     this._userToken = localStorage.getItem('Kenziefood:token')
 
@@ -222,6 +223,8 @@ class DashboardTemplate {
     }.bind(this))
 
     removeButton.addEventListener('click', function () {
+      this._deleteId.value = product.id
+
       this._modalDeleteProduct.showModal()
     }.bind(this))
 
@@ -364,6 +367,16 @@ class DashboardTemplate {
       this.clean()
       this.listProducts()
       this._modalEditProduct.close()
+    }.bind(this))
+
+    this._btnYes.addEventListener('click', async function () {
+      const id = this._deleteId.value
+
+      await this._productInstance.delete(id, this._userToken)
+
+      this.clean()
+      this.listProducts()
+      this._modalDeleteProduct.close()
     }.bind(this))
   }
 

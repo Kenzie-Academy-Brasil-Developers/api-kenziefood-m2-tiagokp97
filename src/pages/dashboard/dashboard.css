@@ -1,3 +1,24 @@
+@keyframes animationButtonsFirst {
+
+  from{background-color: #fff; width: 55px;}
+  to{background-color: var(--pink-100); color: #fff; width: 150px;}
+}
+
+@keyframes animationButtonsSecond {
+  from{background-color: #fff; width: 62px;}
+  to{background-color: var(--pink-100); color: #fff; width: 150px;}
+}
+
+@keyframes animationModal {
+  from{opacity: 0;}
+  to{opacity: 1;}
+}
+
+@keyframes closeDialog {
+  from{background-color: #fff;}
+  to{background-color: var(--pink-100);}
+}
+
 header {
   height: 110px;
   padding-right: 30px;
@@ -50,40 +71,6 @@ header {
       top: 15px;
       right: 10px;
   }
-
-  .container-modal {
-  display: none;
-  position: absolute;
-  top: 51px;
-  right: 30px;
-  background-color: rgb(153, 153, 153, 0.25);
-  text-align: right;
-  width: 100px;
-  border: 1px solid rgb(153, 153, 153, 0.25);
-  border-radius: 10px 0px 10px 10px;
-  z-index: 1;
-      }
-
-      .container-modal > button {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      margin-top: 5px;
-      margin-bottom: 5px;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      font-family: 'Poppins';
-      }
-
-      .container-modal > h3 {
-      text-align: center;
-      margin-top: 5px;
-      margin-bottom: 5px;
-      font-family: 'Poppins';
-      color: var(--pink-100);
-      }
-
   .container-modal-login {
       display: none;
       position: absolute;
@@ -95,6 +82,8 @@ header {
       border: 1px solid rgb(153, 153, 153, 0.25);
       border-radius: 10px 0px 10px 10px;
       z-index: 1;
+      animation-name: animationModal;
+      animation-duration: 2s;
       }
   
       .container-modal-login > button {
@@ -107,6 +96,7 @@ header {
           border-radius: 5px;
           font-size: 16px;
           font-family: 'Poppins';
+          background-color: rgb(153, 153, 153, 0);
       }
   
       .container-modal-login > h3 {
@@ -115,7 +105,17 @@ header {
           margin-bottom: 10px;
           font-family: 'Poppins';
           color: var(--pink-100);
-      }
+        }
+
+          .first-button-modal:hover {
+            animation-name: animationButtonsFirst;
+            animation-duration: 2s;
+        }
+
+        .second-button-modal:hover {
+            animation-name: animationButtonsSecond;
+            animation-duration: 2s;
+        }
 
 
 .ul-buttons {
@@ -292,7 +292,8 @@ header {
   width: 496px;
 
   padding: 0;
-
+  transition: ease-in;
+  transition-duration: 2s;
   position: relative;
   display: block;
   border: none;
