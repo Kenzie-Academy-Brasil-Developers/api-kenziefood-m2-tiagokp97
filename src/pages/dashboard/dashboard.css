@@ -401,6 +401,7 @@ menu > .btn-edit-submit {
 
 .create-modal form input[type="radio"] + label {
   display: inline-block;
+  cursor: pointer;
 
   font: 500 14px 'Inter', sans-serif;
   color: var(--grey-40);
