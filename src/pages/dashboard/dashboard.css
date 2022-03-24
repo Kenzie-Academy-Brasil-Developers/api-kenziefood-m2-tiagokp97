@@ -394,6 +394,7 @@ header {
   border-radius: 4px;
 }
 
+<<<<<<< HEAD
 .create-modal.status-info,
 .create-modal.status-error {
   position: fixed;
@@ -422,6 +423,77 @@ header {
   border-bottom-left-radius: inherit;
   border-bottom-right-radius: inherit;
 }
+=======
+.delete-modal {
+  display: block;
+  border: none;
+  border-radius: 0px 0px 8px 8px;
+  background: #FFFFFF;
+  }
+
+  .delete-modal > header {
+    width: 496px;
+    height: 70px;
+    border-radius: 8px 8px 0px 0px;
+    box-shadow: none;
+    background-color: var(--grey-10);
+  }
+  .delete-modal > header > h3 {
+    margin-top: 25px;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-left: 25px;
+  }
+  
+  .delete-modal > h2 {
+    margin-top: 50px;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 27px;
+    letter-spacing: 0em;
+    text-align: center;
+
+  }
+
+
+  .delete-modal > menu {
+    width: 496px;
+    height: 213px;
+    position: relative;
+  }
+
+  .delete-modal > menu > button:first-child {
+    position: absolute;
+    top: -122px;
+    left: 420px;
+    background: #E9ECEF;
+    border-radius: 4px;
+    padding: 5px 11px;
+    color: var(--grey-40);
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    border: none;
+  }
+
+  .btn-option {
+    width: 210px;
+    height: 52px;
+    border-radius: 32px;
+    border: 1.5px solid #F8F9FA;
+    margin-left: 20px;
+    margin-top: 49px;
+  }
+>>>>>>> 58ca94f3369e1ee29495d19c255414c78d43b356
 
 @media only screen and (min-width: 1100px) {
   header {
