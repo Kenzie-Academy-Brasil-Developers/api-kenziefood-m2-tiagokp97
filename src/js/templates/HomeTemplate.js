@@ -64,8 +64,8 @@ class HomeTemplate {
 
 
 
-    
-    
+
+
     this.eventCardMobile()
     this.verifyLogin()
     this.addLoading()
@@ -191,21 +191,21 @@ class HomeTemplate {
     }.bind(this))
   }
 
-  async uncolourAllButtons(){
+  async uncolourAllButtons() {
     this._buttonBread.style.backgroundColor = "#FFF7F4";
     this._btnDrink.style.backgroundColor = "#FFF7F4";
-    this._btnFruit.style.backgroundColor = "#FFF7F4"; 
+    this._btnFruit.style.backgroundColor = "#FFF7F4";
     this._btnAll.style.backgroundColor = "#FFF7F4";
-    
+
     this._buttonBread.style.color = "black";
     this._btnDrink.style.color = "black";
-    this._btnFruit.style.color = "black"; 
-    this._btnAll.style.color = "black"; 
+    this._btnFruit.style.color = "black";
+    this._btnAll.style.color = "black";
   }
-  
-  paintButton(param){
-   param.style.backgroundColor = "#FF2253";
-   param.style.color = "white";
+
+  paintButton(param) {
+    param.style.backgroundColor = "#FF2253";
+    param.style.color = "white";
   }
 
   eventCardMobile() {
@@ -224,21 +224,19 @@ class HomeTemplate {
   verifyLogin() {
     if (this._token) {
       this._iconPerfil.addEventListener('click', (evento) => {
-        if (this._containerPerfil.style.display === 'none') {
-
+        if (this._containerPerfil.style.display === 'none' ||
+          this._containerPerfil.style.display === '') {
           this._containerPerfil.style.display = 'block'
         } else {
-
           this._containerPerfil.style.display = 'none'
         }
       })
     } else {
       this._iconPerfil.addEventListener('click', (evento) => {
-        if (this._containerLogin.style.display === 'none') {
-
+        if (this._containerLogin.style.display === 'none' ||
+          this._containerLogin.style.display === '') {
           this._containerLogin.style.display = 'block'
         } else {
-
           this._containerLogin.style.display = 'none'
         }
       })
@@ -279,12 +277,9 @@ class HomeTemplate {
     const buttonProduct = document.querySelectorAll('.button-product')
 
     const buttonRemove = document.querySelectorAll('.button-desktop-card')
-    if (!this._token) {
-      this.captureProduct(buttonProduct)
-    } else {
-      this.captureProductLogin(buttonProduct)
-      this.captureButtonsRemove(buttonRemove)
-    }
+
+    this.captureProductLogin(buttonProduct)
+    this.captureButtonsRemove(buttonRemove)
   }
 
   async createTempleProductMobile() {
@@ -313,9 +308,9 @@ class HomeTemplate {
           }
         })
 
-        const {id} = resultFind
+        const { id } = resultFind
 
-        const postCart = await this._cardModels.postCart({product_id: id},this._token)
+        const postCart = await this._cardModels.postCart({ product_id: id }, this._token)
 
         if (innerWidth > 1100) {
           this.createDesktopLogin()
@@ -326,18 +321,19 @@ class HomeTemplate {
     })
   }
 
-  async captureButtonsRemove(btns) {
+  captureButtonsRemove(btns) {
     btns.forEach((btn) => {
       btn.addEventListener('click', async function (evento) {
         const localeClick = evento.currentTarget
-  
+
         const idClick = localeClick.id
         console.log(idClick)
         const removeItem = await this._cardModels.deleteCart(idClick, this._token)
 
         console.log(removeItem)
-        await this.createDesktopLogin()
 
+        this._showcaseDesktop.innerHTML = ''
+        await this.createDesktopLogin()
       }.bind(this))
     })
   }
@@ -354,13 +350,13 @@ class HomeTemplate {
       }
 
       getCartModels.forEach((product) => {
-        const {quantity, products} = product
+        const { quantity, products } = product
 
-        const {categoria, id, imagem, nome, preco} = products
-        
+        const { categoria, id, imagem, nome, preco } = products
+
         const article = document.createElement('article')
         article.classList.add('product-card')
-  
+
         article.innerHTML = `
         <img src="${imagem}" alt="${nome}">
         <ul>
@@ -377,16 +373,54 @@ class HomeTemplate {
           <img src="/src/assets/icon_trash.svg" alt="imagem botao apagar">
         </button>
         `
-  
+
         this._showcaseDesktop.appendChild(article)
       })
 
-
+      const buttonRemove = document.querySelectorAll('.button-desktop-card')
+      this.captureButtonsRemove(buttonRemove)
     }
   }
 
-  createMobileLogin() {
+  async createMobileLogin() {
+    const getCartModels = await this._cardModels.getCart(this._token)
 
+    if (getCartModels.length > 0) {
+      this._modalEmptyMobile.style.display = 'none'
+      this._modalimgMobile.style.display = 'none'
+      this._showcaseModal.innerHTML = ``
+    }
+
+    for (let i = 0; i < getCartModels.length; i++) {
+      const { quantity, products } = getCartModels[i]
+
+      const { categoria, id, imagem, nome, preco } = products
+
+      const article = document.createElement('article')
+      article.classList.add('product-modal')
+
+      article.innerHTML = `
+      <img src="${imagem}" alt="${nome}">
+      <ul>
+        <li class="product-modal-name">${nome}</li>
+        <li>
+          <ul class="product-modal-section">
+            <li>${categoria}</li>
+            <li>quantidade ${quantity}<li>
+          </ul>
+        </li>
+        <li class="price-product-modal">${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(preco * quantity)}</li>
+      </ul>
+      <button class="button-remove" id="${id}">
+        <img src="/src/assets/icon_trash.svg" alt="">
+      </button>
+      `
+
+      this._showcaseModal.appendChild(article)
+    }
+
+    const buttonRemove = document.querySelectorAll('.button-remove')
+    this.captureButtonsRemove(buttonRemove)
   }
 
   createDesktop() {
@@ -654,11 +688,11 @@ class HomeTemplate {
 
     const buttonProduct = document.querySelectorAll('.button-product')
 
-    
+
 
     this.captureProduct(buttonProduct)
 
-  
+
   }
 }
 

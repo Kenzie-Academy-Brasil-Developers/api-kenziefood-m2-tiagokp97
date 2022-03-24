@@ -99,11 +99,11 @@ class DashboardTemplate {
     return DashboardTemplate.#instance
   }
 
-  anonimousUserBlock(){
-  if (!this._userToken){
-   return window.location.href = "/src/pages/home/home.html"
-  } 
-  }  
+  anonimousUserBlock() {
+    if (!this._userToken) {
+      return window.location.href = "/src/pages/home/home.html"
+    }
+  }
 
   addLoading() {
     const loader = document.createElement('div')
@@ -216,21 +216,21 @@ class DashboardTemplate {
     }.bind(this))
   }
 
-  async uncolourAllButtons(){
+  async uncolourAllButtons() {
     this._btnBread.style.backgroundColor = "#FFF7F4";
     this._btnDrink.style.backgroundColor = "#FFF7F4";
-    this._btnFruit.style.backgroundColor = "#FFF7F4"; 
+    this._btnFruit.style.backgroundColor = "#FFF7F4";
     this._allBtn.style.backgroundColor = "#FFF7F4";
 
     this._btnBread.style.color = "black";
     this._btnDrink.style.color = "black";
-    this._btnFruit.style.color = "black"; 
-    this._allBtn.style.color = "black"; 
+    this._btnFruit.style.color = "black";
+    this._allBtn.style.color = "black";
   }
 
-  paintButton(param){
-   param.style.backgroundColor = "#FF2253";
-   param.style.color = "white";
+  paintButton(param) {
+    param.style.backgroundColor = "#FF2253";
+    param.style.color = "white";
   }
 
   createProduct(product) {
@@ -484,10 +484,10 @@ class DashboardTemplate {
   }
 
   captureButtonModal() {
-
     this._iconModal.addEventListener('click', (evento) => {
 
-      if (this._modal.style.display === 'none') {
+      if (this._modal.style.display === 'none' ||
+        this._modal.style.display === '') {
         this._modal.style.display = 'block'
       } else {
         this._modal.style.display = 'none'
@@ -511,8 +511,8 @@ class DashboardTemplate {
     const token = localStorage.getItem('Kenziefood:token')
   }
 
-  keepBtnColor(button){
-  
+  keepBtnColor(button) {
+
 
   }
 
