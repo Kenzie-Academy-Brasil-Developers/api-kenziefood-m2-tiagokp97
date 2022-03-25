@@ -411,6 +411,7 @@ main {
         width: 70px;
         height: 70px;
         margin-left: 4.5px;
+        border-radius: 8px;
     }
 
     .product-card-name {
@@ -546,6 +547,7 @@ main {
                 width: 75.47px;
                 height: 75.47px;
                 margin-left: 10px;
+                border-radius: 8px;
             }
 
             .product-modal > button {
@@ -664,7 +666,8 @@ main {
 @media (min-width: 1100px) {
     main {
         display: flex;
-        padding-right: 200px;
+        justify-content: space-between;
+        padding-right: 115px;
     }
 
     .buttons-area {
@@ -677,6 +680,7 @@ main {
     
     header > div {
         display: flex;
+        align-items: center;
         padding-right: 60px;
         height: 72px;
         box-shadow: 0px 0px 40px -18px rgba(0, 0, 0, 0.25);
@@ -691,12 +695,17 @@ main {
 
         header > div > img {
             width: 120px;
+            padding-top: 0;
         }
         
         header > div > div {
             margin-left: auto;
             position: relative;
             margin-right: 120px;
+        }
+
+        header > div > div > input {
+          margin-top: 0;
         }
         
         .logo-kenzie {
@@ -708,7 +717,7 @@ main {
             position: absolute;
             margin-left: auto;
             margin-right: -20px;
-            top: 22px;
+            top: 1px;
             left: 13px;
         }
         
@@ -720,8 +729,8 @@ main {
         }
         
         .icon-modal {
-            top: 24px;
-            right: 130px;
+            top: 18px;
+            right: 115px;
         }   
     
         .container-modal {
@@ -754,16 +763,14 @@ main {
     }
     
         .product {
-            margin-right: 50px;
+            margin-right: 43px;
             margin-bottom: 59px;
         }
         
     .card {
-        margin-left: 20px;
         position: sticky;
         top: 122px;
         width: 319px;
-        margin-top: 50px;
         background-color: var(--grey-10);
         border-radius: 15px 15px 0px 0px;
     }

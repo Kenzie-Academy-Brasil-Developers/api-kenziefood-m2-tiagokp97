@@ -604,6 +604,7 @@ menu > .btn-edit-submit {
 @media only screen and (min-width: 1100px) {
   body > header > div {
     display: flex;
+    align-items: center;
     padding-right: 60px;
     height: 72px;
     box-shadow: 0px 0px 40px -18px rgba(0, 0, 0, 0.25);
@@ -612,12 +613,14 @@ menu > .btn-edit-submit {
     body > header > div > div > input {
         width: 310px;
         margin-left: auto;
+        margin-top: 0;
         display: inline-block;
         z-index: -1;
     }
 
     body > header > div > img {
         width: 120px;
+        padding-top: 0;
     }
     
     body > header > div > div {
@@ -635,21 +638,21 @@ menu > .btn-edit-submit {
         position: absolute;
         margin-left: auto;
         margin-right: -20px;
-        top: 22px;
+        top: 1px;
         left: 13px;
     }
     
     .icon-modal {
         cursor: pointer;
         position: absolute;
-        top: 15px;
+        top: 17px;
         right: 10px;
     }
     
     .icon-modal {
-        top: 24px;
-    right: 130px;
-}
+        top: 17px;
+        right: 115px;
+    }
 
     .container-modal {
         top: 59px;
