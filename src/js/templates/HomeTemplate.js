@@ -248,8 +248,12 @@ class HomeTemplate {
     }
   }
 
-  async productsDefault(){
-    return await this._productModels.getMyProducts(this._token)
+  async productsDefault() {
+    if (this._token) {
+      return await this._productModels.getMyProducts(this._token)
+    }
+
+    return await this._productModels.getAll()
   }
 
 
@@ -286,8 +290,13 @@ class HomeTemplate {
 
     const buttonRemove = document.querySelectorAll('.button-desktop-card')
 
-    this.captureProductLogin(buttonProduct)
-    this.captureButtonsRemove(buttonRemove)
+    if (this._token) {
+      this.captureProductLogin(buttonProduct)
+      this.captureButtonsRemove(buttonRemove)
+    } else {
+      this.captureProduct(buttonProduct)
+      this.removeItens(buttonRemove)
+    }
   }
 
   async createTempleProductMobile() {
@@ -308,7 +317,9 @@ class HomeTemplate {
       button.addEventListener('click', async function (evento) {
         const localeClick = evento.currentTarget
 
-        const myProducts = await this._productModels.getMyProducts(this._token)
+        const myProducts = this._token ?
+          await this._productModels.getMyProducts(this._token) :
+          await this._productModels.getAll()
 
         const resultFind = myProducts.find((product) => {
           if (product.id === Number(localeClick.id)) {
@@ -318,7 +329,7 @@ class HomeTemplate {
 
         const { id } = resultFind
 
-        const postCart = await this._cardModels.postCart({ product_id: id }, this._token)
+        await this._cardModels.postCart({ product_id: id }, this._token)
 
         if (innerWidth > 1100) {
           this.createDesktopLogin()
