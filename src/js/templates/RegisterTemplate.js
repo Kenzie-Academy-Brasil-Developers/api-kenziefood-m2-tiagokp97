@@ -50,8 +50,8 @@ class RegisterTemplate {
             dataForm[name] = value
         }
       }
-      
-      await this._UserInstance.register(dataForm)
+      console.log(dataForm)
+      await this._UserInstance.register(JSON.stringify(dataForm))
       await localStorage.setItem('usuario', JSON.stringify(dataForm))
      
     }.bind(this))
