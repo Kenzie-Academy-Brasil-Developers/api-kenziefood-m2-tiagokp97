@@ -79,7 +79,7 @@ class HomeTemplate {
     this.createDesktopLogin()
 
     if (this._token) {
-      this.createTempleProduct()
+      this.createTempleProduct(this.productsDefault())
       this.createMobileLogin()
     } else {
       this.createShowcase(this._productModels.getAll())
@@ -119,7 +119,7 @@ class HomeTemplate {
   }
 
   async inputSearch() {
-    const product = await this._productModels.getAll()
+    const product = await this.productsDefault()
     this._inputSearch.addEventListener('keyup', (event) => {
       const pesquisa = event.target.value.toLowerCase()
 
@@ -136,7 +136,7 @@ class HomeTemplate {
       this.uncolourAllButtons()
       this.paintButton(this._btnAll)
       this.clear()
-      this.createTempleProduct(this.getProducts())
+      this.createTempleProduct(this.productsDefault())
     }.bind(this))
   }
 
@@ -145,7 +145,7 @@ class HomeTemplate {
   }
 
   async filterBreadProducts() {
-    const product = await this._productModels.getAll()
+    const product = await this.productsDefault()
     const breadList = product.filter((produto) => {
       return produto.categoria === 'Panificadora'
     })
@@ -162,7 +162,7 @@ class HomeTemplate {
   }
 
   async filteredDrinkProducts() {
-    const product = await this._productModels.getAll()
+    const product = await this.productsDefault()
     const listDrinks = product.filter((produto) => {
       return produto.categoria === 'Bebidas'
     })
@@ -179,7 +179,7 @@ class HomeTemplate {
   }
 
   async filteredFruitProducts() {
-    const product = await this._productModels.getAll()
+    const product = await this.productsDefault()
     const fruitList = product.filter((produto) => {
       return produto.categoria === 'Frutas'
     })
@@ -247,11 +247,14 @@ class HomeTemplate {
     }
   }
 
-  async createTempleProduct() {
+  async productsDefault(){
+    return await this._productModels.getMyProducts(this._token)
+  }
 
-    const getResponseData = await this._productModels.getMyProducts(this._token)
 
+  async createTempleProduct(productVitrine) {
     this.removeLoading()
+    const getResponseData = await productVitrine
     for (let i = 0; i < getResponseData.length; i++) {
       const { categoria, id, descricao, imagem, nome, preco } = getResponseData[i]
 
@@ -333,10 +336,9 @@ class HomeTemplate {
         const localeClick = evento.currentTarget
 
         const idClick = localeClick.id
-        console.log(idClick)
         const removeItem = await this._cardModels.deleteCart(idClick, this._token)
 
-        console.log(removeItem)
+
 
         if (innerWidth > 1100) {
           this._showcaseDesktop.innerHTML = ''
