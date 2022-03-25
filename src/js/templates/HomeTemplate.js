@@ -258,8 +258,8 @@ class HomeTemplate {
 
 
   async createTempleProduct(productVitrine) {
-    this.removeLoading()
     const getResponseData = await productVitrine
+    this.removeLoading()
     for (let i = 0; i < getResponseData.length; i++) {
       const { categoria, id, descricao, imagem, nome, preco } = getResponseData[i]
 
@@ -274,7 +274,7 @@ class HomeTemplate {
       <li>${categoria}</li>
       </ul>
       <ul class="price-and-buy">
-      <li class="price">R$ ${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(preco)}</li>
+      <li class="price">${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(preco)}</li>
         <li class="buy">
         <button class="button-product" id="${id}">
         <i class="fa-solid fa-cart-plus"></i>
@@ -747,7 +747,7 @@ class HomeTemplate {
       <li>${categoria}</li>
       </ul>
       <ul class="price-and-buy">
-      <li class="price">R$ ${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(preco)}</li>
+      <li class="price">${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(preco)}</li>
         <li class="buy">
         <button class="button-product" id="${id}">
         <i class="fa-solid fa-cart-plus"></i>

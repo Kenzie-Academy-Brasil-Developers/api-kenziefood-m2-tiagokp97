@@ -25,36 +25,36 @@
 }
 
 
-header {
+body > header {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
 }
 
-header > div {
+body > header > div {
   background: #FFF;
   height: 110px;
   padding-right: 30px;
   }
 
-  header > div > img,input {
+  body > header > div > img,input {
       display: block;
   }
 
-  header > div > img {
+  body > header > div > img {
       padding-top: 10px;
       margin-left: 10px;
       width: 140px;
   }
 
-  header > div > div > img {
+  body > header > div > div > img {
       margin-top: 10px;
       margin-left: 10px;
       width: 140px;
   }
 
-  header > div > div > input {
+  body > header > div > div > input {
       width: 100%;
       height: 40px;
       margin-left: 10px;
@@ -68,7 +68,7 @@ header > div {
       font-size: 16px;
   }
 
-  header > div > div > input:hover {
+  body > header > div > div > input:hover {
       border: 1.5px solid #212529;
       background-color: #fff;
   }
@@ -90,7 +90,7 @@ header > div {
   .container-modal-login {
       display: none;
       position: absolute;
-      top: 51px;
+      top: 53px;
       right: 30px;
       background-color: rgb(153, 153, 153, 0.25);
       text-align: right;
@@ -102,6 +102,7 @@ header > div {
       animation-fill-mode: forwards;
       animation-duration: 2s;
       backdrop-filter: blur(17px);
+      box-shadow: rgb(0 0 0 / 50%) -5px 10px 50px 4px;
       }
   
       .container-modal-login > button {
@@ -339,13 +340,13 @@ header > div {
 }
 
 
-.create-modal header > div {
+.create-modal header {
   background: var(--grey-10);
 
   padding: 20px 28px;
 }
 
-.create-modal header > div h3 {
+.create-modal header h3 {
   font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 500;
@@ -514,14 +515,14 @@ menu > .btn-edit-submit {
   padding: 0px;
   }
 
-  .delete-modal > header > div {
+  .delete-modal > header {
     width: 362px;
     height: 70px;
     border-radius: 8px 8px 0px 0px;
     box-shadow: none;
     background-color: var(--grey-10);
   }
-  .delete-modal > header > div > h3 {
+  .delete-modal > header > h3 {
     font-family: Poppins;
     font-size: 14px;
     font-style: normal;
@@ -585,25 +586,25 @@ menu > .btn-edit-submit {
   }
 
 @media only screen and (min-width: 1100px) {
-  header > div {
+  body > header > div {
     display: flex;
     padding-right: 60px;
     height: 72px;
     box-shadow: 0px 0px 40px -18px rgba(0, 0, 0, 0.25);
 }
 
-    header > div > div > input {
+    body > header > div > div > input {
         width: 310px;
         margin-left: auto;
         display: inline-block;
         z-index: -1;
     }
 
-    header > div > img {
+    body > header > div > img {
         width: 120px;
     }
     
-    header > div > div {
+    body > header > div > div {
         margin-left: auto;
         position: relative;
         margin-right: 120px;
@@ -640,8 +641,8 @@ menu > .btn-edit-submit {
     }
 
     .container-modal-login {
-        top: 59px;
-        right: 148px;
+        top: 65px;
+        right: 140px;
     }
 
 .buttons-wrapper {
@@ -769,14 +770,14 @@ menu > .btn-edit-submit {
   padding: 0px;
   }
 
-  .delete-modal > header > div {
+  .delete-modal > header {
     width: 496px;
     height: 70px;
     border-radius: 8px 8px 0px 0px;
     box-shadow: none;
     background-color: var(--grey-10);
   }
-  .delete-modal > header > div > h3 {
+  .delete-modal > header > h3 {
     margin-top: 25px;
     padding-top: 0px;
   }

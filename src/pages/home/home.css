@@ -148,7 +148,7 @@ header > div {
     .container-modal-login {
         display: none;
         position: absolute;
-        top: 51px;
+        top: 53px;
         right: 30px;
         background-color: rgb(153, 153, 153, 0.25);
         text-align: right;
@@ -160,6 +160,7 @@ header > div {
         animation-fill-mode: forwards;
         animation-duration: 2s;
         backdrop-filter: blur(17px);
+        box-shadow: rgb(0 0 0 / 50%) -5px 10px 50px 4px;
         }
     
         .container-modal-login > button {
@@ -640,6 +641,10 @@ main {
             display: block;
         }
 
+        p.modal-empty {
+          width: 100%;
+        }
+
 
 
 
@@ -652,6 +657,10 @@ main {
 
     .buttons-area {
         width: 75%;
+    }
+
+    header {
+      z-index: 100;
     }
     
     header > div {
@@ -710,8 +719,8 @@ main {
         }
 
         .container-modal-login {
-            top: 59px;
-            right: 148px;
+            top: 65px;
+            right: 140px;
 
         }
         
@@ -741,7 +750,6 @@ main {
         margin-left: 20px;
         position: sticky;
         top: 122px;
-        z-index: -1;
         width: 319px;
         margin-top: 50px;
         background-color: var(--grey-10);
