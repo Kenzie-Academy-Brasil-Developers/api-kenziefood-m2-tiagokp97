@@ -24,28 +24,37 @@
   to{background-color: var(--pink-100); color: #fff ;}
 }
 
+
 header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+header > div {
+  background: #FFF;
   height: 110px;
   padding-right: 30px;
   }
 
-  header > img,input {
+  header > div > img,input {
       display: block;
   }
 
-  header > img {
-      margin-top: 10px;
-      margin-left: 10px;
-      width: 140px;
-  }
-
   header > div > img {
+      padding-top: 10px;
+      margin-left: 10px;
+      width: 140px;
+  }
+
+  header > div > div > img {
       margin-top: 10px;
       margin-left: 10px;
       width: 140px;
   }
 
-  header > div > input {
+  header > div > div > input {
       width: 100%;
       height: 40px;
       margin-left: 10px;
@@ -59,7 +68,7 @@ header {
       font-size: 16px;
   }
 
-  header > div > input:hover {
+  header > div > div > input:hover {
       border: 1.5px solid #212529;
       background-color: #fff;
   }
@@ -129,6 +138,9 @@ header {
             animation-fill-mode: forwards;
         }
 
+        .buttons-wrapper {
+          padding-top: 110px;
+        }
 
 .ul-buttons {
   overflow: auto;
@@ -327,13 +339,13 @@ header {
 }
 
 
-.create-modal header {
+.create-modal header > div {
   background: var(--grey-10);
 
   padding: 20px 28px;
 }
 
-.create-modal header h3 {
+.create-modal header > div h3 {
   font-family: 'Poppins', sans-serif;
   font-size: 14px;
   font-weight: 500;
@@ -502,14 +514,14 @@ menu > .btn-edit-submit {
   padding: 0px;
   }
 
-  .delete-modal > header {
+  .delete-modal > header > div {
     width: 362px;
     height: 70px;
     border-radius: 8px 8px 0px 0px;
     box-shadow: none;
     background-color: var(--grey-10);
   }
-  .delete-modal > header > h3 {
+  .delete-modal > header > div > h3 {
     font-family: Poppins;
     font-size: 14px;
     font-style: normal;
@@ -573,25 +585,25 @@ menu > .btn-edit-submit {
   }
 
 @media only screen and (min-width: 1100px) {
-  header {
+  header > div {
     display: flex;
     padding-right: 60px;
     height: 72px;
     box-shadow: 0px 0px 40px -18px rgba(0, 0, 0, 0.25);
 }
 
-    header > div > input {
+    header > div > div > input {
         width: 310px;
         margin-left: auto;
         display: inline-block;
         z-index: -1;
     }
 
-    header > img {
+    header > div > img {
         width: 120px;
     }
     
-    header > div {
+    header > div > div {
         margin-left: auto;
         position: relative;
         margin-right: 120px;
@@ -633,6 +645,7 @@ menu > .btn-edit-submit {
     }
 
 .buttons-wrapper {
+  padding-top: 72px;
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
@@ -756,14 +769,14 @@ menu > .btn-edit-submit {
   padding: 0px;
   }
 
-  .delete-modal > header {
+  .delete-modal > header > div {
     width: 496px;
     height: 70px;
     border-radius: 8px 8px 0px 0px;
     box-shadow: none;
     background-color: var(--grey-10);
   }
-  .delete-modal > header > h3 {
+  .delete-modal > header > div > h3 {
     margin-top: 25px;
     padding-top: 0px;
   }
