@@ -195,6 +195,10 @@ header {
 
     margin: 10px auto 0;
   }
+
+  dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+  }
   
 .column-titles {
   display: none;
