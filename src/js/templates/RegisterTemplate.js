@@ -50,7 +50,7 @@ class RegisterTemplate {
             dataForm[name] = value
         }
       }
-
+      
       await this._UserInstance.register(dataForm)
       await localStorage.setItem('usuario', JSON.stringify(dataForm))
      

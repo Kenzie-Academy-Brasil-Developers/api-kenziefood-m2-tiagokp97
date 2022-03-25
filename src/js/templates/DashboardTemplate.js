@@ -153,6 +153,7 @@ class DashboardTemplate {
   async inputSearch() {
     this._inputSearch.addEventListener('keyup', (event) => {
       const pesquisa = event.target.value.toLowerCase()
+      this.uncolourAllButtons()
 
       const filtrados = this._data.filter((produto) => {
         return produto.nome.toLowerCase().includes(pesquisa) || produto.categoria.toLowerCase().includes(pesquisa)

@@ -122,6 +122,7 @@ class HomeTemplate {
     const product = await this.productsDefault()
     this._inputSearch.addEventListener('keyup', (event) => {
       const pesquisa = event.target.value.toLowerCase()
+      this.uncolourAllButtons()
 
       const filtrados = product.filter((produto) => {
         return produto.nome.toLowerCase().includes(pesquisa) || produto.categoria.toLowerCase().includes(pesquisa)
@@ -432,7 +433,6 @@ class HomeTemplate {
     }
 
     for (let i = 0; i < getCartModels.length; i++) {
-      console.log(getCartModels[i])
       const { quantity, products } = getCartModels[i]
 
       const { categoria, id, imagem, nome, preco } = products
