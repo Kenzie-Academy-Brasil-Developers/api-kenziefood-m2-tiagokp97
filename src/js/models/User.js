@@ -27,7 +27,6 @@ class User {
 
   // Fetch
   async register(data) {
-    console.log(this._authURL)
     const response = await fetch(`${this._authURL}/register`, {
       "method": "POST",
             "headers": {
@@ -37,8 +36,9 @@ class User {
     })
 
     const responseData = await response.json()
-    console.log(response)
-    if (response.status !== 200){
+
+      if (response.status !== 200){
+
       throw new Error(`${responseData.message}`)
   }  else { 
      window.location.href = "/src/pages/login/login.html"
@@ -56,7 +56,6 @@ class User {
 
     
     const responseData = await response.json()
-    console.log(responseData)
     if (response.status !== 200){
       throw new Error(`${responseData.message}`)
   }  else { 

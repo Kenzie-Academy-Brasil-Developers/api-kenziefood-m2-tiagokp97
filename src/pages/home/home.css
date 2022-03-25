@@ -1,25 +1,67 @@
+@keyframes animationButtonsFirst {
+
+    from{background-color: #fff; width: 128px;}
+    to{background-color: var(--pink-100); color: #fff; width: 150px;}
+}
+
+@keyframes animationButtonsSecond {
+    from{background-color: #fff; width: 62px;}
+    to{background-color: var(--pink-100); color: #fff; width: 150px;}
+}
+
+@keyframes animationModalFirst {
+
+    from{width: 50px;}
+    to{background-color: var(--pink-100); color: #fff; width: 140px;}
+}
+
+@keyframes animationModalSecond {
+    from{background-color: #fff; width: 90px;}
+    to{background-color: var(--pink-100); color: #fff; width: 140px;}
+}
+
+@keyframes animationModal {
+    from{opacity: 0;}
+    to{opacity: 1;}
+}
+
+@keyframes animationButtons {
+
+    from{background-color: #fff; color: #000;}
+    to{background-color: var(--pink-100); color: #fff;}
+}
+
+
 header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+header > div {
+    background: #FFF;
     height: 110px;
     padding-right: 30px;
     }
 
-    header > img,input {
+    header > div > img,input {
         display: block;
     }
 
-    header > img {
-        margin-top: 10px;
-        margin-left: 10px;
-        width: 140px;
-    }
-
     header > div > img {
+        padding-top: 10px;
+        margin-left: 10px;
+        width: 140px;
+    }
+
+    header > div > div > img {
         margin-top: 10px;
         margin-left: 10px;
         width: 140px;
     }
 
-    header > div > input {
+    header > div > div > input {
         width: 100%;
         height: 40px;
         margin-left: 10px;
@@ -33,8 +75,9 @@ header {
         font-size: 16px;
     }
 
-    header > div > input:hover {
+    header > div > div > input:hover {
         border: 1.5px solid #212529;
+        background-color: #fff;
     }
 
     .icon-search {
@@ -46,6 +89,7 @@ header {
     }
 
     .icon-modal {
+      cursor: pointer;
         position: absolute;
         top: 15px;
         right: 10px;
@@ -58,10 +102,14 @@ header {
     right: 30px;
     background-color: rgb(153, 153, 153, 0.25);
     text-align: right;
-    width: 100px;
+    width: 150px;
     border: 1px solid rgb(153, 153, 153, 0.25);
     border-radius: 10px 0px 10px 10px;
     z-index: 1;
+    animation-name: animationModal;
+    animation-fill-mode: forwards;
+    animation-duration: 2s;
+    backdrop-filter: blur(17px);
         }
 
         .container-modal > button {
@@ -74,6 +122,19 @@ header {
         border-radius: 5px;
         font-size: 16px;
         font-family: 'Poppins';
+        background-color: rgb(153, 153, 153, 0);
+        }
+
+        .first-button:hover {
+            animation-name: animationModalFirst;
+            animation-fill-mode: forwards;
+            animation-duration: 2s;
+        }
+
+        .second-button:hover {
+            animation-name: animationModalSecond;
+            animation-fill-mode: forwards;
+            animation-duration: 2s;
         }
 
         .container-modal > h3 {
@@ -87,7 +148,7 @@ header {
     .container-modal-login {
         display: none;
         position: absolute;
-        top: 51px;
+        top: 53px;
         right: 30px;
         background-color: rgb(153, 153, 153, 0.25);
         text-align: right;
@@ -95,6 +156,11 @@ header {
         border: 1px solid rgb(153, 153, 153, 0.25);
         border-radius: 10px 0px 10px 10px;
         z-index: 1;
+        animation-name: animationModal;
+        animation-fill-mode: forwards;
+        animation-duration: 2s;
+        backdrop-filter: blur(17px);
+        box-shadow: rgb(0 0 0 / 50%) -5px 10px 50px 4px;
         }
     
         .container-modal-login > button {
@@ -107,6 +173,8 @@ header {
             border-radius: 5px;
             font-size: 16px;
             font-family: 'Poppins';
+            background-color: rgb(153, 153, 153, 0);
+            white-space: nowrap;
         }
     
         .container-modal-login > h3 {
@@ -117,6 +185,21 @@ header {
             color: var(--pink-100);
         }
 
+        .first-button-modal:hover {
+            animation-name: animationButtonsFirst;
+            animation-fill-mode: forwards;
+            animation-duration: 2s;
+        }
+
+        .second-button-modal:hover {
+            animation-name: animationButtonsSecond;
+            animation-fill-mode: forwards;
+            animation-duration: 2s;
+        }
+
+main {
+  padding-top: 110px;
+}
 
 .ul-buttons {
     overflow: auto;
@@ -126,8 +209,7 @@ header {
     }
 
     .ul-buttons > button > img {
-        padding-left: 5px;
-        padding-right: 5px;
+        padding-right: 15px;
     }
 
     .ul-buttons > button {
@@ -135,16 +217,34 @@ header {
         background-color: #fff;
         background-color: var(--pink-40);
         border-radius: 30px;
-        padding-right: 8px;
+        padding: 14.5px 20px;
         font-size: 16px;
         display: flex;
         justify-content: center;
         align-items: center;
         height: 48px;
     }
+
+    .ul-buttons > button:hover {
+        animation-name: animationButtons;
+        animation-fill-mode: forwards;
+        animation-duration: 2s;
+    }
     
     .button-bread, .button-fruit, .button-glass {
         margin-left: 20px;
+    }
+
+    .ul-buttons > .button-bread {
+      background: var(--pink-40);
+    }
+
+    .ul-buttons > .button-fruit {
+      background: var(--pink-20);
+    }
+
+    .ul-buttons > .button-glass {
+      background: var(--pink-30);
     }
     
     .ul-buttons > .button-bread {
@@ -154,9 +254,10 @@ header {
     .ul-buttons > .button-all {
         padding-left: 25px;
         padding-right: 25px;
+        background: var(--grey-20);
     }
 
-    .ul-buttons > button:hover {
+    .ul-buttons > button:focus {
         color: #fff;
         background-color: var(--pink-100);
     }
@@ -167,6 +268,7 @@ header {
     overflow: auto;
     display: flex;
     flex-wrap: nowrap;
+    padding-bottom: 100px;
     }
     .product {
         width: 300px;
@@ -204,6 +306,7 @@ header {
             font-size: 14px;
             color: var(--grey-40);
             margin-bottom: 10px;
+            height: 80px;
         }
 
         .section > li {
@@ -236,13 +339,24 @@ header {
             border: none;
         }
 
-        .buy > button > img {
+        .fa-cart-plus {
             padding-top: 2px;
             padding-right: 1px;
+            color: #0CA678;
         }
 
+        .buy > button:hover {
+            background-color: #0CA678;
+        }
+
+        .buy > button:hover .fa-cart-plus {
+            color: #FFFFFF;
+        }
+
+
+
 .card {
-    position: absolute;
+    position: fixed;
     bottom: 0px;
     }
 
@@ -297,6 +411,7 @@ header {
         width: 70px;
         height: 70px;
         margin-left: 4.5px;
+        border-radius: 8px;
     }
 
     .product-card-name {
@@ -327,7 +442,7 @@ header {
         
     }
     
-    .product-card-section > p {
+    .product-card-section > li {
         margin-left: 10px;
         color: #868E96;
         margin-bottom: 10px;
@@ -354,10 +469,10 @@ header {
     }
     
     .container-modal-card {
+        position: fixed;
         display: none;
         justify-content: center;
         align-items: center;
-        position: absolute;
         top: 0px;
         width: 100vw;
         height: 100vh;
@@ -382,6 +497,7 @@ header {
         }
 
         .head-modal > img {
+            display: block;
             width: 15.09px;
             height: 15.09px;
             margin-left: 24px;
@@ -418,6 +534,7 @@ header {
             height: 436.64px;
             display: flex;
             flex-wrap: wrap;
+            align-content: start;
             }
 
             .product-modal {
@@ -430,6 +547,7 @@ header {
                 width: 75.47px;
                 height: 75.47px;
                 margin-left: 10px;
+                border-radius: 8px;
             }
 
             .product-modal > button {
@@ -490,9 +608,11 @@ header {
         .modal-card > img {
             margin-left: auto;
             margin-right: auto;
+            margin-top: 100px;
         }
 
         .modal-card > p {
+            margin-top: 35px;
             text-align: center;
         }
 
@@ -532,43 +652,60 @@ header {
         }
 
         .modal-img-empty, .modal-empty {
-            display: none;
+            display: block;
         }
+
+        p.modal-empty {
+          width: 100%;
+        }
+
+
 
 
 
 @media (min-width: 1100px) {
     main {
         display: flex;
-        padding-right: 200px;
+        justify-content: space-between;
+        padding-right: 115px;
     }
 
     .buttons-area {
         width: 75%;
     }
-    
+
     header {
+      z-index: 100;
+    }
+    
+    header > div {
         display: flex;
+        align-items: center;
         padding-right: 60px;
         height: 72px;
         box-shadow: 0px 0px 40px -18px rgba(0, 0, 0, 0.25);
     }
 
-        header > div > input {
+        header > div > div > input {
             width: 310px;
             margin-left: auto;
             display: inline-block;
             z-index: -1;
         }
 
-        header > img {
+        header > div > img {
             width: 120px;
+            padding-top: 0;
         }
         
-        header > div {
+        header > div > div {
             margin-left: auto;
             position: relative;
             margin-right: 120px;
+        }
+
+        header > div > div > input {
+          margin-top: 0;
         }
         
         .logo-kenzie {
@@ -580,31 +717,38 @@ header {
             position: absolute;
             margin-left: auto;
             margin-right: -20px;
-            top: 22px;
+            top: 1px;
             left: 13px;
         }
         
         .icon-modal {
+          cursor: pointer;
             position: absolute;
             top: 15px;
             right: 10px;
         }
         
         .icon-modal {
-            top: 24px;
-        right: 130px;
-    }
+            top: 18px;
+            right: 115px;
+        }   
     
         .container-modal {
             top: 59px;
             right: 148px;
+
         }
 
         .container-modal-login {
-            top: 59px;
-            right: 148px;
+            top: 65px;
+            right: 140px;
+
         }
         
+        main {
+          padding-top: 72px;
+        }
+    
     .ul-buttons {
         margin-left: 100px;
         margin-bottom: 40px;
@@ -619,15 +763,14 @@ header {
     }
     
         .product {
-            margin-right: 50px;
+            margin-right: 43px;
             margin-bottom: 59px;
         }
         
     .card {
-        margin-left: 20px;
-        position: static;
+        position: sticky;
+        top: 122px;
         width: 319px;
-        margin-top: 50px;
         background-color: var(--grey-10);
         border-radius: 15px 15px 0px 0px;
     }
@@ -646,10 +789,11 @@ header {
             width: 319px;
             height: 296px;
             overflow: auto;
+            align-content: start;
         }
         
         .card-img-empty {
-                display: none;
+                display: block;
                 width: 70px;
                 height: 60px;
                 margin-left: auto;
@@ -659,7 +803,7 @@ header {
             }
             
             .card-empty {
-                display: none;
+                display: block;
                 font-size: 14px;
                 font-family: 'Poppins';
                 font-weight: 400;
@@ -695,7 +839,7 @@ header {
             }
             
             .ul-price > li {
-                margin-left: 18px;
+                margin-left: 18px; 
                 margin-bottom: 22px;
             }
 
@@ -706,10 +850,4 @@ header {
             .container-modal-card {
                 display: none;
             }
-}
-
-@media (min-width: 1500px) {
-    .buttons-area {
-        width: 1200px;
-    }
 }

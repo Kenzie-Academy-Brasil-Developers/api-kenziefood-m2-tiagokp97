@@ -13,11 +13,6 @@
   --grey-100: #212529;
 }
 
-<<<<<<< HEAD
-/* body {
-    background-color: var(--pink);
-} */
-=======
 * {
   box-sizing: border-box;
 }
@@ -25,4 +20,40 @@
 button {
   cursor: pointer;
 }
->>>>>>> develop
+
+.loader {
+  margin: 150px auto;
+  border: 2px solid grey;
+  position: relative;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 320px;
+  height: 40px;
+  background: #000;
+  z-index: 1;
+}
+
+.loader p {
+  color: #FFF;
+  text-align: center;
+  line-height: 40px;
+  margin: 0;
+  z-index: 2;
+  text-shadow: 2px 2px #333;
+}
+
+.inner-loader {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  border-radius: 1px;
+  width: 360px;
+  height: 40px;
+  background-image: repeating-linear-gradient(90deg, var(--pink-100), #000 5%);
+  animation: run 1.5s linear infinite;
+}
+
+@keyframes run {
+  0% { left: -100% }
+  100% { left: 100% }
+}

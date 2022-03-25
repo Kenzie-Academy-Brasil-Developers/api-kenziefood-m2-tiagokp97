@@ -12,9 +12,16 @@ header {
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    margin-top: 20px;
+    margin-top: 50px;
     font-family: Inter;
     font-style: normal;
+    border: solid 4px var(--grey-20);
+    border-radius: 10px;
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 30px;
+    padding-top: 30px;
 }
 
     .form-container h1 {
@@ -42,6 +49,27 @@ header {
         font-family: Inter;
     }
 
-    .form-container .form-link {
-        margin-bottom: 20px;
+
+@media (min-width: 650px)  {
+
+        .form-container {
+            border: solid 4px var(--grey-20);
+            border-radius: 10px;
+            width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-bottom: 30px;
+            padding-top: 30px;
+        }
+
+        .form-container .form-register-button {
+            transition: transform 1s;
+            transform: translateX(0) scale(0.9);
+        }
+    
+        .form-register-button:hover,
+        .form-register-button:focus {
+        transform: translateX(5px) scale(1.2)
+        }
+    
     }

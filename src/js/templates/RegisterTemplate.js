@@ -51,11 +51,9 @@ class RegisterTemplate {
         }
       }
       console.log(dataForm)
-      await this._UserInstance.register(dataForm)
+      await this._UserInstance.register(JSON.stringify(dataForm))
       await localStorage.setItem('usuario', JSON.stringify(dataForm))
-      //const dataUsuario = await User.login("/login", dataForm)
-
-    
+     
     }.bind(this))
 
   }

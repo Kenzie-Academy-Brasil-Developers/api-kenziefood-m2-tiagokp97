@@ -8,7 +8,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@400;500;700&display=swap"
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@400;500;700&?family=Nunito&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="/src/style/reset.css" />
   <link rel="stylesheet" href="/src/style/global.css" />
@@ -17,48 +18,50 @@
 
 <body>
   <header>
-    <img src="/src/assets/icon_logo_kenzie_food.svg" alt="" class="logo-kenzie">
-    <div class="icon-move">
-      <img src="/src/assets/icon_search.svg" alt="" class="icon-search">
-      <input type="text" name="" id="" class ="input-search" id="input-name" placeholder="Pesquisar por produto">
+    <div>
+      <img src="/src/assets/icon_logo_kenzie_food.svg" alt="" class="logo-kenzie">
+      <div class="icon-move">
+        <img src="/src/assets/icon_search.svg" alt="" class="icon-search">
+        <input type="text" name="" id="" class="input-search" id="input-name" placeholder="Pesquisar por produto">
+      </div>
+
+      <section class="login">
+        <img src="/src/assets/icon_unregistered.svg" alt="" class="icon-modal">
+      </section>
+
+      <section class="container-modal-login">
+        <h3>Conta</h3>
+        <button class="first-button-modal" id="Home">Home</button>
+        <button class="second-button-modal" id="logout">Logout</button>
+      </section>
     </div>
-
-    <section class="login">
-      <img src="/src/assets/icon_unregistered.svg" alt="" class="icon-modal">
-    </section>
-
-    <section class="container-modal">
-      <h3>Conta</h3>
-      <button>Login</button>
-      <button>Registrar</button>
-    </section>
-
-    <section class="container-modal-login">
-      <h3>Wellington</h3>
-      <button>Meus produtos</button>
-      <button>Logout</button>
-    </section>
   </header>
 
-  <ul class="ul-buttons">
-    <button class="button-all">Todos</button>
-
-    <button class="button-bread">
-      <img src="/src/assets/Icon_bread.svg" alt="imagem de um pao" />
-      Panificadora
+  <div class="buttons-wrapper">
+    <button id="btnCreateProduct" class="create-product">
+      Adicionar novo produto
     </button>
 
+    <ul class="ul-buttons">
+      <button class="button-all">Todos</button>
 
-    <button class="button-fruit">
-      <img src="/src/assets/Icon_fruits.svg" alt="imagem de duas frutas" />
-      Frutas
-    </button>
+      <button class="button-bread">
+        <img src="/src/assets/Icon_bread.svg" alt="imagem de um pao" />
+        Panificadora
+      </button>
 
-    <button class="button-glass">
-      <img src="/src/assets/Icon_glass of wine.svg" alt="imagem de uma taça de vinho" />
-      Bebidas
-    </button>
-  </ul>
+
+      <button class="button-fruit">
+        <img src="/src/assets/Icon_fruits.svg" alt="imagem de duas frutas" />
+        Frutas
+      </button>
+
+      <button class="button-glass">
+        <img src="/src/assets/Icon_glass of wine.svg" alt="imagem de uma taça de vinho" />
+        Bebidas
+      </button>
+    </ul>
+  </div>
 
   <main>
     <ul class="column-titles">
@@ -71,6 +74,93 @@
     <section id="productList" class="product-list">
     </section>
   </main>
+
+  <dialog id="modalCreateProduct" class="create-modal">
+    <header>
+      <h3>Cadastro de produto</h3>
+    </header>
+
+    <form id="creationForm">
+      <label for="name">Nome do Produto</label>
+      <input id="name" name="nome" type="text" placeholder="Digitar o nome" />
+      <label for="description">Descrição</label>
+      <input id="description" name="descricao" type="text" placeholder="Digitar a descrição" />
+      <label>Categorias</label>
+      <div class="radio-group">
+        <input class="btn-create-radio" type="radio" id="category-bread" name="categoria" value="Panificadora">
+        <label for="category-bread">Panificadora</label>
+        <input class="btn-create-radio" type="radio" id="category-fruit" name="categoria" value="Frutas">
+        <label for="category-fruit">Frutas</label>
+        <input class="btn-create-radio" type="radio" id="category-drink" name="categoria" value="Bebidas">
+        <label for="category-drink">Bebidas</label>
+      </div>
+      <label for="price">Valor do Produto</label>
+      <input id="price" type="number" name="preco" placeholder="Digitar o valor aqui">
+      <label for="image">Link da imagem</label>
+      <input id="image" type="text" name="imagem" placeholder="Inserir o link">
+      <menu>
+        <button id="btnCancelCreation" class="close-dialog" type="reset">X</button>
+        <button type="submit" class="btn-submit create-product">Cadastrar Produto</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <dialog id="modalEditProduct" class="create-modal">
+    <header>
+      <h3>Edição de produto</h3>
+    </header>
+
+    <form id="editForm">
+      <input id="editId" type="hidden" name="id">
+      <label for="editName">Nome do Produto</label>
+      <input id="editName" name="nome" type="text" placeholder="Digitar o nome" />
+      <label for="editDescription">Descrição</label>
+      <input id="editDescription" name="descricao" type="text" placeholder="Digitar a descrição" />
+      <label>Categorias</label>
+      <div class="radio-group">
+        <input class="btn-edit-radio" type="radio" id="editCategoryBread" name="categoria" value="Panificadora">
+        <label for="editCategoryBread">Panificadora</label>
+        <input class="btn-edit-radio" type="radio" id="editCategoryFruit" name="categoria" value="Frutas">
+        <label for="editCategoryFruit">Frutas</label>
+        <input class="btn-edit-radio" type="radio" id="editCategoryDrink" name="categoria" value="Bebidas">
+        <label for="editCategoryDrink">Bebidas</label>
+      </div>
+      <label for="editPrice">Valor do Produto</label>
+      <input id="editPrice" type="number" name="preco" placeholder="Digitar o valor aqui">
+      <label for="editImage">Link da imagem</label>
+      <input id="editImage" type="text" name="imagem" placeholder="Inserir o link">
+      <menu>
+        <button id="btnCancelEdition" class="close-dialog" type="reset">X</button>
+        <button id="btnDeleteEdition" class="btn-delete-edition" type="reset">Excluir</button>
+        <button type="submit" class="btn-edit-submit create-product">Salvar alterações</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <dialog id="modalDeleteProduct" class="delete-modal">
+    <header>
+      <h3>Exclusão de produto</h3>
+    </header>
+
+    <h2>Tem certeza que deseja excluir este produto?</h2>
+    <input id="deleteId" type="hidden" name="deleteId">
+
+    <menu>
+      <button id="btnCancelDelete" class="close-dialog">X</button>
+      <button id="btnYes" class="btn-option">Sim</button>
+      <button id="btnNo" class="btn-option">Não</button>
+    </menu>
+  </dialog>
+
+  <dialog id="modalStatus" class="create-modal">
+    <header>
+      <h3 id="statusTitle">Status</h3>
+      <button id="btnCancelStatus" class="close-dialog">X</button>
+    </header>
+
+    <p class="message" id="statusMessage"></p>
+    <div class="bottom-color"></div>
+  </dialog>
 
   <script type="module" src="./dashboard.js"></script>
 </body>
