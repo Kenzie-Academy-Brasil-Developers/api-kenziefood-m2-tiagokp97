@@ -832,9 +832,3 @@ main {
                 display: none;
             }
 }
-
-@media (min-width: 1500px) {
-    .buttons-area {
-        width: 1200px;
-    }
-}
