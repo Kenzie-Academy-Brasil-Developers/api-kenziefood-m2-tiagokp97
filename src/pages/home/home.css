@@ -69,6 +69,7 @@ header {
 
     header > div > input:hover {
         border: 1.5px solid #212529;
+        background-color: #fff;
     }
 
     .icon-search {
