@@ -83,6 +83,7 @@ class HomeTemplate {
       this.createMobileLogin()
     } else {
       this.createShowcase(this._productModels.getAll())
+      this.createMobile()
     }
   }
 
