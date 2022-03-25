@@ -80,8 +80,10 @@ class HomeTemplate {
 
     if (this._token) {
       this.createTempleProduct(this.productsDefault())
+      this.createMobileLogin()
     } else {
       this.createShowcase(this._productModels.getAll())
+      this.createMobile()
     }
   }
 
@@ -319,6 +321,8 @@ class HomeTemplate {
 
         if (innerWidth > 1100) {
           this.createDesktopLogin()
+        } else {
+          this.createMobileLogin()
         }
 
       }.bind(this))
@@ -334,8 +338,16 @@ class HomeTemplate {
         const idClick = localeClick.id
         const removeItem = await this._cardModels.deleteCart(idClick, this._token)
 
-        this._showcaseDesktop.innerHTML = ''
-        await this.createDesktopLogin()
+
+
+        if (innerWidth > 1100) {
+          this._showcaseDesktop.innerHTML = ''
+          await this.createDesktopLogin()
+        } else {
+          this._showcaseModal.innerHTML = ''
+          this.createMobileLogin()
+        }
+
       }.bind(this))
     })
   }
@@ -379,6 +391,32 @@ class HomeTemplate {
         this._showcaseDesktop.appendChild(article)
       })
 
+      let priceTotal = 0
+
+      for (let i = 0; i < getCartModels.length; i++) {
+
+        const { quantity, products } = getCartModels[i]
+
+        const { preco } = products
+
+        priceTotal += preco * quantity
+      }
+
+      let count = 0
+
+      for (let i = 0; i < getCartModels.length; i++) {
+
+        const { quantity, products } = getCartModels[i]
+
+        const { preco } = products
+
+        count += 1 * quantity
+      }
+
+      this._totalPriceDesktop.innerText = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(priceTotal)
+
+      this._totalCountDesktop.innerText = count
+
       const buttonRemove = document.querySelectorAll('.button-desktop-card')
       this.captureButtonsRemove(buttonRemove)
     }
@@ -394,6 +432,7 @@ class HomeTemplate {
     }
 
     for (let i = 0; i < getCartModels.length; i++) {
+      console.log(getCartModels[i])
       const { quantity, products } = getCartModels[i]
 
       const { categoria, id, imagem, nome, preco } = products
@@ -420,6 +459,25 @@ class HomeTemplate {
 
       this._showcaseModal.appendChild(article)
     }
+
+    let priceTotal = 0
+    for (let i = 0; i < getCartModels.length; i++) {
+
+      const { quantity, products } = getCartModels[i]
+      const { preco } = products
+      priceTotal += preco * quantity
+    }
+
+    let count = 0
+
+    for (let i = 0; i < getCartModels.length; i++) {
+
+      const { quantity, products } = getCartModels[i]
+      count += 1 * quantity
+    }
+
+    this._priceModalTotal.innerText = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(priceTotal)
+    this._modalCountTotal.innerText = count
 
     const buttonRemove = document.querySelectorAll('.button-remove')
     this.captureButtonsRemove(buttonRemove)
@@ -663,6 +721,7 @@ class HomeTemplate {
   async createShowcase(promisse) {
     const resultado = await promisse
 
+    this.removeLoading()
     resultado.forEach((product) => {
       const { categoria, id, descricao, imagem, nome, preco } = product
 
