@@ -220,10 +220,10 @@ class DashboardTemplate {
   }
 
   async uncolourAllButtons() {
-    this._btnBread.style.backgroundColor = "#FFF7F4";
-    this._btnDrink.style.backgroundColor = "#FFF7F4";
-    this._btnFruit.style.backgroundColor = "#FFF7F4";
-    this._allBtn.style.backgroundColor = "#FFF7F4";
+    this._btnBread.style.backgroundColor = "var(--pink-40)";
+    this._btnDrink.style.backgroundColor = "var(--pink-30)";
+    this._btnFruit.style.backgroundColor = "var(--pink-20)";
+    this._allBtn.style.backgroundColor = "var(--grey-20)";
 
     this._btnBread.style.color = "black";
     this._btnDrink.style.color = "black";

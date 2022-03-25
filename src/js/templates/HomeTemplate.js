@@ -197,10 +197,10 @@ class HomeTemplate {
   }
 
   async uncolourAllButtons() {
-    this._buttonBread.style.backgroundColor = "#FFF7F4";
-    this._btnDrink.style.backgroundColor = "#FFF7F4";
-    this._btnFruit.style.backgroundColor = "#FFF7F4";
-    this._btnAll.style.backgroundColor = "#FFF7F4";
+    this._buttonBread.style.backgroundColor = "var(--pink-40)";
+    this._btnDrink.style.backgroundColor = "var(--pink-30)";
+    this._btnFruit.style.backgroundColor = "var(--pink-20)";
+    this._btnAll.style.backgroundColor = "var(--grey-20)";
 
     this._buttonBread.style.color = "black";
     this._btnDrink.style.color = "black";

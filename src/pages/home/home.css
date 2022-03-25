@@ -209,8 +209,7 @@ main {
     }
 
     .ul-buttons > button > img {
-        padding-left: 5px;
-        padding-right: 5px;
+        padding-right: 15px;
     }
 
     .ul-buttons > button {
@@ -218,7 +217,7 @@ main {
         background-color: #fff;
         background-color: var(--pink-40);
         border-radius: 30px;
-        padding-right: 8px;
+        padding: 14.5px 20px;
         font-size: 16px;
         display: flex;
         justify-content: center;
@@ -235,6 +234,18 @@ main {
     .button-bread, .button-fruit, .button-glass {
         margin-left: 20px;
     }
+
+    .ul-buttons > .button-bread {
+      background: var(--pink-40);
+    }
+
+    .ul-buttons > .button-fruit {
+      background: var(--pink-20);
+    }
+
+    .ul-buttons > .button-glass {
+      background: var(--pink-30);
+    }
     
     .ul-buttons > .button-bread {
         width: 150px;
@@ -243,6 +254,7 @@ main {
     .ul-buttons > .button-all {
         padding-left: 25px;
         padding-right: 25px;
+        background: var(--grey-20);
     }
 
     .ul-buttons > button:focus {
